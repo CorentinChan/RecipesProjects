@@ -1,0 +1,20 @@
+- //bug de recherche avec le cookies quand on utilise le tri sans faire de recherche
+
+- modify recipe => input rajouté en js, protéger les recette dont l'user est auteur
+
+-//cacher les id de connexion (mysql, mail) (dotenv)
+- //4videos recommanded iframe/recipe
+
+- /proteger les formulaires  
+- /retour de formulaire autre que par url
+
+- /se connecter avec google et facebook
+
+- /mode admin : recipe page : delete comm( &note associated) , account : ban user by pseudo , modify or delete recipe by ID or title
+- partager la recette sur réseaux sociaux
+
+/*
+- reseaux sociaux du site
+
+- /suscribe section sur home page
+*/

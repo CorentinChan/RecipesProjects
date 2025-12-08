@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js" defer></script>
+
+
+  <link rel="stylesheet" href="style.css"> 
+  <link rel="stylesheet" href="styleResp.css"> 
+    <link rel="stylesheet" href="animation.css"> 
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+   <title><%=title%></title>
+</head>
+<body>
+
+    <!--navigation bar -->
+        <%- include('part/nav', { user: user }) %>
+
+<!--Recipe Description-->
+<section class="recipeTitle row gx-0">
+
+  <div class="d-lg-flex container ">
+        <!--img-->
+        <div class="col-lg-6">
+        <div class=" justify-content-center  image-container">
+      <% if(!recipe.image)recipe.image="https://www.akteos.com/fileadmin/mediatheque/blog/2021/02/Article-Chine-diner.jpeg"; %>
+
+        <img src="<%=recipe.image %>" class=" tilt1  pt-3 rounded-5 recipePhoto" alt="image">
+        </div>
+          </div>
+        <!--description-->
+         <div class="col-lg-6" >
+    <div class=" pt-3 descriptionRecipe">
+            <!--title-->
+    <h1 class="fade-in mb-0"><%=recipe.title %></h1>
+    <p class="mt-1 ps-3 pt-1">  <%=recipe.note%><i class="fa-solid fa-star"> </i> (<%=notes.length%>)
+      <!--
+     <% if (recipe.note) { for(let i=0;i<5;i++){ console.log(recipe.note);  if(recipe.note>i) {  %>
+                <i class="fa-solid fa-star">  </i> <% }else{ %>
+              <i class="fa-regular fa-star"></i>
+              <% }} %>
+                  ( <%=notes.length%>  )
+              <% }  %>   -->
+        
+    </p>
+    <%    const regex = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+$/;
+          if(regex.test(recipe.description)){ %>
+    <a class="ps-3" href="<%=recipe.description%>" target="_blank"><i class="fa-brands fa-youtube fs-1"></i></a>
+            <% }else{ %>
+    <p class="text-black-50  fs-4"><%=recipe.description %></p>
+          <%}%>
+    <!--Recipe info-->
+    <div class="d-flex text-center  descriptionLogos border-bottom">
+        <div class="logo1  p-3 mx-2  m-lg-3 px-lg-5 text-center border-end">
+       <i class="fa-regular fa-clock fs-3 rotatec"></i>
+       <p class="m-0 p-0" >Active time</p>
+        <p class="m-0 p-0 text-black-50 " id="activeTime"><%=recipe.activeTime%></p>
+        </div>
+        <div class="logo2  p-3 mx-2 m-lg-3 px-lg-5 text-center border-end">  
+        <i class="fa-solid fa-clock-rotate-left fs-3 rotatec"></i>
+        <p class="m-0 p-0" >Total Time</p>
+        <p class="m-0 p-0 text-black-50 " id="totalTime"><%=recipe.totalTime%></p>
+        </div>
+        <div class="logo3 p-3 mx-2 m-lg-3 px-lg-5 text-center">        
+        <i class="fa-solid fa-users fs-3"></i>
+        <p class="m-0 p-0" >Yield</p>
+        <p class="m-0 p-0 text-black-50" id="yield"> <%=recipe.yield%></p>
+        </div>
+    </div>
+
+
+    <div class="d-flex mt-5 bottomDescription align-items-center">
+    
+    <div class="container">
+    <p class="m-0 p-0">Created by <span class="text-danger" id="author"><%=recipe.auteur%></span> </p>
+    <p class="m-0 p-0 text-black-50" id="nbRecipes"> <% %> </p>
+    </div>
+
+            <% if (user){  %>
+        <%if(message==="listAdded"){ %> 
+              <span class="text-success ">Added to list </span> <%}%>
+        <%if(message==="listAlready"){ %> <span class="text-info ">Already on list     </span><%}%>
+
+       <div class="d-flex justify-content-center ">
+        <form method="post" action="/addList">
+        <button type="submit" class="border-0 bg-white"><i class="fa-regular fa-plus fs-3 mx-3 clickable"></i></button> 
+        </form>
+        <%}%>
+        <i class="fa-solid fa-cart-arrow-down fs-3 mx-3 clickable"></i>
+        <i class="fa-solid fa-print fs-3 mx-3 clickable" id="print"></i>
+    </div>
+
+    </div>
+              <% if(userRole==="admin"){ %>
+              <div class="d-flex justify-content-between mt-5">
+                <p class="mx-3 rounded-pill  p-1">Recipe ID : <%=recipe.id%> </p>
+              <form method="post" action="modifyForm?recipe=<%=recipe.id%>">
+              <button type="submit" class=" btn-outline-primary bg-primary mx-2 rounded-pill border border-black p-1 ">Modify recipe</button> 
+              </form>
+               <form method="post" action="deleteRecipe">
+              <button type="submit" name="recipeID" value="<%=recipe.id%>" 
+                class=" btn-warning bg-danger mx-2 rounded-pill border  border-black p-1">Delete recipe</button> 
+               </form>
+                </div>
+                <%}%>
+         </div>
+
+
+    </div>
+  </div>
+</section>
+
+  <section class="m-1 p-1 m-lg-5 p-lg-3 makeRecipe-container">
+
+        <!--left section with instructions and  comments-->
+<div class="recipeLeft">
+    <div class="recipeSteps">
+        <h2 class=" mt-5  my-lg-0">How to make it</h2>
+    <ol class="mt-lg-4 list-group instructionsList"  >
+
+        <% let i=0;
+        instructions.forEach(step => { %>
+  
+
+        <li class=" d-flex border-0 " > <i class="fa-regular fa-circle-check fs-2 me-3 "></i> <h4 class="text-danger pt-1"><%=i%>.STEP</h4><div class="container-fluid border-top m-3 me-5"></div> </li>
+        <li class="list-group-item border-0 border-bottom-1 mx-5  text-black-50 fs-5" > <%=step.instruction%></li>
+         <% i++; }); %>
+        
+    </ol>
+    </div>
+
+        <!--comms tab-->
+     <div class="comments mt-lg-5 pt-5  " id="comments">
+      <h3>Comments</h3>
+
+<% let alt=false; commentaires.forEach((commentaire, index)=> {
+  let userNote = notes.find(n => n.userID === commentaire.userID && n.recipeID === commentaire.recipeID); %>
+  <% if (alt===false) { %>
+    <div class="list-group p-lg-3">
+      <div class="list-group-item" aria-current="true">
+        <div class=" w-100 justify-content-between">
+          <%}else{%>
+            <div class="list-group p-lg-3 com-container2">
+              <div class="list-group-item  bg-danger-subtle" aria-current="true">
+                <div class="d-flex flex-column w-100 justify-content-between">
+                  <%} alt=!alt;%>
+                <div class="d-flex ">
+
+                      <img class="imageComm mx-lg-0 me-2 me-lg-3 py-1   rounded-circle" src="<%=commentaire.image%>">
+                  <div class="d-flex flex-column mt-2 mt-lg-3">
+                      <h5 class="mb-1"><%=commentaire.pseudo%> <%if(userRole==="admin"){ %> ( id : <%=commentaire.userID%> , <%=commentaire.mail %> ) <%}%>  </h5>
+                      <small class="text-black-50">
+                        <% const day=commentaire.date.getDate().toString().padStart(2, '0' ); const
+                          month=(commentaire.date.getMonth() + 1).toString().padStart(2, '0' ); // Mois 0-11 const
+                          year=commentaire.date.getFullYear(); const date=day+'/'+month+'/'+year %>
+                          <%=date%>
+                      </small>
+                      <div class="">
+                          <% if (userNote) { for(let i=0;i<5;i++){ console.log(userNote.note); if(userNote.note>i) { %>
+                            <i class="fa-solid fa-star"> </i>
+                            <% }else{ %>
+                              <i class="fa-regular fa-star"></i>
+                              <% }}} %></div>
+                      </div>
+          
+                    </div>
+                      
+                    <p class="my-1 py-3">
+                      <%=commentaire.commentaire%>
+                    </p>
+
+                </div>
+                                              <% if(userRole==="admin"){  %>
+                      <form class="justify-content-center" method="post" action="deleteCommAdmin">
+                      <button type="submit" class="btn bg-danger rounded-pill border-black border-1" >Delete comment</button>
+                      <input hidden name="pseudo" value="<%=commentaire.userID%>">
+                      <input hidden name="recipeID" value="<%=recipe.id%>">
+
+                      </form>     
+                                      <%}%>
+              </div>
+            </div>
+
+            <%});%>
+  
+ <%if(user){ %> 
+ <div class=" d-flex w-100 justify-content-between mt-5">
+  <form method="post" action="giveNote"> 
+              <div class="d-flex"><i class="fa-solid fa-star p-3"></i> 
+    <select class="form-select form2" onchange="this.form.submit()" name="note">
+  <option selected disabled>Give a note</option>
+       <option value="1">1</option>
+     <option value="2">2</option>
+     <option value="3">3</option>
+     <option value="4">4</option>
+      <option value="5">5</option>
+   </select>
+  </form>
+           <% if(message==='noteInserted'){%>
+        <span class="text-success p-3">Note Sent</span><%}%>
+            </div>
+           
+            </div>
+
+
+            
+      <div class="list-group p-3">
+          <div class="list-group-item" aria-current="true">
+            
+            <p class="my-1 py-3">  <form method="post" action="addComment">
+    <div class=" ">
+      <label for="comment">Comments:</label>
+      <textarea class="form-control" rows="5" name="comment" id="commentForm" name="text"></textarea>
+    </div>
+    <button type="submit" class="btn mt-3 btn-primary ">Submit</button>
+  </form></p>
+          </div>
+      </div>
+  <% } %>
+      
+
+    </div>
+
+</div>
+
+
+<!-- right section with ingredients&co-->
+<div class="recipeRight">
+
+    <!--ingredients tab-->
+    <div class="mt-5 mt-lg-0 recipeIngredients">
+    <h2>Ingredients</h2>
+    <ul class="list-group ingredientsList" >
+      <%ingredients.forEach(ing => { %>
+        <li class="list-group-item border-0 border-bottom" > <%=ing.measure%>      <%=ing.ingredient%></li>
+        <% }); %>
+    </ul>
+    </div>
+
+    <!--tags tab-->
+    <div class=" pt-3 mt-3">
+      <h3 >Tags</h3>
+      <div class="tags">
+           <%tags.forEach(tag => { %>
+      <span class="badge text-bg-primary m-2 fs-5"><%=tag.tag%></span>
+            <%});%>
+      </div>  
+
+    </div>
+
+        <!--share recipe tab-->
+    <div class="shareRecipe pt-3 mt-3">
+      <h3 >Share recipes</h3>
+  <div class="d-flex justify-content-center me-5 pe-lg-5">
+<i class="fa-brands fa-facebook fa-2x p-3" ></i>
+<i class="fa-brands fa-instagram fa-2x p-3"></i>
+<i class="fa-brands fa-twitter fa-2x p-3"></i>
+
+  </div>
+    </div>
+
+
+</div>  
+
+  </section>
+
+<!--4 videos recommanded -->
+
+ <section class="videoSection2 container-fluid py-5   ">
+
+  <div class="videoTitle m-3 m-lg-5 ">
+<h2>Others videos you may like</h2>
+
+  </div>
+
+<div class="d-flex videos-container m-lg-5 flex-wrap "  >
+<% recipesForU.forEach(recipe => { %>
+  <div class="card shadow-sm h-100 mx-2">
+    <form method="post" action="/goRecipe" id="myForm">
+      <button type="submit" class="p-0 border-0 bg-transparent ">
+        <input hidden name="recipeID" value="<%=recipe.id%>">
+        <img src="<%= recipe.image %>" class="card-img-top" alt="<%= recipe.title %>">
+        <div class="card-body pb-0">
+          <h5 class="card-title text-black-50">
+            <%= recipe.title %>
+          </h5>
+          <div class="d-flex justify-content-between pt-3 pb-0 mb-0">
+            <span><%=recipe.note%><i class=" pb-1 ms-1 fa-solid fa-star"></i></span>
+            <span class="card-text">
+              <%= recipe.auteur %>
+            </span>
+          </div>
+
+  </div>
+        </button>
+    </form>
+  </div>
+  <% }); %>
+
+</div>
+
+
+</section>
+
+
+<%- include('part/footer', { user: user }) %>
+
+ <%- include('part/sign', { user: user }) %>
+
+
+
+</body>
+</html>

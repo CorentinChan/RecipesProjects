@@ -1,0 +1,33 @@
+-- 1️⃣ Désactiver temporairement les foreign keys
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- 2️⃣ Créer une table temporaire pour garder les IDs à supprimer
+CREATE TEMPORARY TABLE duplicate_ids (id_to_delete INT);
+
+-- 3️⃣ Insérer les IDs de doublons (tout sauf le plus petit ID pour chaque combinaison unique)
+INSERT INTO duplicate_ids (id_to_delete)
+SELECT r1.id
+FROM recipe r1
+JOIN recipe r2
+  ON r1.title = r2.title
+  AND r1.description = r2.description
+  AND r1.image = r2.image
+  AND r1.auteur = r2.auteur
+  AND r1.id > r2.id;
+
+-- 4️⃣ Supprimer les références dans toutes les tables dépendantes
+DELETE FROM instructions WHERE recipeID IN (SELECT id_to_delete FROM duplicate_ids);
+DELETE FROM liste_ingredients WHERE recipeID IN (SELECT id_to_delete FROM duplicate_ids);
+DELETE FROM recipe_list WHERE recipeID IN (SELECT id_to_delete FROM duplicate_ids);
+DELETE FROM commentaires WHERE recipeID IN (SELECT id_to_delete FROM duplicate_ids);
+DELETE FROM notes WHERE recipeID IN (SELECT id_to_delete FROM duplicate_ids);
+DELETE FROM tagsList WHERE recipeID IN (SELECT id_to_delete FROM duplicate_ids);
+
+-- 5️⃣ Supprimer les doublons dans la table recipe
+DELETE FROM recipe WHERE id IN (SELECT id_to_delete FROM duplicate_ids);
+
+-- 6️⃣ Supprimer la table temporaire
+DROP TEMPORARY TABLE duplicate_ids;
+
+-- 7️⃣ Réactiver les foreign keys
+SET FOREIGN_KEY_CHECKS = 1;

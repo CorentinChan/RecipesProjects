@@ -1,0 +1,107 @@
+ 
+  import Card from './card'
+import { useState, useEffect } from 'react';
+import { useSearchParams } from "react-router-dom";
+import { KeywordContext } from "./keyword";
+import axios from 'axios';
+
+ 
+ 
+ export default function  Carroussel({keyword}) {
+ const slides = [];
+  let group = [];
+  
+  //let tag='chicken';
+    const [searchParams] = useSearchParams();
+  let tag = keyword;
+
+  const [meals, setMeals] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // load recipe
+  useEffect(() => {
+    async function fetchRecipes() {
+     let textSearch=keyword;
+     let formSelect=false;
+      try {
+        const { data } = await axios.post(
+          import.meta.env.VITE_API_URL + "/searchRecipeHome",
+          {
+            textSearch,
+            formSelect,
+          },
+          {
+            headers: {"Content-Type": "application/json",},
+            withCredentials: true,
+          }
+        );
+        setMeals(data.recipes);
+        console.log("Réponse backend :", data);
+
+ 
+      } catch (error) {
+        console.error("error axios :", error);
+      }
+    }
+fetchRecipes();
+   
+    
+  }, [tag]);
+
+   
+   
+
+  // grouper les recettes par 12
+  meals.forEach((meal, index) => {
+    if (index > 0 && index % 12 === 0) {
+      slides.push(group);
+      group = [];
+    }
+    group.push(meal);
+  });
+  slides.push(group); // dernière slide
+
+  return (
+    <div id="cardCarousel" className="carousel slide">
+      <div className="carousel-inner p-2 p-lg-4">
+
+        {slides.map((slide, slideIndex) => (
+          <div
+            className={` ms-lg-5  carousel-item ${slideIndex === 0 ? "active" : ""}`}
+            key={slideIndex}>
+            <div className="row g-3 ">
+              {slide.map((meal,index) => (
+               // <div key={meal.idMeal}>     
+                <Card key={index} title={meal.title} img={meal.image} id={meal.id} note={meal.note} author={meal.auteur}   />
+                // </div>
+              ))}
+            </div>
+          </div>
+        ))}
+
+      </div>
+
+      {/* boutons indicateurs */}
+      <div className="carousel-indicators position-static mt-3">
+                <button className="btn btn-outline-primary bg-white " type="button" data-bs-target="#cardCarousel" data-bs-slide="prev">
+                ⬅️ 
+              </button>
+        {slides.map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            data-bs-target="#cardCarousel"
+            data-bs-slide-to={i}
+            className={i === 0 ? "active" : ""}
+          >
+            {i + 1}
+          </button>
+        ))}
+            <button className="btn btn-outline-primary bg-white" type="button" data-bs-target="#cardCarousel" data-bs-slide="next">
+            ➡️
+          </button>
+      </div>
+       
+    </div>
+  );
+        }

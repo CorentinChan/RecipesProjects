@@ -1,0 +1,210 @@
+
+     
+
+
+<!--presentation section with text and link-->
+      <div class = "d-lg-flex contactGroup  bg-white "  >
+
+      
+<section class="contactForm-container p-lg-5 " >
+
+  <div class=" container " >
+  <div class="p-4  bg-white">
+
+    <% if(!user){  %>
+   
+    
+    <form class=" contactForm needs-validation " id="signinForm" method="post" action="/signin ">
+      <div class="  w-100 w-lg-75 mx-auto text-center text-grey">
+        <h2 class="text-center m-4 text-black fw-bold pt-5">Sign in</h2>
+            <div class="logosLogin text-center d-flex justify-content-center">
+    
+            <a href="/auth/google"><i class="fa-brands fa-google fa-2x p-3"></i></a>
+            <i class="fa-brands fa-facebook fa-2x p-3"  ></i>
+            <i class="fa-brands fa-instagram fa-2x p-3"></i>
+
+              </div>
+
+        <h5 class="text-center m-4 text-grey">Or use your email account : </h5>
+        <label for="mail" class="form-label text-center text-grey fs-4 me-3">Email</label>
+        <input type="email" class="form-control rounded-pill bg-white border border-grey text-center text-black" id="mail" name="mail" placeholder="tom@company.com" required>
+        
+        <label for="password" class="form-label fs-4 me-3 mt-3">Password</label>
+        <input type="password" class="form-control rounded-pill bg-white border border-grey text-center text-black" id="password"
+         name="password" placeholder="Min 8 characters" minlength="8" required>
+           <% if(erreur=='mdp'){ %> <p class="text-danger">password incorrect</p> <% } %>
+           <div class="" id="responseMessage"></div>
+      </div>
+      <div class=" text-center my-3">
+        <!-- Button trigger modal -->
+<button type="button" class="btn bg-light border" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <a>Forget your password?</a>
+</button>
+   <% ; if(erreur==="mailSent"){  %> <p class="text-warning">A new password have been sent, check your mail!</p> <%}%>
+            <div class=" text-center">
+       <button type="button" id="signinSubmit" class="btn mx-3 fs-5 px-3 mt-3 btn-warning  rounded-pill">Sign in</button>
+    </div>
+
+    </form>
+
+
+
+<!-- Modal -->
+<div class="modal fade mt-5 " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Get your password</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form method="post" action="getPasswordMail">
+      <div class="modal-body justify-content-center">
+        <p>You can receive your password by mail </p>
+        <input type="email" class="form-control text-center  w-100 rounded-3 border border-grey " required name="mail" placeholder="type your e-mail">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Send Mail</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+        
+      </div>
+
+
+
+  </div>
+</div>
+
+
+</section>
+
+
+<section class=" signupSection py-3 " id="overlayb1">
+
+  <div class=" container py-5">
+  <div class="p-4 border rounded-4 shadow-sm text-white text-center background-perso">
+  <div class="  addMargin">
+    <h2 class="m-3 p-3 fw-bold ">Hello there, joins us</h2>
+    <h5 class="m-3 p-3 ">Enter your personal details, and join the cooking community</h5>
+        <button type="button" class="btn  fs-5 p-3 m-3  bg-white rounded-pill " id="signupButton">Sign Up</button>
+  </div>
+    </div>
+  </div>
+
+
+</section>
+      
+<!--signup div -->
+  
+  <div class=" container signup2 mt-5 text-white" id="overlayb2" >
+
+  <div class="p-4  bg-danger rounded-5 my-5">
+
+    <form class=" contactForm  " id="signupForm"  action="/signup" method="post">
+      <div class="  mx-auto text-center text-grey formAlign">
+        <h2 class="text-center m-4 fw-bold pt-2">Sign up</h2>
+            
+        <h5 class="text-center m-3 text-white">Join us and add your own recipes and many more! </h5>
+        
+        <label for="pseudo" class="form-label  text-center text-grey fs-4 me-3 ">Pseudo</label>
+        <input type="text" class="form-control text-center   w-50 rounded-pill bg-white border border-grey text-center text-grey"
+         minlength="4"  name="pseudo" id="pseudo" placeholder="pseudo" required>
+        
+
+        <label for="password" class="form-label fs-4 me-3 mt-3">Password</label>
+        <input type="password" class="form-control text-center  w-50 rounded-pill bg-white border border-grey text-center text-grey"
+          minlength="8" name="password" id="password" placeholder="min 8 characters" required >
+            <div class="invalid-feedback">
+            Minimum 8 characters
+          </div>
+
+        <label for="mail" class="form-label text-center text-grey fs-4 me-3 mt-3">Email</label>
+        <input type="email" class="form-control w-75 rounded-pill bg-white border border-grey text-center text-grey " name="mail"  id="mail" placeholder="cor@ind.com" required>
+            <div class="invalid-feedback">
+            Please enter a valid email address.
+          </div>
+      </div>
+
+      <div class=" text-center">
+       <button type="submit" id="signupSubmit" class="btn mx-3 fs-5 px-3 mt-3 mb-4 btn-warning  rounded-pill">Sign up</button>
+    </div>
+        <div class="text-center" id="responseMessageSignup"></div>
+    </form>
+  </div>
+</div>
+</div>
+
+<script>
+//fetch for signout check
+if(document.getElementById('signupSubmit')){ 
+  const buttonSignup = document.getElementById('signupSubmit');
+  buttonSignup.addEventListener('click', async (e) => {
+  e.preventDefault(); // empêche le rechargement de la page
+   let formSignup = document.getElementById('signupForm');
+   console.log('fetch function after submit');
+   // const form = e.target;
+    const password = formSignup.password.value;
+    const mail = formSignup.mail.value;
+    const pseudo = formSignup.pseudo.value;
+
+    try {
+        const res = await fetch('/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                password,
+                mail,
+                pseudo
+            })
+        });
+
+        const data = await res.json();
+
+        const message = document.getElementById('responseMessageSignup');
+        if (data.succeed) {
+            message.style.color = 'green';
+            message.textContent = "Your account have been created, redirect in 3s";
+            buttonSignup.remove();
+             //formSignup.remove();;
+            
+                     let i=2;
+                  const interval = setInterval(function() {
+                       message.textContent="Your account have been created, redirect in "+i+'s';
+                       i-=1;
+                            if (i < 0) {
+                            clearInterval(interval);
+                            location.reload(); // ou window.location.href = '/'; selon ton besoin
+                          }
+                    }, 1000); 
+        } else {
+            message.style.color = 'blue';
+            message.textContent = data.message;
+        }
+
+    } catch (err) {
+        console.error(err);
+        document.getElementById('responseMessageSignup').textContent = 'Erreur de connexion au serveur.';
+    }
+    });
+
+  }
+
+  
+</script>
+
+      </div>
+</div>
+
+
+
+<% }else{ %>
+  
+  <p>connection réussi!</p>
+  <% } %>
+
+

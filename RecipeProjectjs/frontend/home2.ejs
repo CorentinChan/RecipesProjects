@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js" defer></script>
+
+
+  <link rel="stylesheet" href="style.css"> 
+  <link rel="stylesheet" href="styleResp.css"> 
+  <link rel="stylesheet" href="animation.css"> 
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+   <title>Recipe Home</title>
+</head>
+<body>
+
+  <!--navigation bar -->
+ <%- include('part/nav', { user: user }) %>
+
+<!--presentation section with text and link-->
+<section class="signup-container tilt1 ">
+
+  <div class=" container-fluid ms-2 ms-lg-5 my-5 " >
+  <div class="p-4 border rounded-4 shadow-sm text-white background-perso">
+    <div class="signup-text">
+    <h1>CHOOSE FROM THOUSANDS OF RECIPES</h1>
+    <% if(!user){ %>
+    <h3 class="mb-3 "> sign up to acess to a lot of recipes, add your own recipes, and many more</h3>
+    <a  class =" d-flex text-decoration-none text-white" onclick="displaySignup()" ><h3>Sign up today </h3> <i class="fa-solid fa-arrow-right m-2 p-2 fa-lg" ></i> </a>
+   <% } %> </div>
+  </div>
+</div>
+
+</section>
+
+<!--recipe search and result -->
+<div class="recipeGroup ms-lg-5" id="searchResults">
+
+  <!-- navnar on the left  -->
+    <section class="recipeMenu">
+      <h1 class="ms-2"> Recipes</h1>
+      
+    <div class="container-fluid mt-3 ">
+
+     <div class="accordion" id="menuAccordion">
+
+    <!-- Menu 1 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true">
+          Dishes
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#menuAccordion">
+        <div class=" accordion-body">
+          <form method="post"  action="searchRecipeHome" class="d-flex flex-column align-items-start text-black-50">
+            <button type="submit" class="bg-transparent my-lg-1 py-lg-1   border-0" name="textSearch" value="">All</button>
+            <button type="submit" class="bg-transparent my-lg-1 py-lg-1   border-0" name="textSearch" value="Breakfast">Breakfast</button>
+            <button type="submit" class="bg-transparent border-0 my-lg-1 py-lg-1  " name="textSearch" value="pasta">Pasta</button>
+            <button type="submit" class="bg-transparent border-0 my-lg-1 py-lg-1  " name="textSearch" value="beef">Beef</button>
+            <button type="submit" class="bg-transparent border-0 my-lg-1 py-lg-1  " name="textSearch" value="Chicken">Chicken</button>
+            <button type="submit" class="bg-transparent border-0 my-lg-1 py-lg-1  " name="textSearch" value="Seafood">Sea food</button>
+            <button type="submit" class="bg-transparent border-0 my-lg-1 py-lg-1  " name="textSearch" value="Side">Side</button>
+            <button type="submit" class="bg-transparent border-0 my-lg-1 py-lg-1  " name="textSearch" value="dessert">Dessert</button>
+          </form>
+ 
+
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Menu 2 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false">
+         World Food
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#menuAccordion">
+        <div class="accordion-body">
+          <form method="post"  action="searchRecipeHome" class="d-flex flex-column align-items-start text-black-50">
+            <button type="submit" class="bg-transparent my-lg-1 py-lg-1   border-0" name="textSearch" value="chinese">Chinese</button>
+            <button type="submit" class="bg-transparent border-0 my-lg-1 py-lg-1  " name="textSearch" value="Turkish">Turkish</button>
+            <button type="submit" class="bg-transparent border-0 my-lg-1 py-lg-1  " name="textSearch" value="Indian">Indian</button>
+            <button type="submit" class="bg-transparent border-0 my-lg-1 py-lg-1  " name="textSearch" value="Thai">Thai</button>
+            <button type="submit" class="bg-transparent border-0 my-lg-1 py-lg-1  " name="textSearch" value="Moroccan">Moroccan</button>
+            <button type="submit" class="bg-transparent border-0 my-lg-1 py-lg-1  " name="textSearch" value="Mexican">Mexican</button>
+            <button type="submit" class="bg-transparent border-0 my-lg-1 py-lg-1  " name="textSearch" value="Japanese">Japanese</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menu 3 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false">
+          Vegan & Vegetarian
+        </button>
+      </h2>
+      <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#menuAccordion">
+        <div class="accordion-body">
+          <form method="post"  action="searchRecipeHome" class="d-flex flex-column align-items-start text-black-50">
+            <button type="submit" class="bg-transparent my-lg-1 py-lg-1   border-0" name="textSearch" value="vegan">Vegan</button>
+            <button type="submit" class="bg-transparent border-0 my-lg-1 py-lg-1  " name="textSearch" value="vegetarian">Vegetarian</button>
+            </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+<!--
+  <ul class="nav flex-column">
+
+    
+    <li class="nav-item dropdown nav-item2">
+    <a class="nav-link  nav-link2"  data-bs-toggle="collapse" data-bs-target="#mynavbar2" href="#" role="button" aria-expanded="false"><h2 class="pt-4">Dishes</h2></a>
+    <ul class="dropdown-menu collapse show" id="mynavbar2">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+  </li>
+      <li class="nav-item dropdown nav-item2">
+    <a class="nav-link  nav-link2"  data-bs-toggle="collapse" data-bs-target="#mynavbar21" href="#" role="button" aria-expanded="false">
+      <h2 class="pt-4">Dishes</h2></a>
+    <ul class="dropdown-menu" id="mynavbar21">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+  </li>
+
+
+  </ul>
+
+-->
+
+    </div>
+</section>
+
+ <%- include('search', {  title: 'Recipe page', user: user, recipes: recipes  }) %>
+
+
+
+<!--4 videos recommanded -->
+<section class=" container videoSection my-5 m-lg-5   ">
+
+  <div class=" container-fluid ms-lg-5 videoTitle   ">
+<h2>VIDEOS</h2>
+  <form action="/searchVideos" method="POST">
+  <select class="form-select fs-5 rounded-pill  .form-select-video form-select2"  id="videosFilter">
+    <option selected disabled>Sort by : </option>
+    <option value="recipeDate">Featured</option>
+    <option value="recipeAlpha">Featured</option>
+    <option value="recipeNote">featured </option>
+  </select>
+  </form>
+
+  </div>
+
+<div class="videos-container container-fluid m-lg-5" id="videos-container">
+
+  <% recipesRecommanded.forEach(recipe => { %>
+  <div class="card" >
+      <!--
+  const embedUrl = (recipe.description || '').match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]+)/);
+  const url = embedUrl ? `https://www.youtube.com/embed/${embedUrl[1]}` :  null;
+  console.log("url yt " +url)
+-->
+<form method="post" action="/goRecipe" id="myForm">
+      <button type="submit" class="p-0 border-0 bg-transparent ">
+        <input hidden name="recipeID" value="<%=recipe.id%>">
+        <% if(!recipe.image)recipe.image='https://cdn-s-www.dna.fr/images/60C1C7EF-628F-4C3E-B452-A807BA5B8749/NW_raw/photo-shutterstock-1660556772.jpg'; %>
+        <img src="<%= recipe.image %>" class="card-img-top" alt="<%= recipe.title %>">
+        <div class="card-body pb-0">
+          <h5 class="card-title text-black-50">
+            <%= recipe.title %>
+          </h5>
+          <div class="d-flex justify-content-between pt-3 pb-0 mb-0">
+            <span><%=recipe.note%><i class=" pb-1 ms-1 fa-solid fa-star"></i></span>
+            <span class="card-text">
+              <%= recipe.auteur %>
+            </span>
+          </div>
+
+  </div>
+        </button>
+    </form>
+  </div>
+
+  <%});%>
+  
+</div>
+</section>
+
+<!--subscribe email form  -->
+<section class="subscribeSection">
+
+  <div class="container-fluid  ">
+  <div class="p-5 border rounded-4 shadow-sm bg-danger">
+    <h1 class="fs-1 mx-0 px-0 mx-lg-5 px-lg-5 text-white text-center">Be the first to know about the latest deal, receive new trending recipes & more</h3>
+    <p class="text-muted"></p>
+
+    <form class="d-flex   content-center ">
+      <div class=" d-lg-flex w-100 w-lg-75 mx-auto">
+        <input type="text" class="form-control rounded-pill bg-danger border border-white text-white" id="mail" placeholder="e-mail adress">
+
+        <button type="button" class="btn mx-3 fs-5 px-3   rounded-pill" onclick="displaySignup()">Subscribe</button>
+              </div>
+
+    </form>
+  </div>
+</div>
+
+</section>
+
+ <%- include('part/footer', { user: user }) %>
+
+ <%- include('part/sign', { user: user}) %>
+
+
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+  <link rel="stylesheet" href="style.css"> 
+  <link rel="stylesheet" href="styleResp.css"> 
+    <link rel="stylesheet" href="animation.css"> 
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+   <title>Recipe Home</title>
+</head>
+<body>
+
+<!--Recipe Description-->
+<section class="recipeTitle gx-0">
+
+  <div class=" container justify-content-center   ">
+
+<h1 class=" m-5 p-3 text-center bg-danger rounded-4 text-white">  Write your own recipe!</h1>
+        <!--img-->
+        <label for="" class="form-label">Recipe Picture</label>
+        <input class="form-control form-control-sm mb-5 p-2 w-75" type="text" placeholder="enter picture url" >
+        <!--description-->
+        
+            <!--title-->
+            <label for="" class="form-label"> Recipe Title</label>
+    <input class="form-control form-control-sm  mb-5 p-2 w-75" type="text" placeholder="enter title recipe" >
+
+            <label for="" class="form-label">Recipe Description</label>
+    <input class="form-control form-control-sm  mb-5 p-2 w-75" type="text" placeholder="enter description recipe" >
+
+    <!--Recipe info-->
+    <div class="d-flex text-center  descriptionLogos border">
+        <div class="logo1  p-2 mx-2  m-lg-3 px-lg-5 text-center border-end">
+       <i class="fa-regular fa-clock fs-3 rotatec"></i>
+           <input class="form-control form-control-sm" type="text" placeholder="enter active time" >
+        </div>
+        <div class="logo2  p-2 mx-2 m-lg-3 px-lg-5 text-center border-end">  
+        <i class="fa-solid fa-clock-rotate-left fs-3 rotatec"></i>
+           <input class="form-control form-control-sm" type="text" placeholder="enter total time" >
+
+        </div>
+        <div class="logo3 p-2 mx-2 m-lg-3 px-lg-5 text-center">        
+        <i class="fa-solid fa-users fs-3"></i>
+           <input class="form-control form-control-sm" type="text" placeholder="enter yield" >
+
+        </div>
+    </div>
+
+
+    <div class="d-flex mt-5 bottomDescription">
+    
+    <div class="container">
+     <label for="" class="form-label">Recipe Author</label>
+    <input class="form-control form-control-sm mb-5 p-2  w-75" type="text" placeholder="enter name author" >
+
+    </div>
+    
+    </div>
+    
+   
+  </div>
+</section>
+
+  <section class="m-1 p-1 m-lg-5 p-lg-3 makeRecipe-container">
+
+        <!--left section with instructions and  comments-->
+<div class="recipeLeft">
+    <div class="recipeSteps">
+        <h2 class=" mt-5  my-lg-0">How to make it</h2>
+    <ol class="mt-lg-4 list-group instructionsList"  >
+        <li class=" d-flex border-0 " > <i class="fa-regular fa-circle-check fs-2 me-3 "></i> 
+          <h4 class="text-danger pt-1">1.STEP</h4><div class="container-fluid border-top m-3 me-5"></div> </li>
+        <li class="list-group-item border-0 border-bottom-1 mx-5  text-black-50 fs-5" >           
+           <input class="form-control form-control-sm  m-3 p-3 w-75" type="text" placeholder="write step 1" >
+</li>
+
+       
+    </ol>
+
+
+    </div>
+
+    <i class="fa-regular fa-plus fs-3 mx-3  clickable  " onclick='addStep()'><span  class="fs-6 ">Add more steps</span></i>
+
+     
+    </div>
+
+<!-- right section with ingredients&co-->
+<div class="recipeRight">
+
+    <!--ingredients tab-->
+    <div class="d-lg-flex mt-5 mt-lg-0 recipeIngredients">
+      <div class="">
+    <h2>Ingredients</h2>
+    <ul class="list-group ingredientsList" >
+          <input class="form-control form-control-sm  m-2 p-2 w-75" type="text" placeholder="write ingredient 1" >
+      
+    </ul>
+
+        <i class="fa-regular fa-plus fs-3 mx-3  clickable " onclick='addIngredient()' ><span  class="fs-6 ">Add more ingredients</span></i>
+
+        </div>
+
+       <div class="">
+        <h2>Measure</h2>
+    <ul class="list-group measureList" >
+          <input class="form-control form-control-sm  m-2 p-2 w-75" type="text" placeholder="write measure 1" >
+      
+    </ul>
+
+
+       </div>
+
+    </div>
+
+    <!--tags tab-->
+    <div class=" pt-3 mt-3">
+      <h3 >Tags</h3>
+      <div class="dflex tags">
+    <input class="form-control form-control-sm  m-2 p-2 w-75" type="text" placeholder="write TAGS" >
+
+          </div>  
+
+
+    <i class="fa-regular fa-plus fs-3 mx-3  clickable " onclick='addTags()' ><span  class="fs-6 ">Add more tags</span></i>
+
+          </div>
+
+      </div>
+
+    
+
+</div>  
+
+  </section>
+
+    <div class="d-flex justify-content-center">
+    <button  type="submit" class=" text-center btn btn-danger p-3 px-5 mb-5 fs-4 rounded-pill">Submit</button>
+    </div>
+
+
+<script>  //form page 
+    //add steps
+
+    function addStep(){
+      console.log('addstep');
+      let liste=document.querySelector('.instructionsList');
+      
+      liste.innerHTML+=` <li class=" d-flex border-0 " > <i class="fa-regular fa-circle-check fs-2 me-3 "></i> 
+          <h4 class="text-danger pt-1">STEP</h4><div class="container-fluid border-top m-3 me-5"></div> </li>
+        <li class="list-group-item border-0 border-bottom-1 mx-5  text-black-50 fs-5" >           
+           <input class="form-control form-control-sm  m-3 p-3 w-75" type="text" placeholder="write step " >
+</li>`}
+
+      function addIngredient(){
+      let liste=document.querySelector('.ingredientsList');
+      let measureList=document.querySelector('.measureList');
+
+      liste.innerHTML+='           <input class="form-control form-control-sm  m-2 p-2 w-75" type="text" placeholder="write ingredient " >';
+      measureList.innerHTML+='           <input class="form-control form-control-sm  m-2 p-2 w-75" type="text" placeholder="write measure " >';
+
+    
+    }
+let tags =1;
+
+         function addTags(){
+
+          if (tags >=4 ) {alert("maximum 4 tags") }
+      else {let liste=document.querySelector('.tags');
+      
+      liste.innerHTML+='     <input class="form-control form-control-sm  m-2 p-2 w-75" type="text" placeholder="enter TAGS" >';
+    }
+    tags++;
+  }
+
+    </script>
+
+</body>
+</html>

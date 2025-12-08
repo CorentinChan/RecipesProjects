@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js" defer></script>
+  <script src="search.js" defer></script>
+
+
+  <link rel="stylesheet" href="style.css"> 
+  <link rel="stylesheet" href="styleResp.css"> 
+    <link rel="stylesheet" href="animation.css"> 
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+   <title>Recipe Home</title>
+</head>
+<body>
+
+    <!--navigation bar -->
+    <!--button to hide and show menu on mobile -->
+
+    <nav class="navbar navbar-expand-sm navbar-white bg-white"> 
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <!--text to collapse -->
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <ul class="navbar-nav  me-auto mb-3  ">
+          <li class="nav-item  ">
+          <a class="nav-link fs-5 urlActive" href="home.html">Home</a>
+        </li>
+        <li class="nav-item  ">
+          <a class="nav-link text-black fs-5" href="recipe.html">Recipe</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link text-black fs-5" href="search.html">Search</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-black fs-5 " href="contact.html">Contact</a>
+        </li>
+           <li class="nav-item ">
+          <a class="nav-link text-black fs-5  pb-1 mb-2 pb-lg-0 mb-lg-0 border-0 urlCustom2" onclick="displaySignin();signupClose();">Sign in</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+         <a class="nav-link fs-5 urlCustom" href="javascript:void(0)"></a>
+        <!--
+        <input class="form-control me-2" type="text" placeholder="Search">
+        <button class="btn btn-primary" type="button">Search</button>
+        !-->
+    
+      </form>    
+
+    </div>
+      <!--right side of nav with button and link always visible-->
+          <div class="rightNav">
+            <input type="text" class="form-control searchWindow mt-2 " placeholder="Search" id="searchWindow" aria-label="Search"
+              aria-describedby="basic-addon1">
+          
+            <i class="fa-solid fa-magnifying-glass fa-lg m-4 mx-3 clickable " id="searchButton"></i>
+            <!--
+                  <a class="nav-link fs-5 urlCustom" href=""  >Sign in</a>
+                  -->
+            <button type="button" class="btn btnAc fs-5 rounded-pill mx-2 btnCustom2 " id="signinButton" onclick="displaySignin();signupClose();" >Sign in</button>
+            <button type="button" class="btn  btnAc btn-primary fs-5 rounded-pill mx-2 btnCustom " id ="signupButton" onclick="displaySignup()" >Sign up</button>
+          
+          
+          </div>
+  </div>
+</nav>
+
+<!--Recipe Description-->
+<section class="recipeTitle row gx-0">
+
+  <div class="d-lg-flex container ">
+        <!--img-->
+        <div class="col-lg-6">
+        <div class=" justify-content-center  image-container">
+        <img src="https://picsum.photos/400/250?random=6" class=" tilt1  pt-3 rounded-5 recipePhoto" alt="image">
+        </div>
+          </div>
+        <!--description-->
+         <div class="col-lg-6" >
+    <div class=" pt-3 descriptionRecipe">
+            <!--title-->
+    <h1 class="fade-in">Your favorite recipe</h1>
+    <p class="text-black-50  fs-4">un magnigique plat avec des pommes de terre riches en féculents</p>
+
+    <!--Recipe info-->
+    <div class="d-flex text-center  descriptionLogos border-bottom">
+        <div class="logo1  p-3 mx-2  m-lg-3 px-lg-5 text-center border-end">
+       <i class="fa-regular fa-clock fs-3 rotatec"></i>
+       <p class="m-0 p-0" >Active time</p>
+        <p class="m-0 p-0 text-black-50 " id="activeTime">20mn</p>
+        </div>
+        <div class="logo2  p-3 mx-2 m-lg-3 px-lg-5 text-center border-end">  
+        <i class="fa-solid fa-clock-rotate-left fs-3 rotatec"></i>
+        <p class="m-0 p-0" >Total time</p>
+        <p class="m-0 p-0 text-black-50 " id="totalTime">40mn</p>
+        </div>
+        <div class="logo3 p-3 mx-2 m-lg-3 px-lg-5 text-center">        
+        <i class="fa-solid fa-users fs-3"></i>
+        <p class="m-0 p-0" >Yield</p>
+        <p class="m-0 p-0 text-black-50" id="yield"> Serves 2</p>
+        </div>
+    </div>
+
+
+    <div class="d-flex mt-5 bottomDescription">
+    
+    <div class="container">
+    <p class="m-0 p-0">Created by <span class="text-danger" id="author">Corentin CHAN</span> </p>
+    <p class="m-0 p-0 text-black-50" id="nbRecipes">21recipes </p>
+    </div>
+    
+       <div class="d-flex justify-content-center ">
+         <i class="fa-regular fa-plus fs-3 mx-3 clickable"></i>
+        <i class="fa-solid fa-cart-arrow-down fs-3 mx-3 clickable"></i>
+        <i class="fa-solid fa-print fs-3 mx-3 clickable" id="print"></i>
+    </div>
+    </div>
+    
+         </div>
+
+
+    </div>
+  </div>
+</section>
+
+  <section class="m-1 p-1 m-lg-5 p-lg-3 makeRecipe-container">
+
+        <!--left section with instructions and  comments-->
+<div class="recipeLeft">
+    <div class="recipeSteps">
+        <h2 class=" mt-5  my-lg-0">How to make it</h2>
+    <ol class="mt-lg-4 list-group instructionsList"  >
+        <li class=" d-flex border-0 " > <i class="fa-regular fa-circle-check fs-2 me-3 "></i> <h4 class="text-danger pt-1">1.STEP</h4><div class="container-fluid border-top m-3 me-5"></div> </li>
+        <li class="list-group-item border-0 border-bottom-1 mx-5  text-black-50 fs-5" >  couper les oignons Puis couper les oignon couper les oignons Puis couper les oignons couper les oignons Puis couper les oignons couper les oignons Puis couper les oignons couper les oignons Puis couper les oignonss</li>
+
+        <li class=" d-flex border-0" > <i class="fa-regular fa-circle-check fs-2 me-3 "></i> <h4 class="text-danger pt-1">2.STEP</h4><div class="container-fluid border-top m-3 me-5"></div> </li>
+        <li class="list-group-item border-0 mx-5  text-black-50 fs-5" >  couper les oignons Puis couper les oignon couper les oignons Puis couper les oignons couper les oignons Puis couper les oignons couper les oignons Puis couper les oignons couper les oignons Puis couper les oignonss</li>
+        
+        <li class=" d-flex border-0" > <i class="fa-regular fa-circle-check fs-2 me-3 "></i> <h4 class="text-danger pt-1">3.STEP</h4><div class="container-fluid border-top m-3 me-5"></div> </li>
+        <li class="list-group-item border-0 mx-5  text-black-50 fs-5" >  couper les oignons Puis couper les oignon couper les oignons Puis couper les oignons couper les oignons Puis couper les oignons couper les oignons Puis couper les oignons couper les oignons Puis couper les oignonss</li>
+
+    </ol>
+    </div>
+
+        <!--comms tab-->
+     <div class="comments mt-lg-5 pt-5  ">
+      <h3>Comments</h3>
+
+      <div class="list-group p-lg-3">
+          <div class="list-group-item" aria-current="true">
+            <div class=" w-100 justify-content-between">
+              <img src="">
+              <h5 class="mb-1">CHAN Corentin</h5>
+              <small class="text-black-50">3 days ago</small>
+              <div><span class=""><i class="fa-solid fa-star">  </i> <i class="fa-solid fa-star">  </i> <i class="fa-solid fa-star">  </i> <i class="fa-solid fa-star">  </i>
+              <i class="fa-regular fa-star"></i></span></div>
+            </div>
+            <p class="my-1 py-3">Ce plat est vraiment bon et riche en patate</p>
+          </div>
+      </div>
+
+      <div class="list-group p-lg-3 com-container2" >
+          <div class="list-group-item  bg-danger-subtle" aria-current="true">
+            <div class=" w-100 justify-content-between">
+              <img src="">
+              <h5 class="mb-1">CHAN Corentin</h5>
+              <small class="text-black-50">3 days ago</small>
+              <div><span class=""><i class="fa-solid fa-star">  </i> <i class="fa-solid fa-star">  </i> <i class="fa-solid fa-star">  </i> <i class="fa-solid fa-star">  </i>
+              <i class="fa-regular fa-star"></i></span></div>
+            </div>
+            <p class="my-1 py-3">Ce plat est vraiment bon et riche en patate</p>
+          </div>
+      </div>
+  
+ 
+
+      <div class="list-group p-lg-3">
+          <div class="list-group-item" aria-current="true">
+            <div class=" d-flex w-100 justify-content-between">
+              <div class="d-flex"><i class="fa-solid fa-star p-3"></i> <select class="form-select form2" >
+  <option selected disabled>Give a note</option>
+       <option>1</option>
+     <option>2</option>
+     <option>3</option>
+     <option>4</option>
+      <option>5</option>
+   </select>
+            </div>
+            </div>
+            <p class="my-1 py-3">  <form action="">
+    <div class=" ">
+      <label for="comment">Comments:</label>
+      <textarea class="form-control" rows="5" id="commentForm" name="text"></textarea>
+    </div>
+    <button type="submit" class="btn mt-3 btn-primary ">Submit</button>
+  </form></p>
+          </div>
+      </div>
+      
+
+    </div>
+
+</div>
+
+<!-- right section with ingredients&co-->
+<div class="recipeRight">
+
+    <!--ingredients tab-->
+    <div class="mt-5 mt-lg-0 recipeIngredients">
+    <h2>Ingredients</h2>
+    <ul class="list-group ingredientsList" >
+        <li class="list-group-item border-0 border-bottom" > 3kg oignons</li>
+        <li class="list-group-item border-0 border-bottom" > 3kg patates</li>
+        <li class="list-group-item border-0 " > 3kg ingredient1</li>
+           <li class="list-group-item border-0 border-bottom" > 3kg oignons</li>
+        <li class="list-group-item border-0 border-bottom" > 3kg patates</li>
+        <li class="list-group-item border-0 " > 3kg ingredient1</li>
+           <li class="list-group-item border-0 border-bottom" > 3kg oignons</li>
+        <li class="list-group-item border-0 border-bottom" > 3kg patates</li>
+        <li class="list-group-item border-0 " > 3kg ingredient1</li>
+    </ul>
+    </div>
+
+    <!--tags tab-->
+    <div class=" pt-3 mt-3">
+      <h3 >Tags</h3>
+      <div class="tags">
+      <span class="badge text-bg-primary m-2 fs-5">Primary</span>
+      <span class="badge text-bg-primary m-2 fs-5">Primary</span>
+      <span class="badge text-bg-primary m-2 fs-5">Primary</span>
+      <span class="badge text-bg-primary m-2 fs-5">Primary</span>
+      </div>  
+
+    </div>
+
+        <!--share recipe tab-->
+    <div class="shareRecipe pt-3 mt-3">
+      <h3 >Share recipes</h3>
+  <div class="d-flex justify-content-center me-5 pe-lg-5">
+<i class="fa-brands fa-facebook fa-2x p-3" ></i>
+<i class="fa-brands fa-instagram fa-2x p-3"></i>
+<i class="fa-brands fa-twitter fa-2x p-3"></i>
+
+  </div>
+    </div>
+
+
+</div>  
+
+  </section>
+
+<!--4 videos recommanded -->
+<section class="videoSection2 container-fluid py-5   ">
+
+  <div class="videoTitle m-3 m-lg-5 ">
+<h2>Others videos you may like</h2>
+
+  </div>
+
+<div class="videos-container m-lg-5"  id="videos-container">
+  <div class="card" >
+    <img src="https://picsum.photos/400/250?random=3" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text text-black-50">By Corentin Chan</p>
+    </div>
+  </div>
+  <div class="card" >
+    <img src="https://picsum.photos/400/250?random=3" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">By Corentin Chan</p>
+    </div>
+  </div>
+  <div class="card" >
+    <img src="https://picsum.photos/400/250?random=3" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">By Corentin Chan</p>
+    </div>
+  </div>
+  <div class="card" >
+    <img src="https://picsum.photos/400/250?random=3" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">By Corentin Chan</p>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="videos-container m-lg-5" id="videos-container2" >
+  <div class="card" >
+    <img src="https://picsum.photos/400/250?random=3" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+    <div class="d-flex justify-content-between"><span class=""><i class="fa-solid fa-star"></i>5</span><span class="card-text">By Corentin Chan</p> </div>
+    </div>
+  </div>
+
+  <div class="card" >
+    <img src="https://picsum.photos/400/250?random=3" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+    <div class="d-flex justify-content-between"><span class=""><i class="fa-solid fa-star"></i>5</span><span class="card-text">By Corentin Chan</p> </div>
+    </div>
+  </div>
+
+  <div class="card" >
+    <img src="https://picsum.photos/400/250?random=3" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+    <div class="d-flex justify-content-between"><span class=""><i class="fa-solid fa-star"></i>5</span><span class="card-text">By Corentin Chan</p> </div>
+    </div>
+  </div>
+
+    <div class="card" >
+    <img src="https://picsum.photos/400/250?random=3" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+    <div class="d-flex justify-content-between"><span class=""><i class="fa-solid fa-star"></i>5</span><span class="card-text">By Corentin Chan</p> </div>
+    </div>
+  </div>
+
+</div>
+
+</section>
+
+
+<footer>
+<!--footer with logos and links -->
+
+<!--logos with fontawesome-->
+  <div class="logos me-5 pe-lg-5">
+<i class="fa-brands fa-facebook fa-2x p-3" ></i>
+<i class="fa-brands fa-instagram fa-2x p-3"></i>
+<i class="fa-brands fa-twitter fa-2x p-3"></i>
+
+  </div>
+
+  <div class="container mt-3">           
+  <div class="table-perso">
+
+      <ul>
+        <li><a href="">Presentations</a></li>
+        <li><a href="">Profesionals</a></li>
+        <li><a href="">Stores</a></li>
+      </ul>
+              <ul>
+         <li><a href="">Webinars      </a></li>
+          <li ><a href="">Workshops</a></li>
+         <li><a href="">Local Meetups</a></li>
+      </ul>
+        <ul>
+         <li><a href="">Ours initiative</a></li>
+          <li><a href="">Giving Back</a></li>
+         <li><a href="">Communities</a></li>
+      </ul>
+        <ul>
+        <li><a href="">Contact Form</a></li>
+        <li><a href="">Work with us</a></li>
+        <li><a href="">Visit us</a></li>
+      </ul>
+             
+
+</div>
+
+  <p class="textTab">Made by C.C</p> 
+
+
+</footer>
+
+
+
+<!--Signin Div-->
+<div class="overlay" id="overlay1">
+  <div class="signWindow" id="signWindow">
+    <button type="button" class="btn btnAc border text-center btn-danger btnClose" aria-label="Close" id="closeSignWindow" onclick="signinClose()">X</button>
+    <iframe src="login.html" width="100%" height="100%" style="border:none;"></iframe>
+  </div>
+</div>
+
+<!-- sign up div -->
+<div class="overlay3" id="overlay2">
+
+  <div class=" container signup  ">
+      <button type="button" class="btn btnAc text-center btn-danger border p-1  btnClose2" aria-label="Close" id="closeSignupWindow" onclick="signupClose()">X</button>
+
+  <div class="p-4  bg-danger border text-white rounded-5">
+
+    <form class=" contactForm  ">
+      <div class="  mx-auto text-center text-grey formAlign">
+        <h2 class="text-center m-3  fw-bold pt-2">Sign up</h2>
+        <a class="text-center m-3 " onclick="displaySignin();signupClose();">Have already an account? Click here to connect!</a>
+   
+        <h5 class="text-center m-3 ">Join us and add your own recipes and many more! </h5>
+        <label for="mail" class="form-label text-center text-grey fs-4 me-3">Email</label>
+        <input type="text" class="form-control rounded-pill text-black bg-white border border-grey text-center " id="name" placeholder="tom@company.com" >
+
+        <label for="mail" class="form-label  text-center text-grey fs-4 me-3 mt-3">Pseudo</label>
+        <input type="text" class="form-control text-center text-black  w-50 rounded-pill bg-white border border-grey text-center " id="name" placeholder="tom@company.com" >
+        
+
+        <label for="password" class="form-label fs-4 me-3 mt-3">Password</label>
+        <input type="text" class="form-control text-center text-black  w-50 rounded-pill bg-white border border-grey text-center " id="password" placeholder="Min 8 characters" >
+      
+      </div>
+
+      <div class=" text-center my-3">
+      </div>
+
+      <div class=" text-center">
+       <button type="submit" class="btn btnAc mx-3 fs-5 px-3 mt-3 btn-warning  rounded-pill">Sign up!</button>
+    </div>
+
+    </form>
+  </div>
+</div>
+
+</div>
+</div>
+
+
+</body>
+</html>

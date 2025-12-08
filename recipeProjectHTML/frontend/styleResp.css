@@ -1,0 +1,389 @@
+    
+
+      
+    
+    
+    @media (max-width: 768px) {
+
+      /*classes du nav*/
+      .navbar {
+        margin: 0rem 0rem;
+        padding: 0rem;
+      }
+
+      .navbar .container-fluid {
+        flex-direction: row-reverse;
+        justify-content: flex-start;
+
+      }
+
+      .rightNav {
+        margin-top: 0.2rem;
+      }
+
+      .navbar .btnCustom {
+        padding: 0em 0rem;
+        width: 8rem;
+        margin: 0rem 1rem;
+        height: 3rem;
+        background-color: orangered;
+        border-style: none;
+      }
+
+      .nav-item {
+        padding: 0em 0rem;
+        border-bottom: 1px solid #ccc;
+      }
+
+      .navbar .btnCustom2 {
+        display: none;
+
+      }
+
+      .navbar .urlCustom {
+        display: none;
+        margin-left: 0rem;
+        padding: 00em 0rem;
+      }
+
+      .navbar .urlCustom2 {
+        display: block;
+        margin-left: 0rem;
+        padding: 00em 0rem;
+        border-style: none!important;
+
+      }
+
+      .signup-text {
+        width: 100%;
+      }
+
+      .searchWindow {
+        display: none;
+        width: 6em;
+        
+      }
+
+      /*classe de la recherche et liste des recette*/
+      .recipeSearch form {
+        width: 30rem;
+      }
+
+   
+
+      .recipeMenu {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .signup-text h1 {
+        font-size: xx-large;
+      }
+
+      .recipeGroup {
+        display: flex;
+        flex-direction: column;
+
+      }
+
+      .recipe-container {
+
+        display: flex;
+        flex-direction: column;
+
+      }
+
+
+      .recipeList {
+
+        display: flex;
+        flex-direction: column;
+      }
+
+      .recipeList .form-select {
+        height: 2em;
+      }
+
+
+      .recipeSearch {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+      }
+
+      .recipeSearch form {
+        width: 80%;
+        margin: 1rem;
+      }
+
+      .recipeList .card {
+        max-width: 100%;
+
+      }
+
+
+      /* videos container 2 par ligne*/
+      .videos-container {
+        flex-wrap: wrap;
+        gap: 0em;
+      }
+
+      .videos-container .card {
+        width: 45% !important;
+
+      }
+
+
+
+
+      .videoSection .form-select {
+        width: 7em;
+        height: 2em;
+        margin-top: 0em;
+        padding-top: 0.2em;
+        font-size: 1em !important;
+        color: white;
+      }
+
+
+      /*subribe section */
+      .subscribeSection .btn {
+        height: 2.5em;
+        font-size: medium;
+        margin-top: 1em;
+        width: 8em;
+      }
+
+      .videos-container .card {
+        margin-top: 0.5em;
+
+      }
+
+    .recipeForm form {
+    width: 100%;}
+
+
+      /*footer : tableau 2 par lignes */
+
+      .table-perso {
+        flex: column;
+        flex-direction: column;
+
+        margin-bottom: 5rem;
+      }
+
+      .table-perso ul {
+        gap: 1rem;
+        display: flex;
+        flex-direction: column;
+        margin-top: 1em;
+        text-align: left;
+        font-size: 1.3em;
+
+      }
+
+      .table-perso li {
+        list-style-type: none;
+        text-decoration: none;
+        color: black;
+        padding: 0rem;
+      }
+
+
+      .textTab {
+        text-decoration: none;
+        color: grey;
+        margin-left: 7rem;
+      }
+
+      /*recipe page*/
+
+
+      .recipteTitle {
+        max-width: 100%;
+        justify-content: center;
+      }
+
+      .image-container {
+        width: 100%;
+        display: block;
+        justify-content: center;
+      }
+
+      .recipePhoto {
+        width: 100%;
+        height: auto;
+      }
+
+      .descriptionLogos {
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      .descriptionRecipe {
+        align-items: center;
+        display: block;
+        max-width: 100%;
+      }
+
+      .makeRecipe-container {
+        display: flex;
+        flex-direction: column-reverse;
+
+      }
+
+      .recipeLeft {
+        width: 100%;
+      }
+
+      .recipeRight {
+        width: 100%;
+      }
+
+      .nbStep {
+        width: 8em;
+        font-size: medium;
+      }
+
+      .card-text {
+        margin-left: 1em;
+        margin-right: 0em;
+        padding-right: 0;
+      }
+
+      .comments {
+        width: 100%;
+      }
+
+      .com-container2 {
+        margin-left: 0%;
+        width: 100%;
+      }
+
+
+      .videoSection2 .card {
+        width: auto;
+        object-fit: cover;
+      }
+
+      .videoSection2 .card-img-top {
+        height: auto;
+        width: auto;
+        object-fit: cover;
+      }
+
+
+      .videos-container .card-title {
+        height: 3em;
+      }
+
+
+
+      /*Contact Page*/
+
+      .contactGroup {
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .contactText {
+        width: 100%;
+      }
+
+      .contactForm-container {
+        width: 100%;
+      }
+
+      /*login page*/
+
+      .signupSection {
+        width: 100%;
+      }
+
+      /* signup div */
+
+          .signWindow .btnClose{
+
+      top:  1% ;
+    }
+
+    
+
+ .signup2{
+    position: relative;
+    width: 100%;
+    display: none;
+    z-index: 20;
+   }
+
+        .signup{
+      width: 100%;
+      left : 0;
+      top:0;
+    }
+
+ .btnClose2{
+      
+      left: 80%;
+      top: 3em;    }
+
+
+    }
+
+
+
+
+
+@media print {
+    .navbar {
+      display: none;
+    }
+
+    img{
+      display: none;
+    }
+
+    .comments{
+      display: none;
+
+    }
+
+      .tags{
+
+          display: none;
+
+      }
+
+      .shareRecipe{
+
+      display: none;
+
+      }
+    .videoSection2{
+      display: none;
+    }
+
+    footer{
+      display: none;
+    }
+     a{
+      display: none;
+    }
+     h3{
+      display: none;
+    }
+     .clickable{
+      display: none;
+    }
+
+  
+    body {
+      background: white;
+      margin: 0;
+    }
+
+    @page {
+      margin: 20mm;
+    }
+  }
+    

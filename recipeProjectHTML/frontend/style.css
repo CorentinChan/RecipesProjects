@@ -1,0 +1,554 @@
+body{
+    font-family: "Montserrat", "Poppins", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+    /*background-color: rgba(0, 0, 0, 0.882)!important;
+    color: #fff!important;*/
+}
+h1{
+  font-size: 4rem;
+}
+/*les classes du nav (marges, display...)*/
+.navbar {
+    margin: 2rem 1rem;
+    padding: 2rem;
+}
+
+.rightNav{
+  display: flex;
+}
+
+
+
+.navbar .btnCustom{
+  padding: 0em 1rem;
+    margin-left: 1rem;
+    height: 3rem;
+    background-color: orangered;
+    border-style: none;
+}
+.navbar .btnCustom2{
+  padding: 0em 1rem;
+    margin-left: 1rem;
+    height: 3rem;
+    border-style: none;
+}
+
+      .searchWindow{
+      display: none;
+      height: 2em;
+      width: 20em;
+      z-index: 10;
+    }
+
+
+.nav-item{
+padding: 0em 1rem;
+}
+
+
+.urlActive{
+color:orangered!important;
+}
+
+.navbar .urlCustom2{
+  display: none;  /* just for mobile*/
+margin-top: 0.5rem;
+}
+
+.nav-link:hover{
+  color:rgb(0, 94, 255)!important;
+}
+
+.signup-container .container-fluid{
+width: 95%;
+}
+
+.signup-text{
+  width: 40%;
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.signup-text a:hover{
+color: blue!important;
+}
+
+.clickable{
+  cursor: pointer;
+
+}
+
+.clickable:active{
+  transform: scale(1.2);
+}
+
+ /*classes du footer : logos et tableau*/
+    .logos{
+      display: flex;
+      justify-content: flex-end;
+
+    }
+ 
+
+    .table-perso{
+        width: 100%;
+     display: flex;
+    }
+
+    .table-perso ul{
+      display: flex;
+      flex-direction: column;
+       width: 100%;
+
+      padding: 0rem;
+      font-size: 1.3em;
+      font-weight: bold;
+      gap :1rem;
+}
+
+.table-perso li{
+  list-style-type: none;
+    text-decoration: none; 
+    color: black;  
+    text-align: left;
+
+     
+    }
+
+  .table-perso a{
+    text-decoration: none; 
+    color: black;       
+    }
+
+
+    .textTab{
+      text-decoration: none;
+      color:grey;
+    }
+
+/* HOME PAGE */
+/*  recipe menu */
+
+        .accordion {
+      border: none;
+      box-shadow: none;
+    }
+
+    .accordion-item {
+      border: none;
+      background: transparent;
+      width: 15rem;
+    }
+
+    .accordion-button {
+      background: transparent;
+      box-shadow: none !important;
+      color: #000;
+      font-weight: 500;
+      padding: 0.75rem 1rem;
+      position: relative;
+    }
+
+    /* delete default bootstrap arrow*/
+    .accordion-button::after {
+      display: none;
+    }
+
+    /* add + and -*/
+    .accordion-button::before {
+      content: "+";
+      position: absolute;
+      right: 1rem;
+      font-weight: bold;
+      font-size: 1.2rem;
+      transition: transform 0.3s, content 0.3s;
+    }
+
+    .accordion-button[aria-expanded="true"]::before {
+      content: "−";
+    }
+
+    .accordion-body {
+      padding: 0.5rem 1.5rem;
+    }
+
+    
+
+    /* accordion style */
+    .accordion-body a {
+      display: block;
+      color: #333;
+      text-decoration: none;
+      padding: 0.25rem 0;
+    }
+
+    .accordion-body a:hover {
+      color: #007bff;
+    }
+
+    .textSearchMenu{
+      cursor: pointer;
+      padding: 0;
+      margin: 0.5rem 0.3rem;
+    }
+
+/*classes pour la recherche et la recipe list*/
+.background-perso{
+background-color: #0b5dd700; 
+background-image: url("https://www.themealdb.com/images/media/meals/qptpvt1487339892.jpg");
+background-size: cover;
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+}
+
+.recipeSearch{
+display: flex;
+justify-content: space-around;
+margin: 0rem 0 1rem 1rem;
+}
+
+.input-group{
+  min-width: 100%;
+  width: 100%;
+}
+
+.btnSearch{
+    cursor: pointer;
+}
+
+.btnSearch:active{
+    transform: scale(0.9);
+}
+
+.recipeSearch form{
+width: 50rem;
+}
+
+.recipeGroup{
+    display: flex;   
+    align-items: top;   
+}
+
+.recipe-container{
+    display: flex;
+    flex-direction: column; 
+     align-items:top;
+     max-width: 100%;
+}
+
+ .form-select{
+  background-color: orangered;
+  width: 10em;
+  color : white;
+}
+
+.recipeList{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.card{
+    cursor: pointer;
+}
+
+.card:active{
+  transform: scale(0.9);  
+}
+
+    .recipeList .card {
+      height: 180px;                 
+      width: 300px;
+
+    }
+     .recipeList .card-img-top {
+      height: 100px;                
+      object-fit: cover;            
+    }
+    .carousel-indicators [data-bs-target] {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      text-indent: 0;               /* on annule le masquage du texte */
+      color: #fff;
+      background-color: #0d6efd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      margin: 0 5px;
+      border: none;
+    }
+    .carousel-indicators .active {
+      background-color: #0b5ed7;   
+    }
+
+    .videos-container{
+        display: flex;
+        justify-content: space-around;
+        gap :1em;
+    }
+
+    .videoTitle{
+    display: flex;
+        justify-content: space-between;
+
+    }
+
+    .subscribeSection{
+        margin-top: 1rem;
+        display: flex;
+        justify-content: center;
+    }
+
+      .subscribeSection .form-control::placeholder {
+    color: white !important;
+    }
+
+    
+
+    .subscribeSection .btn{
+        height: 3em;
+        width: 10em;
+        background-color:orange; 
+    }
+
+        .subscribeSection .btn:hover{
+        background-color:yellow;     
+    }
+
+
+   /*Search Page*/
+    
+      .recipeList2{
+          display: flex;
+          flex-direction: row;
+          gap: 2em;
+          width: 100%;
+      }
+
+    .recipeList2 .cardCarousel { 
+      margin: 2rem;
+    }
+    
+     .recipeList2 .card-img-top {
+      height: 200px;                
+      object-fit: cover;            
+    }
+
+    .recipeForm form{
+      width: 50%;
+    }
+
+ /*Recipe Page*/
+
+ .recipteTitle{
+  max-width: 100%;
+ }
+ .image-container{
+display: flex;
+justify-content: center; }
+
+ .recipePhoto{
+ width: 30em;
+ height: 30em;
+ }
+
+ .descriptionLogos{
+  justify-content: space-evenly;
+ }
+
+ .descriptionRecipe{
+  align-items: center;
+  max-width: 80%;}
+
+  .makeRecipe-container{
+    display: flex;
+    flex-direction: row; 
+
+  }
+  
+  .recipeLeft{
+    width: 70%;
+  }
+
+ .nbStep{
+  width: 6em;
+ }
+
+   .recipeRight{
+    width: 30%;
+  }
+
+  .comments{ 
+    width: 75%;
+  }
+
+.com-container2{
+margin-left: 30%;
+width: 100%;
+}
+
+  .videoSection2{
+    background-color: #fff8f8d8;
+  }
+
+  .videos-container{
+    display: flex;
+ 
+  }
+
+   .videoSection2 .card {
+      width: 15em;              
+      object-fit: cover;            
+    }
+
+  .videoSection2 .card-img-top {
+      height: 10em;  
+      width: 15em;              
+      object-fit: cover;            
+    }
+
+    
+    .videos-container .card-title
+    {
+      height: 5em;
+    }
+
+    .form2{
+      background-color: rgba(244, 118, 7, 0.96);
+      width: auto;
+      height: auto;
+      color : white;
+    }
+
+    /*Contact Page*/
+
+    .contactGroup{
+      flex-direction: row;
+      width: 100%;
+    }
+
+    .contactText{
+      width: 50%;
+    }
+
+    .contactForm-container{
+      width: 49%;
+    }
+
+    .messageForm{
+      height: 10rem;
+    }
+
+
+    /*Signup window*/
+
+    .signWindow{
+      display: none;
+      border-radius: 2%;
+      position:absolute;
+      width: 90%;
+      height: 90%;
+      top:  7% ;
+      left: 5%;
+      overflow: hidden;
+    }
+
+  
+    .overlay{
+      position: fixed; 
+      top: 0; 
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.541); 
+      display: none; 
+      z-index: 10; 
+    }
+
+      .overlay3{
+      position: fixed; 
+      top: 0; 
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: none; 
+    }
+
+      
+
+    
+
+    .signWindow .btnClose{
+      z-index: 10; 
+      position:fixed;
+      top:  2% ;
+      right: 5%;
+    }
+
+       .btnClose2{
+      position:relative;
+      z-index: 10; 
+      height: 2em;
+      width: 2em;
+      left: 92%;
+      top: 3em;    }
+
+        /*Signup Page*/
+
+    .signupSection{
+      width: 50%;
+      padding-top: 10em;
+      align-items: center;   }
+
+    .signupSection .btn{
+       width: 8rem ; 
+     }
+
+    .signupSection .addMargin{
+       margin-top: 10rem; 
+      margin-bottom: 10rem;  
+   }
+
+
+   /*signup div*/
+
+   .signup{
+    position: fixed;
+    width: 50%;
+    left: 25%;
+    top:10%;
+    z-index: 20;
+
+   }
+
+   
+   .signup2{
+    position: relative;
+    width: 50%;
+    display: none;
+    z-index: 20;
+   }
+
+        .formAlign{
+      display: flex;
+      flex-direction: column;  
+      justify-content: center;  
+      align-items: center;
+    }
+
+
+   .overlay2{
+
+    position: relative;
+    display: none;
+   }
+
+   .btnAc{
+    cursor: pointer;
+   }
+   .btnAc:active{
+    transform: scale(1.2);
+   }
+
+ 
+

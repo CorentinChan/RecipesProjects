@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+   <link rel="stylesheet" href="style.css"> 
+      <link rel="stylesheet" href="styleResp.css"> 
+     <script src="script.js" defer></script>
+    <script src="search.js" defer></script>
+  <link rel="stylesheet" href="animation.css"> 
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+   <title>Recipe Home</title>
+</head>
+<body>
+
+  <!--navigation bar -->
+    <!--button to hide and show menu on mobile -->
+
+    <nav class="navbar navbar-expand-sm navbar-white bg-white"> 
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <!--text to collapse -->
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <ul class="navbar-nav me-auto">
+          <li class="nav-item  ">
+          <a class="nav-link fs-5 urlActive" href="home.html">Home</a>
+        </li>
+        <li class="nav-item  ">
+          <a class="nav-link text-black fs-5" href="recipe.html">Recipe</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link text-black fs-5" href="search.html">Search</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-black fs-5 " href="contact.html">Contact</a>
+        </li>
+           <li class="nav-item">
+          <a class="nav-link text-black fs-5 urlCustom2" href="login">Sign in</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+         <a class="nav-link fs-5 urlCustom" href="javascript:void(0)"></a>
+        <!--
+        <input class="form-control me-2" type="text" placeholder="Search">
+        <button class="btn btn-primary" type="button">Search</button>
+        !-->
+    
+      </form>    
+
+    </div>
+      <!--right side of nav with button and link always visible-->
+          <div class="rightNav">
+            <input type="text" class="form-control searchWindow mt-2 " placeholder="Search" id="searchWindow" aria-label="Search"
+              aria-describedby="basic-addon1">
+          
+            <i class="fa-solid fa-magnifying-glass fa-lg m-4 mx-3 clickable " id="searchButton"></i>
+            <!--
+                  <a class="nav-link fs-5 urlCustom" href=""  >Sign in</a>
+                  -->
+            <button class="btn  fs-5 rounded-pill mx-2 btnCustom2" id="signinButton" type="button">Sign in</button>
+            <button class="btn btn-primary fs-5 rounded-pill mx-2 btnCustom " type="button">Sign up</button>
+          
+          
+          </div>
+  
+        </div>
+  </div>
+</nav>
+
+
+<div class="recipe-container fade-in">
+
+  <!--recipe  search form-->
+<section class="d-lg-flex recipeForm mx-lg-5 ">
+
+  <div class="container mt-3">
+  <div class="d-lg-flex mx-lg-5" role="search">
+    <div class="input-group w-lg-50 slide-in-blurred-left">
+            <span class="input-group-text btnSearch" id="basic-addon1">
+        <i class="fa-solid fa-magnifying-glass " onclick="recipeSearch_start();" ></i>
+      </span>   
+      <input type="text" class="form-control w-lg-50" placeholder="Search" id="textSearch" aria-label="Search" aria-describedby="basic-addon1">
+    </div>
+  </div>
+</div>
+<!--
+ <form class="d-flex">
+        <input class="form-control me-2" type="text" placeholder="Search">
+        <button class="btn btn-primary" type="button">Search</button>
+ </form>
+ -->
+<div class="searchList mt-2">
+  <select class="form-select fs-5 rounded-pill form-select-lg mx-2 mx-lg-5"  id="recipeFilter">
+    <option selected disabled>Sort by : </option>
+    <option value="recipeDate">Sort by : date</option>
+    <option value="recipeAlpha">Sort by : A to Z</option>
+    <option value="recipeNote">Sort by : note </option>
+  </select>
+</div>  
+
+</section>
+<!--recipe results on caroussel( with bootstrap)  -->
+    <section class="recipeList2 ">
+
+                <div class="container py-3">
+                
+<div id="cardCarousel" class="carousel slide" data-bs-ride="false">
+  <div class="carousel-inner">
+    <!-- Slide 1 -->
+    <div class="carousel-item active">
+      <div class="row g-3">
+ 
+  
+      </div>
+    </div>
+  </div>
+
+  <!-- Indicators-->
+  <div class="carousel-indicators position-static mt-3 justify-content-center" href="#cardCarousel">
+        <button class="btn btn-outline-primary bg-white " type="button" data-bs-target="#cardCarousel" data-bs-slide="prev">
+      ⬅️ 
+    </button>
+    <div class="d-flex numeroButton" id="numeroButton">
+
+    </div>
+     <button class="btn btn-outline-primary bg-white" type="button" data-bs-target="#cardCarousel" data-bs-slide="next">
+       ➡️
+    </button>
+  </div>
+
+  <!-- arrow-->
+  <div class="d-flex justify-content-center mt-4 gap-3">
+
+        </section>
+
+  </div>
+</div>
+
+
+
+
+<footer>
+<!--footer with logos and links -->
+
+<!--logos with fontawesome-->
+  <div class="logos me-5 pe-lg-5">
+<i class="fa-brands fa-facebook fa-2x p-3" ></i>
+<i class="fa-brands fa-instagram fa-2x p-3"></i>
+<i class="fa-brands fa-twitter fa-2x p-3"></i>
+
+  </div>
+
+  <div class="container mt-3">           
+  <div class="table-perso">
+
+      <ul>
+        <li><a href="">Presentations</a></li>
+        <li><a href="">Profesionals</a></li>
+        <li><a href="">Stores</a></li>
+      </ul>
+              <ul>
+         <li><a href="">Webinars      </a></li>
+          <li ><a href="">Workshops</a></li>
+         <li><a href="">Local Meetups</a></li>
+      </ul>
+        <ul>
+         <li><a href="">Ours initiative</a></li>
+          <li><a href="">Giving Back</a></li>
+         <li><a href="">Communities</a></li>
+      </ul>
+        <ul>
+        <li><a href="">Contact Form</a></li>
+        <li><a href="">Work with us</a></li>
+        <li><a href="">Visit us</a></li>
+      </ul>
+             
+
+</div>
+
+  <p class="textTab">Made by C.C</p> 
+
+
+</footer>
+
+<!--sign in window hidden by default -->
+<div class="overlay" id="overlay">
+  <div class="signWindow" id="signWindow">
+    <button type="button" class="btn btn-danger btnClose" aria-label="Close" id="closeSignWindow" onclick="signinClose()">X</button>
+    <iframe src="login.html" width="100%" height="100%" style="border:none;"></iframe>
+  </div>
+</div>
+
+
+
+
+
+</body>
+</html>

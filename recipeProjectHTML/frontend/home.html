@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js" defer></script>
+  <script src="search.js" defer></script>
+
+
+  <link rel="stylesheet" href="style.css"> 
+  <link rel="stylesheet" href="styleResp.css"> 
+  <link rel="stylesheet" href="animation.css"> 
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+   <title>Recipe Home</title>
+</head>
+<body>
+
+  <!--navigation bar -->
+    <!--button to hide and show menu on mobile -->
+
+    <nav class="navbar navbar-expand-sm navbar-white bg-white"> 
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <!--text to collapse -->
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <ul class="navbar-nav  me-auto mb-3  ">
+          <li class="nav-item  ">
+          <a class="nav-link fs-5 urlActive" href="home.html">Home</a>
+        </li>
+        <li class="nav-item  ">
+          <a class="nav-link text-black fs-5" href="recipe.html">Recipe</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link text-black fs-5" href="search.html">Search</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-black fs-5 " href="contact.html">Contact</a>
+        </li>
+           <li class="nav-item ">
+          <a class="nav-link text-black fs-5  pb-1 mb-2 pb-lg-0 mb-lg-0 border-0 urlCustom2" onclick="displaySignin();signupClose();">Sign in</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+         <a class="nav-link fs-5 urlCustom" href="javascript:void(0)"></a>
+        <!--
+        <input class="form-control me-2" type="text" placeholder="Search">
+        <button class="btn btn-primary" type="button">Search</button>
+        !-->
+    
+      </form>    
+
+    </div>
+      <!--right side of nav with button and link always visible-->
+          <div class="rightNav">
+            <input type="text" class="form-control searchWindow mt-2 " placeholder="Search" id="searchWindow" aria-label="Search"
+              aria-describedby="basic-addon1">
+          
+            <i class="fa-solid fa-magnifying-glass fa-lg m-4 mx-3 clickable " id="searchButton"></i>
+            <!--
+                  <a class="nav-link fs-5 urlCustom" href=""  >Sign in</a>
+                  -->
+            <button type="button" class="btn btnAc fs-5 rounded-pill mx-2 btnCustom2 " id="signinButton" onclick="displaySignin();signupClose();" >Sign in</button>
+            <button type="button" class="btn  btnAc btn-primary fs-5 rounded-pill mx-2 btnCustom " id ="signupButton" onclick="displaySignup()" >Sign up</button>
+          
+          
+          </div>
+  </div>
+</nav>
+
+<!--presentation section with text and link-->
+<section class="signup-container tilt1 ">
+
+  <div class=" container-fluid ms-2 ms-lg-5 my-5 " >
+  <div class="p-4 border rounded-4 shadow-sm text-white background-perso">
+    <div class="signup-text">
+    <h1>CHOOSE FROM THOUSANDS OF RECIPES</h1>
+    <h3 class="mb-3 "> sign up to acess to a lot of recipes, add your own recipes, and many more</h3>
+    <a  class =" d-flex text-decoration-none text-white" onclick="displaySignup()" ><h3>Sign up today </h3> <i class="fa-solid fa-arrow-right m-2 p-2 fa-lg" ></i> </a>
+    </div>
+  </div>
+</div>
+
+</section>
+
+<!--recipe search and result -->
+<div class="recipeGroup ms-lg-5">
+
+  <!-- navnar on the left  -->
+    <section class="recipeMenu">
+      <h1 class="ms-2"> Recipes</h1>
+      
+    <div class="container mt-3 ">
+
+     <div class="accordion" id="menuAccordion">
+
+    <!-- Menu 1 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true">
+          Dishes
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#menuAccordion">
+        <div class="accordion-body">
+          <a class="textSearchMenu" onclick="searchRecipeGen('c=breakfast')">Breakfast</a>
+          <a class="textSearchMenu" onclick="searchRecipeGen('c=pasta')">Pasta</a>
+          <a class="textSearchMenu" onclick="searchRecipeAll('beef')">Beef</a>
+          <a class="textSearchMenu" onclick="searchRecipeAll('chicken')">Chicken</a>
+          <a class="textSearchMenu" onclick="searchRecipeGen('c=seafood')">Sea Food</a>
+          <a class="textSearchMenu" onclick="searchRecipeGen('c=side')">Side</a>
+          <a class="textSearchMenu" onclick="searchRecipeGen('c=dessert')">Dessert</a>
+
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Menu 2 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false">
+         World Food
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#menuAccordion">
+        <div class="accordion-body">
+          <a class="textSearchMenu" onclick="searchRecipeGen('a=chinese')">Chinese</a>
+          <a class="textSearchMenu" onclick="searchRecipeGen('a=Turkish')">Turkish</a>
+          <a class="textSearchMenu" onclick="searchRecipeGen('a=Indian')">Indian</a>
+          <a class="textSearchMenu" onclick="searchRecipeGen('a=Thai')">Thai</a>
+          <a class="textSearchMenu" onclick="searchRecipeGen('a=Moroccan')">Moroccan</a>
+          <a class="textSearchMenu" onclick="searchRecipeGen('a=Mexican')">Mexican</a>
+          <a class="textSearchMenu" onclick="searchRecipeGen('a=japanese')">Japanese</a>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Menu 3 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false">
+          Vegan & Vegetarian
+        </button>
+      </h2>
+      <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#menuAccordion">
+        <div class="accordion-body">
+           <a class="textSearchMenu" onclick="searchRecipeGen('c=vegan')">Vegan</a>
+           <a class="textSearchMenu" onclick="searchRecipeGen('c=Vegetarian')">Vegetarian</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+<!--
+  <ul class="nav flex-column">
+
+    
+    <li class="nav-item dropdown nav-item2">
+    <a class="nav-link  nav-link2"  data-bs-toggle="collapse" data-bs-target="#mynavbar2" href="#" role="button" aria-expanded="false"><h2 class="pt-4">Dishes</h2></a>
+    <ul class="dropdown-menu collapse show" id="mynavbar2">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+  </li>
+      <li class="nav-item dropdown nav-item2">
+    <a class="nav-link  nav-link2"  data-bs-toggle="collapse" data-bs-target="#mynavbar21" href="#" role="button" aria-expanded="false">
+      <h2 class="pt-4">Dishes</h2></a>
+    <ul class="dropdown-menu" id="mynavbar21">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+  </li>
+
+
+  </ul>
+
+-->
+
+    </div>
+</section>
+
+<div class="recipe-container">
+
+  <!--recipe  search form-->
+<section class="recipeSearch me-lg-5 ">
+
+  <div class="container mt-3">
+  <div class="d-flex ms-lg-5" role="search">
+    <div class="input-group slide-in-blurred-left">
+      <span class="input-group-text btnSearch" id="basic-addon1">
+        <i class="fa-solid fa-magnifying-glass " onclick="recipeSearch_start();" ></i>
+      </span>      
+      <input type="text" class="form-control w-lg-50" placeholder="Search" id="textSearch" aria-label="Search" aria-describedby="basic-addon1">
+    </div>
+  </div>
+</div>
+<!--
+ <form class="d-flex">
+        <input class="form-control me-2" type="text" placeholder="Search">
+        <button class="btn btn-primary" type="button">Search</button>
+ </form>
+ -->
+<div class="searchList mt-2">
+  <select class="form-select fs-5 rounded-pill form-select-lg mx-3"  id="recipeFilter">
+    <option selected disabled>Sort by : </option>
+    <option value="recipeDate">Sort by : date</option>
+    <option value="recipeAlpha">Sort by : A to Z</option>
+    <option value="recipeNote">Sort by : note </option>
+  </select>
+</div>
+
+</section>
+
+<!--recipe results on caroussel( with bootstrap)  -->
+    <section class="recipeList2 ">
+
+                <div class="container py-3">
+<div id="cardCarousel" class="carousel slide" data-bs-ride="false">
+  <div class="carousel-inner">
+    <!-- Slide 1 -->
+    <div class="carousel-item active">
+      <div class="row g-3">
+        <div class="col-6 col-lg-4">
+          <div class="card shadow-sm h-100">
+            <img src="https://picsum.photos/400/250?random=1" class="card-img-top" alt="Card 1">
+            <div class="card-body">
+              <h5 class="card-title">Card 1</h5>
+              <p class="card-text">Description carte 1.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-4">
+          <div class="card shadow-sm h-100">
+            <img src="https://picsum.photos/400/250?random=1" class="card-img-top" alt="Card 1">
+            <div class="card-body">
+              <h5 class="card-title">Card 1</h5>
+              <p class="card-text">Description carte 1.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-4">
+          <div class="card shadow-sm h-100">
+            <img src="https://picsum.photos/400/250?random=1" class="card-img-top" alt="Card 1">
+            <div class="card-body">
+              <h5 class="card-title">Card 1</h5>
+              <p class="card-text">Description carte 1.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-4">
+          <div class="card shadow-sm h-100">
+            <img src="https://picsum.photos/400/250?random=1" class="card-img-top" alt="Card 1">
+            <div class="card-body">
+              <h5 class="card-title">Card 1</h5>
+              <p class="card-text">Description carte 1.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-4">
+          <div class="card shadow-sm h-100">
+            <img src="https://picsum.photos/400/250?random=1" class="card-img-top" alt="Card 1">
+            <div class="card-body">
+              <h5 class="card-title">Card 1</h5>
+              <p class="card-text">Description carte 1.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-4">
+          <div class="card shadow-sm h-100">
+            <img src="https://picsum.photos/400/250?random=1" class="card-img-top" alt="Card 1">
+            <div class="card-body">
+              <h5 class="card-title">Card 1</h5>
+              <p class="card-text">Description carte 1.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-4">
+          <div class="card shadow-sm h-100">
+            <img src="https://picsum.photos/400/250?random=1" class="card-img-top" alt="Card 1">
+            <div class="card-body">
+              <h5 class="card-title">Card 1</h5>
+              <p class="card-text">Description carte 1.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-4">
+          <div class="card shadow-sm h-100">
+            <img src="https://picsum.photos/400/250?random=2" class="card-img-top" alt="Card 2">
+            <div class="card-body">
+              <h5 class="card-title">Card 2</h5>
+              <p class="card-text">Description carte 2.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-4">
+          <div class="card shadow-sm h-100">
+            <img src="https://picsum.photos/400/250?random=3" class="card-img-top" alt="Card 3">
+            <div class="card-body">
+              <h5 class="card-title">Card 3</h5>
+              <p class="card-text">Description carte 3.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="carousel-item">
+      <div class="row g-3">
+        <div class="col-6 col-lg-4">
+          <div class="card shadow-sm h-100">
+            <img src="https://picsum.photos/400/250?random=4" class="card-img-top" alt="Card 4">
+            <div class="card-body">
+              <h5 class="card-title">Card 4</h5>
+              <p class="card-text">Description carte 4.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-4">
+          <div class="card shadow-sm h-100">
+            <img src="https://picsum.photos/400/250?random=5" class="card-img-top" alt="Card 5">
+            <div class="card-body">
+              <h5 class="card-title">Card 5</h5>
+              <p class="card-text">Description carte 5.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-4">
+          <div class="card shadow-sm h-100">
+            <img src="https://picsum.photos/400/250?random=6" class="card-img-top" alt="Card 6">
+            <div class="card-body">
+              <h5 class="card-title">Card 6</h5>
+              <p class="card-text">Description carte 6.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="carousel-item">
+      <div class="row g-3">
+        <div class="col-6 col-lg-4">
+          <div class="card shadow-sm h-100">
+            <img src="https://picsum.photos/400/250?random=7" class="card-img-top" alt="Card 7">
+            <div class="card-body">
+              <h5 class="card-title">Card 7</h5>
+              <p class="card-text">Description carte 7.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-4">
+          <div class="card shadow-sm h-100">
+            <img src="https://picsum.photos/400/250?random=8" class="card-img-top" alt="Card 8">
+            <div class="card-body">
+              <h5 class="card-title">Card 8</h5>
+              <p class="card-text">Description carte 8.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Indicators-->
+  <div class="carousel-indicators position-static mt-3 justify-content-center" href="#cardCarousel">
+        <button class="btn btn-outline-primary bg-white " type="button" data-bs-target="#cardCarousel" data-bs-slide="prev">
+      ⬅️ 
+    </button>
+    <div class="d-flex numeroButton" id="numeroButton">
+    <button type="button" data-bs-target="#cardCarousel" data-bs-slide-to="0" class="active bg-white text-black-50" href="#cardCarousel">1</button>
+    <button type="button" class=" bg-white text-black-50" data-bs-target="#cardCarousel" data-bs-slide-to="1"  href="#cardCarousel">2</button>
+    <button type="button" class=" bg-white text-black-50" data-bs-target="#cardCarousel" data-bs-slide-to="2">3</button>
+    </div>
+     <button class="btn btn-outline-primary bg-white" type="button" data-bs-target="#cardCarousel" data-bs-slide="next">
+       ➡️
+    </button>
+  </div>
+
+  <!-- arrow-->
+  <div class="d-flex justify-content-center mt-4 gap-3">
+
+        </section>
+
+  </div>
+</div>
+
+
+
+<!--4 videos recommanded -->
+<section class="videoSection my-5 m-lg-5   ">
+
+  <div class="videoTitle m-3 m-lg-5 ">
+<h2>VIDEOS</h2>
+  <select class="form-select fs-5 rounded-pill  .form-select-video"  id="videosFilter">
+    <option selected disabled>Sort by : </option>
+    <option value="recipeDate">featured</option>
+    <option value="recipeAlpha">featured</option>
+    <option value="recipeNote">featured </option>
+  </select>
+  </div>
+
+<div class="videos-container m-lg-5" id="videos-container">
+  <div class="card" >
+    <img src="https://picsum.photos/400/250?random=3" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">By Corentin Chan</p>
+    </div>
+  </div>
+  <div class="card" >
+    <img src="https://picsum.photos/400/250?random=3" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">By Corentin Chan</p>
+    </div>
+  </div>
+  <div class="card" >
+    <img src="https://picsum.photos/400/250?random=3" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">By Corentin Chan</p>
+    </div>
+  </div>
+  <div class="card" >
+    <img src="https://picsum.photos/400/250?random=3" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">By Corentin Chan</p>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!--subscribe email form  -->
+<section class="subscribeSection">
+
+  <div class="container  ">
+  <div class="p-5 border rounded-4 shadow-sm bg-danger">
+    <h1 class="mx-0 px-0 mx-lg-5 px-lg-5 text-white text-center">Be the first to know about the latest deal, receive new trending recipes & more</h3>
+    <p class="text-muted"></p>
+
+    <form class="d-flex   content-center ">
+      <div class=" d-lg-flex w-100 w-lg-75 mx-auto">
+        <input type="text" class="form-control rounded-pill bg-danger border border-white text-white" id="mail" placeholder="e-mail adress">
+
+        <button type="button" class="btn mx-3 fs-5 px-3   rounded-pill" onclick="displaySignup()">Subscribe</button>
+              </div>
+
+    </form>
+  </div>
+</div>
+
+</section>
+<footer>
+<!--footer with logos and links -->
+
+<!--logos with fontawesome-->
+  <div class="logos me-5 pe-lg-5">
+<i class="fa-brands fa-facebook fa-2x p-3" ></i>
+<i class="fa-brands fa-instagram fa-2x p-3"></i>
+<i class="fa-brands fa-twitter fa-2x p-3"></i>
+
+  </div>
+
+  <div class="container mt-3">           
+  <div class="table-perso">
+
+      <ul>
+        <li><a href="">Presentations</a></li>
+        <li><a href="">Profesionals</a></li>
+        <li><a href="">Stores</a></li>
+      </ul>
+              <ul>
+         <li><a href="">Webinars      </a></li>
+          <li ><a href="">Workshops</a></li>
+         <li><a href="">Local Meetups</a></li>
+      </ul>
+        <ul>
+         <li><a href="">Ours initiative</a></li>
+          <li><a href="">Giving Back</a></li>
+         <li><a href="">Communities</a></li>
+      </ul>
+        <ul>
+        <li><a href="">Contact Form</a></li>
+        <li><a href="">Work with us</a></li>
+        <li><a href="">Visit us</a></li>
+      </ul>
+             
+
+</div>
+
+  <p class="textTab">Made by C.C</p> 
+
+
+</footer>
+
+
+
+<!--Signin Div-->
+<div class="overlay" id="overlay1">
+  <div class="signWindow" id="signWindow">
+    <button type="button" class="btn btnAc border text-center btn-danger btnClose " aria-label="Close" id="closeSignWindow" onclick="signinClose()">X</button>
+    <iframe src="login.html" width="100%" height="100%" style="border:none;"></iframe>
+  </div>
+</div>
+
+<!-- sign up div -->
+<div class="overlay3" id="overlay2">
+
+  <div class=" container signup  ">
+      <button type="button" class="btn btnAc text-center btn-danger border p-1  btnClose2" aria-label="Close" id="closeSignupWindow" onclick="signupClose()">X</button>
+
+  <div class="p-4  bg-danger border text-white rounded-5">
+
+    <form class=" contactForm  ">
+      <div class="  mx-auto text-center text-grey formAlign">
+        <h2 class="text-center m-3  fw-bold pt-2">Sign up</h2>
+        <a class="text-center m-3 " onclick="displaySignin();signupClose();">Have already an account? Click here to connect!</a>
+   
+        <h5 class="text-center m-3 ">Join us and add your own recipes and many more! </h5>
+        <label for="mail" class="form-label text-center text-grey fs-4 me-3">Email</label>
+        <input type="text" class="form-control rounded-pill text-black bg-white border border-grey text-center " id="name" placeholder="tom@company.com" >
+
+        <label for="mail" class="form-label  text-center text-grey fs-4 me-3 mt-3">Pseudo</label>
+        <input type="text" class="form-control text-center text-black  w-50 rounded-pill bg-white border border-grey text-center " id="name" placeholder="tom@company.com" >
+        
+
+        <label for="password" class="form-label fs-4 me-3 mt-3">Password</label>
+        <input type="text" class="form-control text-center text-black  w-50 rounded-pill bg-white border border-grey text-center " id="password" placeholder="Min 8 characters" >
+      
+      </div>
+
+      <div class=" text-center my-3">
+      </div>
+
+      <div class=" text-center">
+       <button type="submit" class="btn btnAc mx-3 fs-5 px-3 mt-3 btn-warning  rounded-pill">Sign up!</button>
+    </div>
+
+    </form>
+  </div>
+</div>
+
+</div>
+</div>
+
+
+</body>
+</html>

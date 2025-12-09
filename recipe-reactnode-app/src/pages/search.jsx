@@ -8,9 +8,10 @@ import SearchBar from '/src/components/searchBar.jsx'
 export default function  Search() {
      const [searchParams] = useSearchParams();
      
-   let tag = searchParams.get("tag")||"chicken"; // récupère le paramètre 'tag'
-      const [keyword, setKeyword] = useState(tag); // état central
-       
+   let tag = searchParams.get("tag")||"chicken"; 
+      const [keyword, setKeyword] = useState(tag); 
+      const [filter, setFilter] = useState(""); 
+      
    useEffect(() => {
          setKeyword(tag);
   }, [tag]);
@@ -18,9 +19,9 @@ export default function  Search() {
     return (
         
  <div>
-<SearchBar  keyword={keyword} setKeyword={setKeyword}/>
+<SearchBar  keyword={keyword} setKeyword={setKeyword} filter={filter} setFilter={setFilter}/>
 <div className='recipeSearch'>
-<Caroussel keyword={keyword}/>
+<Caroussel keyword={keyword} filter={filter}/>
 </div>
 
  </div>

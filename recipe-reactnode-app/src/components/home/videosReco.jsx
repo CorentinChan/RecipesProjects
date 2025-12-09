@@ -114,9 +114,9 @@ import axios from 'axios';
   <div className="videoTitle m-3 m-lg-5 ">
 <h2>VIDEOS</h2>
   <select className="form-select fs-5 rounded-pill  .form-select-video"   defaultValue="videos"  onChange={handleChange}>
-    <option selected disabled>Sort by : </option>
-    <option value="recipes">Recipes</option>
+    <option  disabled>Sort by : </option>
     <option value="videos" >Videos</option>
+    <option value="recipes">Recipes</option>
     {/* <option value="random">DBMeal</option> */}
   </select>
   </div>

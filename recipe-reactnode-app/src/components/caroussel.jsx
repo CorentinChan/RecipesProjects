@@ -7,7 +7,7 @@ import axios from 'axios';
 
  
  
- export default function  Carroussel({keyword}) {
+ export default function  Carroussel({keyword,filter}) {
  const slides = [];
   let group = [];
   
@@ -22,13 +22,14 @@ import axios from 'axios';
   useEffect(() => {
     async function fetchRecipes() {
      let textSearch=keyword;
-     let formSelect=false;
+     let searchFilter=filter;
+     console.log(textSearch+" "+ searchFilter)
       try {
         const { data } = await axios.post(
           import.meta.env.VITE_API_URL + "/searchRecipeHome",
           {
             textSearch,
-            formSelect,
+            searchFilter,
           },
           {
             headers: {"Content-Type": "application/json",},
@@ -46,7 +47,7 @@ import axios from 'axios';
 fetchRecipes();
    
     
-  }, [tag]);
+  }, [keyword,filter]);
 
    
    
@@ -72,7 +73,9 @@ fetchRecipes();
             <div className="row g-3 ">
               {slide.map((meal,index) => (
                // <div key={meal.idMeal}>     
-                <Card key={index} title={meal.title} img={meal.image} id={meal.id} note={meal.note} author={meal.auteur}   />
+                <Card key={index} title={meal.title} 
+                img={meal.image?meal.image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwAdnj607fkyztZ3TkKVTdEy-FG-tD-gEGJQ&s"} 
+                id={meal.id} note={meal.note} author={meal.auteur}   />
                 // </div>
               ))}
             </div>
@@ -82,7 +85,7 @@ fetchRecipes();
       </div>
 
       {/* boutons indicateurs */}
-      <div className="carousel-indicators position-static mt-3">
+      <div className="carousel-indicators w-75 position-static mt-3 flex-wrap overflow-auto">
                 <button className="btn btn-outline-primary bg-white " type="button" data-bs-target="#cardCarousel" data-bs-slide="prev">
                 ⬅️ 
               </button>

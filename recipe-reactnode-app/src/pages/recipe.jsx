@@ -16,7 +16,7 @@ import RecipesReco from '/src/components/recipe/recipesReco.jsx'
 import axios from 'axios';
 
 
-export default function  Recipe({user}) {
+export default function  Recipe({user,userRole}) {
     const [searchParams] = useSearchParams();
     const [loading, setLoading] = useState(true);
     const [udpateForm,setUpdateForm]=useState(0);
@@ -28,7 +28,6 @@ export default function  Recipe({user}) {
    //let recipeID = searchParams.get("id")||"690"; //param id of url
     const [meal, setMeal] = useState(null);
     const [ingredients, setIngredients] = useState(null);
-    const [recipeReco, setRecipeReco] = useState([]);
 
     const location = useLocation();
    
@@ -61,16 +60,19 @@ export default function  Recipe({user}) {
           }
         );
 
-        console.log(data.recipeReco)
-        setRecipeReco(data.recipeReco);
+       if(recipeID===null) setRecipeID(data.recipeID);
       } catch (error) {
         console.error("error axios :", error);
       }
     }
     // load recipe
   useEffect(() => {
-fetchRecipe();
+  fetchRecipe();
   }, [recipeID]);
+
+    useEffect(() => {
+  fetchRecipe();
+  }, []);
 
   useEffect(() => {
   console.log("Meal updated:", meal);
@@ -80,12 +82,12 @@ fetchRecipe();
 
  { recipeID &&( <>
 
-       <Description key="description" recipeID={recipeID}   />
+       <Description  recipeID={recipeID} userRole={userRole}   />
   <div className="m-1 p-1 m-lg-5 p-lg-3 makeRecipe-container">
 <div className="  recipeLeft">
 
       <Instructions recipeID={recipeID}/>
-      <Commentaires recipeID={recipeID} udpateForm={udpateForm}  />
+      <Commentaires recipeID={recipeID} udpateForm={udpateForm} userRole={userRole}  />
   { user&&  <CommentForm recipeID={recipeID} udpateForm={udpateForm} setUpdateForm= {setUpdateForm} />}
 
            
@@ -99,7 +101,7 @@ fetchRecipe();
 
 </div>
 
-      { <RecipesReco recipeReco={recipeReco}/> }
+      { <RecipesReco recipeID={recipeID}/> }
 
 </>
  )}

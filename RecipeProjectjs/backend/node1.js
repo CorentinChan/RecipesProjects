@@ -20,6 +20,8 @@ require('dotenv').config();
 //import express from "express";
 //import serverless from "serverless-http";
 
+app.set('trust proxy', 1);
+
 
 app.use(session({
 	secret: process.env.DB_SECRET,      // session key
@@ -30,6 +32,7 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 //connection with mysql
 var connection = mysql.createConnection({
@@ -93,7 +96,7 @@ app.get('/', (req, res) => {
 	/*
 	pseudo = req.cookies.pseudo;
 	res.clearCookie('searchKey');
-	connection.query('SELECT * FROM recipe LIMIT 300;SELECT * FROM Recipe ORDER BY RAND()LIMIT 4;',
+	connection.query('SELECT * from recipe LIMIT 300;SELECT * from recipe ORDER BY RAND()LIMIT 4;',
 		function (error, results, fields) {
 			if (error) throw error;
 
@@ -134,9 +137,9 @@ app.get('/home', (req, res) => {
 		else {
 			let pseudo = req.cookies.pseudo;
 			res.clearCookie('searchKey');
-			connection.query(`  SELECT * FROM recipe LIMIT 300;
-				SELECT * FROM recipe ORDER BY RAND() LIMIT 4;`,
-				//SELECT * FROM Recipe WHERE description LIKE 'https://www.youtube.com/%' OR description LIKE 'https://youtu.be/%'   ORDER BY RAND()  LIMIT 4;`,
+			connection.query(`  SELECT * from recipe LIMIT 300;
+				SELECT * from recipe ORDER BY RAND() LIMIT 4;`,
+				//SELECT * from recipe WHERE description LIKE 'https://www.youtube.com/%' OR description LIKE 'https://youtu.be/%'   ORDER BY RAND()  LIMIT 4;`,
 				function (error, results, fields) {
 					if (error) throw error;
 					recipes = results[0];
@@ -168,8 +171,8 @@ app.get('/recipe', async(req, res) => {
 
 		console.log(req.cookies.pseudo+ " : " + req.cookies.pseudoID );
 		
-		connection.query( `SELECT * FROM recipe WHERE id = ?; SELECT * FROM instructions WHERE recipeID = ?;
-			SELECT * FROM liste_ingredients WHERE recipeID = ?;SELECT * FROM tagsList WHERE recipeID = ?;
+		connection.query( `SELECT * from recipe WHERE id = ?; SELECT * FROM instructions WHERE recipeID = ?;
+			SELECT * FROM liste_ingredients WHERE recipeID = ?;SELECT * FROM tagslist WHERE recipeID = ?;
 			SELECT * FROM commentaires WHERE recipeID = ?;`, 
 	[recipeID, recipeID, recipeID,recipeID,recipeID], function (error, result, fields) {
 		if (error) throw error;
@@ -208,7 +211,7 @@ app.get('/recipe', async (req, res) => {
 		else if (req.cookies.recipeID){ recipeID = req.cookies.recipeID; //req.session.recipeID = recipeID;   
 			}
 		 else{
-			const [recipeIDres] = await pool.execute('SELECT id from RECIPE ORDER BY RAND() LIMIT 1;');
+			const [recipeIDres] = await pool.execute('SELECT id from recipe ORDER BY RAND() LIMIT 1;');
 			 recipeID = recipeIDres[0].id ;
 
 			 //recipeID = "174" ;
@@ -223,10 +226,10 @@ app.get('/recipe', async (req, res) => {
 		} 
 
 		console.log(`${pseudo} : ${pseudoID} (recipeID = ${recipeID})`);
-		const [recipeResult] = await pool.execute('SELECT * FROM recipe WHERE id = ?', [recipeID]);
+		const [recipeResult] = await pool.execute('SELECT * from recipe WHERE id = ?', [recipeID]);
 		const [steps] = await pool.execute('SELECT * FROM instructions WHERE recipeID = ?', [recipeID]);
 		const [ingredients] = await pool.execute('SELECT * FROM liste_ingredients WHERE recipeID = ?', [recipeID]);
-		const [tags] = await pool.execute('SELECT * FROM tagsList WHERE recipeID = ?', [recipeID]);
+		const [tags] = await pool.execute('SELECT * FROM tagslist WHERE recipeID = ?', [recipeID]);
 		const [comment] = await pool.execute('SELECT commentaires.*,users.pseudo,users.image,users.mail FROM commentaires JOIN users ON commentaires.userID = users.id WHERE commentaires.recipeID = ? ;', [recipeID]);
 		const [notes] = await pool.execute('SELECT * FROM notes WHERE recipeID = ?', [recipeID]);
 
@@ -234,7 +237,7 @@ app.get('/recipe', async (req, res) => {
 		let recipesID = [];
 		if (tags.length > 0) {
 			for (const tagObj of tags) {
-				const [recipesIDres] = await pool.execute('SELECT recipeID FROM tagsList WHERE tag = ? && recipeID!=?',
+				const [recipesIDres] = await pool.execute('SELECT recipeID FROM tagslist WHERE tag = ? && recipeID!=?',
 					[tagObj.tag, recipeID]);
 				recipesID.push(...recipesIDres.map(r => r.recipeID));
 			}
@@ -244,7 +247,7 @@ app.get('/recipe', async (req, res) => {
 		let recipesForU = [];
 		let i = 0;
 		for (const recipeID of recipesID) {
-			const [rows] = await pool.execute('SELECT * FROM recipe WHERE id = ?', [recipeID]);
+			const [rows] = await pool.execute('SELECT * from recipe WHERE id = ?', [recipeID]);
 			recipesForU.push(...rows);
 			i++;
 			if (i > 7) break;
@@ -356,12 +359,12 @@ app.post('/modifyForm', async(req, res) => {
 		 recipeModID=req.query.recipe;
 			let recipeID=recipeModID;
 		console.log(`${pseudo} : ${pseudoID} (recipeID = ${recipeID})`);
-		const [check] = await pool.execute('SELECT * FROM recipe_list WHERE recipeID = ? and userID=? and type="ownrecipe"', [recipeID,pseudoID]);
+		const [check] = await pool.execute('SELECT * from recipe_list WHERE recipeID = ? and userID=? and type="ownrecipe"', [recipeID,pseudoID]);
 		if(check.length===0 && req.cookies.userRole !="admin") res.send('No access role');
-		const [recipeResult] = await pool.execute('SELECT * FROM recipe WHERE id = ?', [recipeID]);
+		const [recipeResult] = await pool.execute('SELECT * from recipe WHERE id = ?', [recipeID]);
 		const [steps] = await pool.execute('SELECT * FROM instructions WHERE recipeID = ?', [recipeID]);
 		const [ingredients] = await pool.execute('SELECT * FROM liste_ingredients WHERE recipeID = ?', [recipeID]);
-		const [tags] = await pool.execute('SELECT * FROM tagsList WHERE recipeID = ?', [recipeID]);
+		const [tags] = await pool.execute('SELECT * FROM tagslist WHERE recipeID = ?', [recipeID]);
 		const [comment] = await pool.execute('SELECT commentaires.*,users.pseudo,users.image FROM commentaires JOIN users ON commentaires.userID = users.id WHERE commentaires.recipeID = ? ;', [recipeID]);
 		const [notes] = await pool.execute('SELECT * FROM notes WHERE recipeID = ?', [recipeID]);
 		const [category] = await pool.execute('SELECT * FROM category');
@@ -370,7 +373,7 @@ app.post('/modifyForm', async(req, res) => {
 		let recipesID = [];
 		if (tags.length > 0) {
 			for (const tagObj of tags) {
-				const [recipesIDres] = await pool.execute('SELECT recipeID FROM tagsList WHERE tag = ? && recipeID!=?',
+				const [recipesIDres] = await pool.execute('SELECT recipeID FROM tagslist WHERE tag = ? && recipeID!=?',
 					[tagObj.tag, recipeID]);
 				recipesID.push(...recipesIDres.map(r => r.recipeID));
 			}
@@ -395,7 +398,7 @@ app.post('/modifyRecipe', (req, res) => {
 
 	
 	var query = connection.query(`DELETE FROM instructions WHERE recipeID= ?;DELETE FROM liste_ingredients WHERE recipeID= ?;
-				DELETE FROM tagsList WHERE recipeID= ?;
+				DELETE FROM tagslist WHERE recipeID= ?;
 				`
 			, [recipeModID, recipeModID, recipeModID], function (error, results, fields) {
 				if (error) console.log(error);
@@ -502,7 +505,7 @@ app.get('/search', (req, res) => {
 	pseudo = req.cookies.pseudo;
 
 
-	connection.query('SELECT * FROM recipe LIMIT 500 ', function (error, result, fields) {
+	connection.query('SELECT * from recipe LIMIT 500 ', function (error, result, fields) {
 		if (error) throw error;
 		// Neat!
 		console.log(result);
@@ -538,8 +541,8 @@ app.get('/account', (req, res) => {
 	console.log("login");
 	let pseudoID= req.cookies.pseudoID;
 
-			 connection.query(`SELECT recipeID FROM recipe_list WHERE userID = (?) AND type="favoris";
-				SELECT recipeID FROM recipe_list WHERE userID = (?) AND type="ownRecipe";
+			 connection.query(`SELECT recipeID from recipe_list WHERE userID = (?) AND type="favoris";
+				SELECT recipeID from recipe_list WHERE userID = (?) AND type="ownRecipe";
 				SELECT * notes WHERE userID = (?)"; `
 				, [pseudoID,pseudoID,pseudoID], function (error, results, fields) {
 				if (error) {console.log("erreur account1 " +error);}
@@ -555,7 +558,7 @@ app.get('/account', (req, res) => {
 				 if(recipesIDcreat.length===0)recipesIDcreat[0]="0";
 					 console.log("recipecreatedid"+recipesIDcreat)
 
-			connection.query(`SELECT * FROM recipe WHERE id IN (?);SELECT * FROM recipe WHERE id IN (?);
+			connection.query(`SELECT * from recipe WHERE id IN (?);SELECT * from recipe WHERE id IN (?);
 				SELECT * FROM users WHERE id IN (?);`,
 			[recipesIDfav,recipesIDcreat,req.cookies.pseudoID], function (error, result, fields) {
 				if (error) {console.log(error);}
@@ -601,8 +604,8 @@ app.get('/account', async (req, res) => {
 		console.log(pseudoID)
 
 		// get recipe ID 
-		const [favIDResults] = await pool.query('SELECT recipeID FROM recipe_list WHERE userID = ? AND type = "favoris"', [pseudoID]);
-		const [ownIDResults] = await pool.query('SELECT recipeID FROM recipe_list WHERE userID = ? AND type = "ownRecipe"', [pseudoID]);
+		const [favIDResults] = await pool.query('SELECT recipeID from recipe_list WHERE userID = ? AND type = "favoris"', [pseudoID]);
+		const [ownIDResults] = await pool.query('SELECT recipeID from recipe_list WHERE userID = ? AND type = "ownRecipe"', [pseudoID]);
 		// get notes
 
 
@@ -615,7 +618,7 @@ app.get('/account', async (req, res) => {
 
 		// Récupérer les recettes et info utilisateur
 		const [recipeResults] = await pool.query(`
-			SELECT * FROM recipe WHERE id IN (?);SELECT * FROM recipe WHERE id IN (?);SELECT * FROM users WHERE id = ?;
+			SELECT * from recipe WHERE id IN (?);SELECT * from recipe WHERE id IN (?);SELECT * FROM users WHERE id = ?;
 		`, [recipesIDfav, recipesIDcreat, pseudoID]);
 
 		const fav = recipeResults[0];
@@ -969,7 +972,7 @@ app.post('/deleteFav', (req, res) => {
 	if (!pseudo) res.redirect('/');
 	else {
 		console.log(req.body.deleteFav);
-		var query = connection.query(`DELETE FROM recipe_list WHERE recipeID = ? AND userID = ? AND type = 'favoris' `
+		var query = connection.query(`DELETE from recipe_list WHERE recipeID = ? AND userID = ? AND type = 'favoris' `
 			, [req.body.deleteFav, req.cookies.pseudoID], function (error, results, fields) {
 
 				if (error) throw error;
@@ -987,7 +990,7 @@ app.post('/deleteOwn', (req, res) => {
 	else {
 		recipeID=req.body.deleteOwn;
 		console.log(recipeID);
-		var query = connection.query(`DELETE FROM recipe_list WHERE recipeID = ? AND userID = ? AND type = 'ownrecipe' `
+		var query = connection.query(`DELETE from recipe_list WHERE recipeID = ? AND userID = ? AND type = 'ownrecipe' `
 			, [recipeID, req.cookies.pseudoID], function (error, results, fields) {
 				if (error) throw error;
 
@@ -996,7 +999,7 @@ app.post('/deleteOwn', (req, res) => {
 			});
 
 		var query = connection.query(`DELETE FROM instructions WHERE recipeID= ?;DELETE FROM liste_ingredients WHERE recipeID= ?;
-				DELETE FROM tagsList WHERE recipeID= ?;DELETE FROM recipe WHERE id= ?;
+				DELETE FROM tagslist WHERE recipeID= ?;DELETE from recipe WHERE id= ?;
 				DELETE FROM commentaires WHERE recipeID= ?;DELETE FROM notes WHERE recipeID= ?;`
 			, [req.body.deleteOwn, req.body.deleteOwn, req.body.deleteOwn, req.body.deleteOwn, req.body.deleteOwn, req.body.deleteOwn], function (error, results, fields) {
 				if (error) console.log(error);
@@ -1015,7 +1018,7 @@ app.post('/deleteRecipe', (req, res) => {
 	if (req.cookies.userRole!="admin") res.redirect('/');
 	else {
 		recipeID=req.body.recipeID;
-		var query = connection.query(`DELETE FROM recipe_list WHERE recipeID = ? AND userID = ?  `
+		var query = connection.query(`DELETE from recipe_list WHERE recipeID = ? AND userID = ?  `
 			, [recipeID, req.cookies.pseudoID], function (error, results, fields) {
 				if (error) throw error;
 
@@ -1025,7 +1028,7 @@ app.post('/deleteRecipe', (req, res) => {
 			});
 
 		var query = connection.query(`DELETE FROM instructions WHERE recipeID= ?;DELETE FROM liste_ingredients WHERE recipeID= ?;
-				DELETE FROM tagsList WHERE recipeID= ?;DELETE FROM recipe WHERE id= ?;
+				DELETE FROM tagslist WHERE recipeID= ?;DELETE from recipe WHERE id= ?;
 				DELETE FROM commentaires WHERE recipeID= ?;DELETE FROM notes WHERE recipeID= ?;`
 			, [recipeID, recipeID, recipeID, recipeID, recipeID, recipeID], function (error, results, fields) {
 				if (error) console.log(error);
@@ -1071,7 +1074,7 @@ app.post('/searchRecipes', (req, res) => {
 	}
 	console.log("textsearch : " + textSearch);
 
-	connection.query(`SELECT recipeID FROM tagsList WHERE tag = ? ;SELECT id FROM category WHERE name = ? ;  `,
+	connection.query(`SELECT recipeID FROM tagslist WHERE tag = ? ;SELECT id FROM category WHERE name = ? ;  `,
 		[textSearch, textSearch], function (error, result, fields) {
 			if (error) throw error;
 			console.log(" searchKey = " + textSearch);
@@ -1084,7 +1087,7 @@ app.post('/searchRecipes', (req, res) => {
 
 			let categoryID = result[1]?.[0]?.id || '0';
 
-			connection.query(`SELECT * FROM RECIPE WHERE title LIKE ?  OR id in (?) OR categoryID=? ${filter} LIMIT 500 `,
+			connection.query(`SELECT * from recipe WHERE title LIKE ?  OR id in (?) OR categoryID=? ${filter} LIMIT 500 `,
 				[`%${textSearch}%`, cleanRecipeIDs, categoryID], function (error, result, fields) {
 					if (error) throw error;
 					console.log(result);
@@ -1131,7 +1134,7 @@ app.post('/searchRecipeHome', (req, res) => {
 	}
 	console.log("textsearch : " + textSearch);
 
-	connection.query(`SELECT recipeID FROM tagsList WHERE tag = ? ;SELECT id FROM category WHERE name = ? ;  `,
+	connection.query(`SELECT recipeID FROM tagslist WHERE tag = ? ;SELECT id FROM category WHERE name = ? ;  `,
 		[textSearch, textSearch], function (error, result, fields) {
 
 			if (error) throw error;
@@ -1145,7 +1148,7 @@ app.post('/searchRecipeHome', (req, res) => {
 
 			let categoryID = result[1]?.[0]?.id || '0';
 
-			connection.query(`SELECT * FROM RECIPE WHERE title LIKE ?   OR id in (?) OR categoryID=? ${filter} LIMIT 500`,
+			connection.query(`SELECT * from recipe WHERE title LIKE ?   OR id in (?) OR categoryID=? ${filter} LIMIT 500`,
 				[`%${textSearch}%`, cleanRecipeIDs, categoryID], function (error, result, fields) {
 					if (error) throw error;
 					console.log(" searchKey = " + textSearch);
@@ -1634,11 +1637,11 @@ app.post('/RecipeForU', (req, res) => {
 
 			
 
-				 connection.query(`SELECT recipeID FROM tagsList WHERE tag =?  `, [tag1,tag2], function (error, result, fields) {
+				 connection.query(`SELECT recipeID FROM tagslist WHERE tag =?  `, [tag1,tag2], function (error, result, fields) {
 				if (error) throw error;
 									console.log(" searchKey = " + req.body.textSearch);
 									console.log(result);
-										connection.query(`SELECT * FROM recipe WHERE recupeID =?  `, [recipeIDtab], function (error, result, fields) {
+										connection.query(`SELECT * from recipe WHERE recupeID =?  `, [recipeIDtab], function (error, result, fields) {
 							if (error) throw error;
 												console.log(" searchKey = " + req.body.textSearch);
 												console.log(result);

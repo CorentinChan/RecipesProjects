@@ -5,8 +5,9 @@ import { KeywordContext } from "./keyword";
 
 
  
- export default function SearchBar({ keyword, setKeyword }) {
+ export default function SearchBar({ keyword, setKeyword,filter,setFilter }) {
   const [inputValue, setInputValue] = useState(keyword);
+
   const skipTimeout = useRef(false);
 
   function handleSubmit() {
@@ -56,11 +57,12 @@ import { KeywordContext } from "./keyword";
 
 
 <div className="searchList mt-2">
-  <select className="form-select fs-5 rounded-pill form-select-lg mx-2 mx-lg-5"  id="recipeFilter">
-    <option selected disabled>Sort by : </option>
-    <option value="recipeDate">Sort by : date</option>
+  <select className="form-select fs-5 rounded-pill form-select-lg mx-2 mx-lg-5"  defaultValue={""} 
+  id="recipeFilter" onChange={(e)=>setFilter(e.target.value)}>
+    <option value="" disabled>Sort by : </option>
+    <option value="date">Sort by : date</option>
     <option value="recipeAlpha">Sort by : A to Z</option>
-    <option value="recipeNote">Sort by : note </option>
+    <option value="note">Sort by : note </option>
   </select>
 </div>  
 

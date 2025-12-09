@@ -19,6 +19,7 @@ import Footer from '/src/components/footer.jsx'
 
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { useStore } from "./store/store";
+import ModifyRecipe from './components/modifyRecipe'
 
 
 function App() {
@@ -69,6 +70,8 @@ console.log("API" + import.meta.env.VITE_API_URL);
         <Route path="/contact" element={<Contact />} />
         <Route path="/signin" element={<Signin user={user} />} />
         <Route path="/account" element={<Account user={user} userRole={userRole} />} />
+        <Route path="/modifyRecipe" element={<ModifyRecipe user={user} userRole={userRole} />} />
+
         {!user?<Route path="/signin" element={<Signin />} /> : <Route path="/signin" element={<p class='text-center'>Not available</p>} /> }
       </Route>
 

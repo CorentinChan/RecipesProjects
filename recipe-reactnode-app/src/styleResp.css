@@ -360,13 +360,13 @@
       /*Account Page */
 .cardExt{
     display: flex;
- 
    }
  
 
        .cardExt .card {
-    height:15em;  
-     width:20em;
+     width:10em;
+    height:auto;  
+
              object-fit: cover;
 
       }

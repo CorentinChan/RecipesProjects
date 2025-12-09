@@ -1,11 +1,13 @@
   import { useState,useEffect } from 'react';
 import CardUser from '../cardUser'
   import imgCard from '../images/background1.png'
+import { useNavigate } from "react-router-dom";
 
   import axios from 'axios';
 
 
 export default function  OwnRecipes() {
+const navigate =useNavigate();
 const [recipes,setRecipes]=useState([])
    useEffect(() => {         
          async function getRecipes(){ 
@@ -24,6 +26,7 @@ const [recipes,setRecipes]=useState([])
       }, []);
 
       async function deleteSubmit(e){
+        e.preventDefault();
           let recipeID = e.target.value;
           let type = "ownrecipe";
           console.log(recipeID);
@@ -41,8 +44,8 @@ const [recipes,setRecipes]=useState([])
           }
         );
 
-        setMessage(data.message);
-        console.log("Réponse backend :", data);
+        //setMessage(data.message);
+        console.log("Réponse backend delete own :", data);
 
         if (data.check) {
         navigate(0); 
@@ -56,7 +59,7 @@ const [recipes,setRecipes]=useState([])
       }
 
 return ( 
-   <div className="videoSection2 bg-light container-fluid py-5" id="fav">
+   <div className=" bg-light container-fluid py-5" id="fav">
   
     <div className="videoTitle m-3 m-lg-5 justify-content-center">
       <h2 className="bg-danger-subtle text-danger border rounded-pill p-2">
@@ -64,16 +67,17 @@ return (
       </h2>
     </div>
   
-    <div className="videos-container2 m-lg-5 flex-nowrap  overflow-auto" id="videos-container">
+    <div className=" m-lg-5 d-flex flex-nowrap  overflow-auto" id="videos-container">
 
       {recipes&&recipes.map( (recipe,index)=>( 
-      <div className="cardExt">
-        <CardUser key={`ownrecipe ${recipe.id}`} id={recipe.id} title={recipe.title} img= {recipe.image}/>
-        <div class="d-flex flex-column flex-lg-row justify-content-around  ">
+      <div key={`ownrecipe ${recipe.id}`} className="cardExt">
+        <CardUser  id={recipe.id} title={recipe.title} 
+         img={recipe.image?recipe.image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwAdnj607fkyztZ3TkKVTdEy-FG-tD-gEGJQ&s"} />
+        <div className="d-flex flex-column flex-lg-row justify-content-around  ">
         <form method="post" action={`modifyForm?recipe=${recipe.id}`}>
-          <button class="btn  text-center rounded-pill mx-1  mb-2 bg-primary border border-black" 
+          <button className="btn  text-center rounded-pill mx-1  mb-2 bg-primary border border-black" 
           name="modifyOwn" value="recipe.id">Modify</button></form>
-          <button class="btn  text-center rounded-pill mx-1  mb-2 bg-danger border border-black" 
+          <button className="btn  text-center rounded-pill mx-1  mb-2 bg-danger border border-black" 
           name="deleteOwn" value={recipe.id} onClick={deleteSubmit}>Delete</button>
         </div>
       </div>     

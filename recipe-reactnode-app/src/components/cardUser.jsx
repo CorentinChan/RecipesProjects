@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
  return( 
 
-          <div  className="card shadow-sm h-100  " key={id} onClick={()=>{navigate(url,{ state: { scrollTop: Date.now() } })}}>
+          <div  className="card shadow-sm h-100 m-2  " key={id} onClick={()=>{navigate(url,{ state: { scrollTop: Date.now() } })}}>
             <img src={img}  className="card-img-top" alt="Card 1"/>
             <div  className="card-body">
               <h5  className="card-title"> {title} </h5>

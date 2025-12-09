@@ -1,9 +1,12 @@
 import { useState,useEffect } from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-export default function CreateRecipe() {
+
+export default function ModifyRecipe() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [message, setMessage] = useState("");
 
@@ -18,7 +21,7 @@ export default function CreateRecipe() {
   const [nbPerson, setNbPerson] = useState("");
   const [author, setAuthor] = useState("");
 
-  const [steps, setSteps] = useState(Array(3).fill(null)); // initalise un tableau de 3 valleurs null
+  const [steps, setSteps] = useState([]); // initalise un tableau de 3 valleurs null
   const [ingredients, setIngredients] = useState(Array(2).fill(null));
   const [measures, setMeasures] = useState(Array(2).fill(null));
   const [tags, setTags] = useState([""]);
@@ -32,36 +35,62 @@ export default function CreateRecipe() {
   };
 
   //const handleSubmit = (e) => { };
-
-        useEffect(() => {
-        
-       async function getCategory(){ 
-        const response = await fetch(import.meta.env.VITE_API_URL+"/getCategory", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
+useEffect(() => {
+  
+  async function getRecipe() {
+    let recipeID=location.state.recipeID;
+    console.log(recipeID);
+    try {
+      const { data } = await axios.post(
+        import.meta.env.VITE_API_URL + "/getRecipeMod",
+        {
+          recipeID
         },
-        credentials: "include",
-  
-           });
-  
-      const data = await response.json();
-      console.log("Réponse backend cat :", data.category);
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+
+      setTitle(data.recipe.title);
+      setImage(data.recipe.image);
+      setDescription(data.recipe.description);
+
+      setActiveTime(data.recipe.activeTime);      
+      setTotalTime(data.recipe.totalTime);
+      setNbPerson(data.recipe.yield);
+
+      setAuthor(data.recipe.auteur);
+      setCategory(data.recipe.categoryID);
       setCategoryList(data.category);
-  
-          }
-        getCategory();
-    }, []);
+
+      setIngredients(data.ingredients.map(item => item.ingredient));
+      setMeasures(data.ingredients.map(item => item.measure));
+      setSteps(data.instructions.map(item => item.instruction));
+      setTags(data.tags.map(item => item.tag));
+
+      console.log("Réponse recipe :", data);
+
+      
+    } catch (error) {
+      console.error("Erreur lors de la connexion :", error);
+    }
+  }
+
+  getRecipe();
+}, []);
 
   async function handleSubmit(e){
      e.preventDefault(); 
      let categoryID=category;
+    let recipeID=location.state.recipeID;
+
      console.log({steps, ingredients, measures, tags, categoryID});
 
          try {
         const { data } = await axios.post(
-          import.meta.env.VITE_API_URL + "/createRecipe",
-          {
+          import.meta.env.VITE_API_URL + "/modifyRecipe",
+          { recipeID,
             title,image,description,activeTime,totalTime,nbPerson,categoryID,author,
             steps,ingredients,tags, measures
           },
@@ -71,17 +100,16 @@ export default function CreateRecipe() {
           }
         );
 
-        setMessage(data.message);
+        //setMessage(data.message);
         console.log("Réponse backend :", data);
 
-        if (data.succeed) {
-          //setUser(data.pseudo);
+        if (data.check) {
           console.log("succed")
-          navigate(0); 
+          navigate("/recipe?id="+recipeID); 
         }
       } catch (error) {
         console.error("Erreur lors de la connexion :", error);
-         setMessage(error.response?.data?.message || "Erreur réseau");
+         //setMessage(error.response?.data?.message || "Erreur réseau");
       }
 
   }
@@ -132,7 +160,7 @@ export default function CreateRecipe() {
       </section>
 
         <label htmlFor="" className="form-label">Category</label>
-  <select className="form-select  mb-5 p-2" aria-label="Default select example" 
+  <select className="form-select  mb-5 p-2" defaultValue={category} aria-label="Default select example" 
   onChange={(e)=>setCategory(e.target.value)} value={category}>
   <option  disabled>choose category</option>
 

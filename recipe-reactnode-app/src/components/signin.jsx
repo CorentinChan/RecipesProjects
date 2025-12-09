@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useStore } from "../store/store";
 import Signup from './signup'
 import ForgetPassword from './forgetPassword'
+ import { NavLink } from 'react-router-dom';
 
 
 import axios from 'axios';
@@ -62,9 +63,9 @@ export default function Signin() {
                     <h2 className="text-center m-4 text-black fw-bold pt-5">Sign in</h2>
 
                     <div className="logosLogin text-center d-flex justify-content-center">
-                      <i className="fa-brands fa-facebook fa-2x p-3"></i>
-                      <i className="fa-brands fa-instagram fa-2x p-3"></i>
-                      <i className="fa-brands fa-twitter fa-2x p-3"></i>
+                       <NavLink to={`${import.meta.env.VITE_API_URL}/auth/google`}><i class="fa-brands fa-google fa-2x p-3"></i></NavLink>
+                      <i class="fa-brands fa-facebook fa-2x p-3"  ></i>
+                      <i class="fa-brands fa-instagram fa-2x p-3"></i>
                     </div>
 
                     <h5 className="text-center m-4 text-grey">Or use your email account :</h5>

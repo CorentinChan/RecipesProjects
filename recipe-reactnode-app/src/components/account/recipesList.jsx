@@ -24,9 +24,42 @@ const [recipes,setRecipes]=useState([])
           getRecipes();
       }, []);
 
+       async function deleteSubmit(e){
+        e.preventDefault();
+          let recipeID = e.target.value;
+          let type = "favoris";
+          console.log(recipeID);
+                try {
+
+        const { data } = await axios.post(
+          import.meta.env.VITE_API_URL + "/deleteRecipeList",
+          {
+            recipeID,
+            type,
+          },
+          {
+            headers: {"Content-Type": "application/json",},
+            withCredentials: true,
+          }
+        );
+
+        //setMessage(data.message);
+        console.log("Réponse backend delete own :", data);
+
+        if (data.check) {
+        navigate(0); 
+        }
+      } catch (error) {
+        console.error("Erreur lors de la connexion :", error);
+         //setMessage(error.response?.data?.message || "Erreur réseau");
+      }
+  
+
+      }
+
 
 return ( 
- <div className="videoSection2 container-fluid py-5" id="fav">
+ <div className=" container-fluid py-5" id="fav">
 
   <div className="videoTitle m-3 m-lg-5 justify-content-center">
     <h2 className="bg-danger-subtle text-danger border rounded-pill p-2">
@@ -34,17 +67,17 @@ return (
     </h2>
   </div>
 
-      <div className="videos-container2 m-lg-5 flex-nowrap  overflow-auto" id="videos-container">
+    <div className=" m-lg-5 d-flex flex-nowrap  overflow-auto" id="videos-container">
 
       {recipes&&recipes.map( (recipe,index)=>( 
-      <div className="cardExt">
-        <CardUser key={`ownrecipe ${recipe.id}`} id={recipe.id} title={recipe.title} img= {recipe.image}/>
-        <div class="d-flex flex-column flex-lg-row justify-content-around ">
-        <form method="post" action={`modifyForm?recipe=${recipe.id}`}>
-          <button class="btn  text-center rounded-pill mx-1 mb-2 bg-primary border border-black" name="modifyOwn" value="recipe.id">Modify</button></form>
-          <form method="post" action="deleteOwn">
-          <button class="btn  text-center rounded-pill mx-1 mb-2 bg-danger border border-black" name="deleteOwn" value="recipe.id">Delete</button></form>
-        </div>
+      <div key={`recipeList ${recipe.id}`} className="cardExt">
+        <CardUser  id={recipe.id} title={recipe.title} 
+        img={recipe.image?recipe.image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwAdnj607fkyztZ3TkKVTdEy-FG-tD-gEGJQ&s"} />
+        <div className="d-flex flex-column flex-lg-row justify-content-around ">
+        
+      <button className="btn  text-center rounded-pill mx-1  mb-2 bg-danger border border-black" 
+          name="deleteOwn" value={recipe.id} onClick={deleteSubmit}>Delete</button>
+          </div>
       </div>     
       ))}
 </div>

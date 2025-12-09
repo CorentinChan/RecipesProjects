@@ -81,7 +81,7 @@ async function logout(e) {
             <button type="button" className="btn  btnAc btn-primary fs-5 rounded-pill mx-2 btnCustom " onClick={()=>setShowSignup(true)}  >Sign up</button>
             </>): ( <>  <NavLink to="/account" className={({ isActive }) => " pt-2 mx-2 nav-link fs-5" + (isActive ? " urlActive" : "") }>{user}</NavLink>
                
-                <button type="button" onClick={()=>logout()} class="btn btn-primary bg-danger fs-5 rounded-pill mx-2 btnCustom " >Sign out</button>
+                <button type="button" onClick={()=>logout()} className="btn btn-primary bg-danger fs-5 rounded-pill mx-2 btnCustom " >Sign out</button>
                 </>  )}
 
           

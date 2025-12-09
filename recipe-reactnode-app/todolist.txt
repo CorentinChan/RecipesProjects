@@ -1,15 +1,8 @@
-- create recipe measure input size to solve
-- modify recipe
-- auth google
-- mode admin recipe page
-- delete comm,recipes, ownrecipes
-- refaire un fetch page pas par composants
-- profil
-- admin zone
-- state bug at commentform
-- if userrole===admin pour les partie admin
-- forget password
 
-- comemnt form
+- state bug at commentform
+
+- remplacer les navigate(0) par fetch et message plutot que refresh
 - note form and display
-- videos recommanded
+- if userrole===admin pour les partie admin
+- auth insta twitter fb ...
+- refaire un fetch page pas par composants

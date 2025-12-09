@@ -27,6 +27,7 @@ const navigate = useNavigate();
         );
         console.log("Réponse backend tags :", data);
         console.log(data.succeed);
+         setUpdateForm(prev => prev + 1);
 
  
       } catch (error) {
@@ -37,7 +38,6 @@ const navigate = useNavigate();
     fetchNote();
     // let url="/recipe?id="+recipeID;
     // navigate(url+'#commentPart');
-      setUpdateForm(prev => prev + 1);
 
   }
 
@@ -62,28 +62,24 @@ const navigate = useNavigate();
           }
         );
         console.log(data.succeed);
+        setUpdateForm(prev => prev + 1);
 
- 
       } catch (error) {
         console.error("error axios :", error);
       }
     }
     fetchMessage();
 
-    setUpdateForm(prev => prev + 1);
 
     }
 
     return(
- 
- 
-
       <div className="list-group p-lg-3">
           <div className="list-group-item" aria-current="true">
             <div className=" d-flex w-100 justify-content-between">
               <div className="d-flex"><i className="fa-solid fa-star p-3"></i> 
-              <select onChange={handleNote} className="form-select form2" >
-  <option selected disabled>Give a note</option>
+              <select onChange={handleNote} className="form-select form2" defaultValue={""} >
+  <option value="" disabled>Give a note</option>
        <option>1</option>
      <option>2</option>
      <option>3</option>

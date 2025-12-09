@@ -2,12 +2,17 @@ import { useState,useEffect } from "react";
 import { useStore } from "../../store/store";
 
 import axios from 'axios';
+import { NavLink } from "react-router-dom";
+
+import DescriptionAdmin from '/src/components/recipe/descriptionAdmin.jsx'
 
 
-export default function Decription({recipeID}){
+export default function Decription({recipeID,userRole}){
     const [meal, setMeal] = useState(null);
     const [message, setMessage] = useState("");
     const [nbNotes, setNbNotes] = useState(0);
+        const [nbRecipes, setNbRecipes] = useState(0);
+
     const [isYT, setIsYT] = useState(false);
 
     const user = useStore((state) => state.user);
@@ -59,10 +64,15 @@ useEffect(() => {
           }
         );
         setMeal(data.recipe[0]);
-        console.log('isyt'+ytRegex.test(data.recipe[0].description));
+        setNbNotes(data.nbNotes);
+        setNbRecipes(data.nbRecipes);
+
+        if(data.recipe[0])
+      { //console.log('isyt'+ytRegex.test(data.recipe[0].description));
         setIsYT(ytRegex.test(data.recipe[0].description));
         console.log("Réponse backend descrption :", data);
         console.log(data.recipe[0].image);
+      }
 
  
       } catch (error) {
@@ -88,7 +98,7 @@ useEffect(() => {
     <div className=" pt-3 descriptionRecipe">
             {/* <!--title--> */}
     <h1 className="fade-in">{meal.title}</h1>
-    <p>{meal.note}  <i  className="fa-solid fa-star"></i></p>
+    <p>{meal.note}  <i  className="fa-solid fa-star"></i> ({nbNotes})</p>
       
    {   isYT?<>
     <p className="text-black-50  fs-4">
@@ -122,7 +132,7 @@ useEffect(() => {
     
     <div className="container ">
     <p className="m-0 p-0">Created by <span className="text-danger" id="author">{meal.auteur}</span> </p>
-    <p className="m-0 p-0 text-black-50" id="nbRecipes"> nb recipes?? </p>
+    <p className="m-0 p-0 text-black-50" id="nbRecipes"> Total recipes : {nbRecipes} </p>
     </div>
        <div className="d-flex justify-content-center align-items-center  ">
 
@@ -131,11 +141,13 @@ useEffect(() => {
         <i className="fa-solid fa-cart-arrow-down fs-3 mx-3 clickable"></i>
         <i className="fa-solid fa-print fs-3 mx-3 clickable" id="print" onClick={window.print}></i>
     </div>
-    </div>
     
+    </div>
+                 { userRole==="admin"&&<DescriptionAdmin recipeID={recipeID} />}
+
          </div>
 
-
+                
     </div>
   </div>
   </>}

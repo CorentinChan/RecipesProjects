@@ -1,9 +1,12 @@
   import { useState,useEffect } from "react";
   import axios from 'axios';
+  import { useNavigate } from "react-router-dom";
+
 
 export default function  CommentsList() {
 const [comments,setComments]=useState([]);
 const [notes,setNotes]=useState([]);
+const navigate=useNavigate();
 
   useEffect(() => {         
          async function getComments(){ 
@@ -24,6 +27,62 @@ const [notes,setNotes]=useState([]);
 
       async function commentSubmit(e){
         e.preventDefault();
+        let recipeID=e.target.value;
+        console.log(recipeID);
+
+        try {
+        const { data } = await axios.post(
+          import.meta.env.VITE_API_URL + "/deleteComm",
+          {
+            recipeID,
+          },
+          {
+            headers: {"Content-Type": "application/json",},
+            withCredentials: true,
+          }
+        );
+
+        //setMessage(data.message);
+        console.log("Réponse backend delete comm :", data);
+
+        if (data.check) {
+        navigate(0); 
+        }
+      } catch (error) {
+        console.error("Erreur lors de la connexion :", error);
+         //setMessage(error.response?.data?.message || "Erreur réseau");
+      }
+      
+      }
+
+      async function noteSubmit(e){
+        e.preventDefault();
+        let recipeID=e.target.value;
+        console.log(recipeID);
+        try {
+        const { data } = await axios.post(
+          import.meta.env.VITE_API_URL + "/deleteNote",
+          {
+            recipeID,
+          },
+          {
+            headers: {"Content-Type": "application/json",},
+            withCredentials: true,
+          }
+        );
+
+        //setMessage(data.message);
+        console.log("Réponse backend delete own :", data);
+
+        if (data.check) {
+        navigate(0); 
+        }
+      } catch (error) {
+        console.error("Erreur lors de la connexion :", error);
+         //setMessage(error.response?.data?.message || "Erreur réseau");
+      }
+  
+
       }
 
 return ( 
@@ -52,13 +111,11 @@ return (
         <div className="accordion-body">
           <ul className="list-unstyled">
            { comments.map((comment,index)=>( 
-            <li className="d-lg-flex flex-column bg-warning-subtle mb-2 p-1 rounded-pill border">
+            <li key={`comlist${index}`} className="d-lg-flex flex-column bg-warning-subtle mb-2 p-1 rounded-pill border">
               <p>{comment.title} : </p>
              <p>{comment.commentaire}</p>
-              <form method="post" onSubmit={commentSubmit}>
-                <input type="hidden" name="recipeIDComm" value="comment.recipeID" />
-                <button type="submit" className="rounded-5 bg-danger">Delete</button>
-              </form>
+                <button type="submit" className="rounded-5 bg-danger" 
+                value={comment.recipeID} onClick={commentSubmit} >Delete</button>
             </li>
             ))}
           </ul>
@@ -88,13 +145,13 @@ return (
         <div className="accordion-body">
           <ul className="list-unstyled">
           { notes.map((note,index)=>( 
-            <li className="d-flex flex-column  justify-content-center bg-warning-subtle mb-2 p-1 rounded-pill border">
+            <li key={`notelist${index}`} className="d-flex flex-column  justify-content-center bg-warning-subtle mb-2 p-1 rounded-pill border">
               <p className="text-center me-1">{note.title}</p>
               <p>note : {note.note} / 5</p>
-              <form method="post" action="deleteNote">
-                <input type="hidden" name="recipeIDnote" value="recipeID" />
-                <button className="btn-danger bg-danger border-1 rounded-5 mx-2 mx-lg-5" type="submit">Delete</button>
-              </form>
+              <div>
+                <button className="btn-danger bg-danger border-1 rounded-5 mx-2 mx-lg-5" 
+                value={note.recipeID} type="button" onClick={noteSubmit}>Delete</button>
+             </div>
             </li>
           ))}
           </ul>

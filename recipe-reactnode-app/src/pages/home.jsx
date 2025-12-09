@@ -12,6 +12,7 @@ import VideosReco from "../components/home/videosReco";
 export default function  Home({user}) {
       const [keyword, setKeyword] = useState("beef"); // variable globale
       const [showSignup, setShowSignup] = useState(false);
+      const [filter, setFilter] = useState(""); 
 
     return (
         <div>
@@ -25,7 +26,7 @@ export default function  Home({user}) {
                 <a  className =" d-flex text-decoration-none text-white"   >
                     <h3 onClick={()=>setShowSignup(true)} >Sign up today </h3> 
                     <i className="fa-solid fa-arrow-right m-2 p-2 fa-lg" ></i> </a> </> 
-                    :<h3 className="mb-3 "> Wecome!  Now, add your own recipes on account page, comment your favorite recipes and many more</h3> }
+                    :<h3 className="mb-3 "> Welcome!  Now, add your own recipes on account page, comment your favorite recipes and many more</h3> }
                 </div>
             </div>
             </div>
@@ -41,10 +42,10 @@ export default function  Home({user}) {
             <div className="recipe-container">
 
 
-            <SearchBar  keyword={keyword} setKeyword={setKeyword}/>
+            <SearchBar  keyword={keyword} setKeyword={setKeyword} filter={filter} setFilter={setFilter}/>
             
             <div className="ms-lg-0 recipeList recipeSearch">
-                <Caroussel keyword={keyword}/>
+                <Caroussel keyword={keyword} filter={filter}/>
             </div>
         </div>
 </div>

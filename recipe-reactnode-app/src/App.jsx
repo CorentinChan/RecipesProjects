@@ -56,7 +56,7 @@ console.log("API" + import.meta.env.VITE_API_URL);
 
   return (
     <>
-         <BrowserRouter basename="/RecipeReact/">
+         <BrowserRouter basename="/">
     
 
       {/* Routes */}

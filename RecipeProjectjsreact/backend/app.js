@@ -5,7 +5,6 @@ const fsp = require('fs').promises;
 let express = require("express");
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
-let app = express();
 let ejs = require('ejs');
 const cookieParser = require('cookie-parser');
 const path = require('path');
@@ -19,10 +18,7 @@ require("./passportConfig");
 require('dotenv').config();
 var cors = require('cors')
 
-
-//import express from "express";
-//import serverless from "serverless-http";
-
+let app = express();
 
 app.use(session({
 	secret: process.env.DB_SECRET,      // clé pour signer la session (change-la)
@@ -40,6 +36,7 @@ app.use(cors({
   origin: "http://localhost:5173", // ton frontend React
   credentials: true                // permet d’envoyer/recevoir les cookies
 }));
+
 
 
 const pool = mysql2.createPool({
@@ -68,6 +65,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
 
+const reactBuildPath = path.join(__dirname, '../frontend/dist');
+app.use('/assets', express.static(path.join(reactBuildPath, 'assets')));
+
+// 2. Ensuite, on sert le reste du dossier dist (pour favicon.ico, etc.)
+app.use(express.static(reactBuildPath));
+
+app.get(/.*/, (req, res) => {
+    res.sendFile(path.join(reactBuildPath, 'index.html'));
+});
+
+
+
 // app.set('view engine', 'ejs');
 // app.set('views', path.join(__dirname, '..', 'frontend'));
 
@@ -76,10 +85,10 @@ app.use(express.json());
 let pseudo = '';
 
 
-app.get('/', (req, res) => {
+// app.get('/', (req, res) => {
 
-		res.send('bienvenue!');
-});
+// 		res.send('bienvenue!');
+// });
 
 
 app.post('/setRecipeID', async (req, res) => {

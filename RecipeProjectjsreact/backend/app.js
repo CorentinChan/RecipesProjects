@@ -33,7 +33,7 @@ app.use(passport.session());
 
 
 app.use(cors({
-  origin: "http://localhost:5173", // ton frontend React
+  origin: "http://37.27.248.236:3001", // ton frontend React
   credentials: true                // permet d’envoyer/recevoir les cookies
 }));
 
@@ -462,13 +462,13 @@ app.get('/search', async(req, res) => {
 
 });
 
-app.get('/login', (req, res) => {
-	console.log("login");
-	let pseudo=req.cookies.pseudo ?? null;
-	if (!pseudo) res.render('login', { user: pseudo, erreur: "" });
-	else res.redirect('/account');
+// app.get('/login', (req, res) => {
+// 	console.log("login");
+// 	let pseudo=req.cookies.pseudo ?? null;
+// 	if (!pseudo) res.render('login', { user: pseudo, erreur: "" });
+// 	else res.redirect('/account');
 
-});
+// });
 
 // app.get('/account', async (req, res) => {
 // 	if(!req.cookies.pseudo) res.redirect("/");
@@ -538,7 +538,7 @@ app.get('/login', (req, res) => {
 
 
 
-app.listen(3001, () => {
+app.listen(3001, '0.0.0.0',  () => {
 	console.log(` app listening at http://localhost:3001`);
 });
 
@@ -626,7 +626,7 @@ app.post('/signin', (req, res) => {
 	let mail = req.body.mail;
 	let mdp = req.body.password;
 	const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-	if (!regex.test(req.body.mail))  {return res.redirect();}
+	if (!regex.test(req.body.mail))  {return res.json({error:"mail wrong"});}
 
 	connection.query('SELECT * FROM users WHERE mail = ?', [mail], function (error, result, fields) {
 		if (error) throw error;
@@ -1436,7 +1436,7 @@ app.post('/changePassword', async(req, res) => {
 	//res.render('contact');
 		} catch (err) {
         console.error(err);
-        res.status(500).render('accounts', { user: null, erreur: "serverError" });
+        res.status(500).json('accounts', { user: null, erreur: "serverError" });
     }	
 
 }

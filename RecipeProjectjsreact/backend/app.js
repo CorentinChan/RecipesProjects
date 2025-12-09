@@ -169,7 +169,7 @@ app.post('/recipeDescription', async (req, res) => {
 		
 	} catch (err) {
 		console.error('Erreur MySQL :', err);
-		res.status(500).send(err);
+		res.status(500).json(err);
 	}
 });
 
@@ -183,7 +183,7 @@ app.post('/getSteps', async (req, res) => {
 
 	} catch (err) {
 		console.error('Erreur MySQL :', err);
-		res.status(500).send('Erreur serveur');
+		res.status(500).json('Erreur serveur');
 	}
 });
 
@@ -198,7 +198,7 @@ const [ingredients] = await pool.execute('SELECT * FROM liste_ingredients WHERE 
 
 	} catch (err) {
 		console.error('Erreur MySQL :', err);
-		res.status(500).send('Erreur serveur');
+		res.status(500).json('Erreur serveur');
 	}
 });
 
@@ -214,7 +214,7 @@ app.post('/getTags', async (req, res) => {
 
 	} catch (err) {
 		console.error('Erreur MySQL :', err);
-		res.status(500).send('Erreur serveur');
+		res.status(500).json('Erreur serveur');
 	}
 });
 
@@ -231,7 +231,7 @@ app.post('/getComment', async (req, res) => {
 
 	} catch (err) {
 		console.error('Erreur MySQL :', err);
-		res.status(500).send('Erreur serveur');
+		res.status(500).json('Erreur serveur');
 	}
 });
 
@@ -255,7 +255,7 @@ app.post('/ban', async(req, res) => {
 		else res.json({message:"user not found "});
 	} catch (err) {
 		console.error('Erreur MySQL :', err);
-		res.status(500).send('Erreur serveur');
+		res.status(500).json('Erreur serveur');
 	}
 
 });
@@ -327,7 +327,7 @@ app.post('/getRecipeMod', async(req, res) => {
 
 	} catch (err) {
 		console.error('Erreur MySQL :', err);
-		res.status(500).send('Erreur serveur');
+		res.status(500).json('Erreur serveur');
 	}
 
 });
@@ -522,7 +522,7 @@ app.get('/search', async(req, res) => {
 
 // 	} catch (err) {
 // 		console.error('Erreur MySQL:', err);
-// 		res.status(500).send('Erreur serveur');
+// 		res.status(500).json('Erreur serveur');
 // 	}
 
 // }
@@ -704,7 +704,7 @@ app.get('/getCategory',async(req,res) =>
 	}
 	 catch (err) {
 		console.error('Erreur MySQL :', err);
-		res.status(500).send('Erreur serveur');
+		res.status(500).json('Erreur serveur');
 	}
 })
 
@@ -718,7 +718,7 @@ app.get('/getProfil',async(req,res) =>
 	}
 	 catch (err) {
 		console.error('Erreur MySQL :', err);
-		res.status(500).send('Erreur serveur');
+		res.status(500).json('Erreur serveur');
 	}
 })
 
@@ -734,7 +734,7 @@ app.get('/getComments',async(req,res) =>
 	}
 	 catch (err) {
 		console.error('Erreur MySQL :', err);
-		res.status(500).send('Erreur serveur');
+		res.status(500).json('Erreur serveur');
 	}
 })
 
@@ -749,7 +749,7 @@ app.get('/getOwnRecipes',async(req,res) =>
 	}
 	 catch (err) {
 		console.error('Erreur MySQL :', err);
-		res.status(500).send('Erreur serveur');
+		res.status(500).json('Erreur serveur');
 	}
 })
 
@@ -765,7 +765,7 @@ app.get('/getRecipesList',async(req,res) =>
 	}
 	 catch (err) {
 		console.error('Erreur MySQL :', err);
-		res.status(500).send('Erreur serveur');
+		res.status(500).json('Erreur serveur');
 	}
 })
 
@@ -1169,7 +1169,7 @@ app.post('/giveNote', async (req, res) => {
 
 	} catch (err) {
 		console.error('Erreur MySQL :', err);
-		res.status(500).send('Erreur serveur');
+		res.status(500).json('Erreur serveur');
 	}
 });
 
@@ -1202,7 +1202,7 @@ app.post('/addComment', async (req, res) => {
 	
 	} catch (err) {
 		console.error('Erreur MySQL :', err);
-		res.status(500).send('Erreur serveur');
+		res.status(500).json('Erreur serveur');
 	}
 });
 
@@ -1296,7 +1296,7 @@ app.post('/modifyProfil', async (req, res) => {
 
 	} catch (err) {
 		console.error('Erreur MySQL :', err);
-		res.status(500).send('Erreur serveur');
+		res.status(500).json('Erreur serveur');
 	}
 });
 
@@ -1529,6 +1529,6 @@ app.get("/profile", async(req, res) => {
 
 	} catch (err) {
     console.error("Database error:", err);
-    res.status(500).send("Server error");
+    res.status(500).json("Server error");
   }
 });

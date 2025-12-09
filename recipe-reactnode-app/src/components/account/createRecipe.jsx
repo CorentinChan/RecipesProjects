@@ -7,7 +7,7 @@ export default function CreateRecipe() {
 
   const [message, setMessage] = useState("");
 
-  const [category, setCategory] = useState(null);
+  const [category, setCategory] = useState("");
   const [categoryList, setCategoryList] = useState([]);
 
   const [title, setTitle] = useState("");

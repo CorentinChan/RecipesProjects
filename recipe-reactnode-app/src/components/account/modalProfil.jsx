@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
 export default function ModalProfil({ user,profilParent,setProfilParent }) {
-  const [profil,setProfil]=useState(profilParent);
+  const [profil,setProfil]=useState("");
   const [message,setMessage]=useState("");
   const navigate=useNavigate();
 

@@ -83,7 +83,7 @@ return (
       </div>
 
       <div className="text-center fst-italic m-3 py-lg-4 px-lg-5">
-        {profil.description}
+        {profil?.description}
       </div>
 
     </div>
@@ -92,7 +92,7 @@ return (
   {/* img */}
   <div className="col-lg-6">
     <div className="justify-content-center image-container">
-      <img src={profil.image} className="tilt1 pt-3 rounded-5 recipePhoto" alt="image" />
+      <img src={profil?.image} className="tilt1 pt-3 rounded-5 recipePhoto" alt="image" />
     </div>
   </div>
 

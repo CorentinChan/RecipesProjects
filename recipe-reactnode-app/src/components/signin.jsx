@@ -18,6 +18,7 @@ export default function Signin() {
 
     const user = useStore((state) => state.user);
    const setUser = useStore((state) => state.setUser)
+   const setUserRole = useStore((state) => state.setUserRole)
 
   
   async function handleSubmit(e) {

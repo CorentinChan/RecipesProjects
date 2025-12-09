@@ -16,7 +16,7 @@ import Signin from '/src/components/signin.jsx'
 import Nav from '/src/components/nav.jsx'
 import Footer from '/src/components/footer.jsx'
 
-
+import { useLocation } from "react-router-dom";
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { useStore } from "./store/store";
 import ModifyRecipe from './components/modifyRecipe'
@@ -28,12 +28,11 @@ function App() {
     const [userRole, setUserRole] = useState("");
     const user = useStore((state) => state.user);
    const setUser = useStore((state) => state.setUser)
-
+  const location=useLocation();
 
       useEffect(() => {
-
-        
-console.log("API" + import.meta.env.VITE_API_URL);
+            
+    console.log("API" + import.meta.env.VITE_API_URL);
 
      async function getPseudo(){ 
       const response = await fetch(import.meta.env.VITE_API_URL+"/getPseudo", {
@@ -52,7 +51,7 @@ console.log("API" + import.meta.env.VITE_API_URL);
 
         }
       getPseudo();
-  }, []);
+  }, [location.pathname]);
 
   return (
     <>

@@ -41,7 +41,7 @@ export default function Signin() {
 
         if (data.succeed) {
           setUser(data.pseudo);
-          navigate("/account"); 
+          navigate("/"); 
         }
       } catch (error) {
         console.error("Erreur lors de la connexion :", error);

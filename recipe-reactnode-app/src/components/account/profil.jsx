@@ -32,6 +32,7 @@
 return ( 
 <div className="d-lg-flex container mx-lg-5 px-lg-5">
 
+{profil&&user&&<>
   {/* description */}
   <div className="col-lg-6 justify-content-center">
     <div className="mx-lg-5 pt-3 descriptionRecipe">
@@ -95,7 +96,7 @@ return (
       <img src={profil?.image} className="tilt1 pt-3 rounded-5 recipePhoto" alt="image" />
     </div>
   </div>
-
+</>}
 </div>
 
 

@@ -20,18 +20,20 @@ import { useLocation } from "react-router-dom";
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { useStore } from "./store/store";
 import ModifyRecipe from './components/modifyRecipe'
+import LocationState from './components/locationState'
 
 
 function App() {
   const [count, setCount] = useState(0);
   //const [user, setUser] = useState("");
     const [userRole, setUserRole] = useState("");
+      const [locationState, setLocationState] = useState(0);
+
     const user = useStore((state) => state.user);
    const setUser = useStore((state) => state.setUser)
-  const location=useLocation();
 
       useEffect(() => {
-            
+
     console.log("API" + import.meta.env.VITE_API_URL);
 
      async function getPseudo(){ 
@@ -51,12 +53,12 @@ function App() {
 
         }
       getPseudo();
-  }, [location.pathname]);
+  }, [locationState]);
 
   return (
     <>
          <BrowserRouter basename="/">
-    
+       <LocationState setLocationState={setLocationState} /> 
 
       {/* Routes */}
     

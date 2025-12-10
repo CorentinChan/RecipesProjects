@@ -10,8 +10,8 @@ import { useNavigate } from "react-router-dom";
  export default function  RecipesList() {
   // const location=useLocation();
    const navigate=useNavigate();
-const [recipes,setRecipes]=useState([])
-   useEffect(() => {         
+const [recipes,setRecipes]=useState([]);
+
          async function getRecipes(){ 
           const response = await axios.get(import.meta.env.VITE_API_URL+"/getRecipesList", {
           headers: {
@@ -24,6 +24,8 @@ const [recipes,setRecipes]=useState([])
              setRecipes(data.recipesList);
     
             }
+
+   useEffect(() => {         
           getRecipes();
       }, []);
 
@@ -49,7 +51,8 @@ const [recipes,setRecipes]=useState([])
         console.log("Réponse backend delete list :", data);
 
         if (data.check) {
-        navigate(0); 
+        getRecipes();
+ 
         }
       } catch (error) {
         console.error("Erreur lors de la connexion :", error);

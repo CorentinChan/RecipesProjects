@@ -8,8 +8,7 @@ const [comments,setComments]=useState([]);
 const [notes,setNotes]=useState([]);
 const navigate=useNavigate();
 
-  useEffect(() => {         
-         async function getComments(){ 
+ async function getComments(){ 
           const response = await axios.get(import.meta.env.VITE_API_URL+"/getComments", {
           headers: {
             "Content-Type": "application/json",
@@ -22,6 +21,8 @@ const navigate=useNavigate();
        setComments(data.comments);
     
             }
+
+  useEffect(() => {             
           getComments();
       }, []);
 
@@ -46,7 +47,7 @@ const navigate=useNavigate();
         console.log("Réponse backend delete comm :", data);
 
         if (data.check) {
-        navigate(0); 
+        getComments();
         }
       } catch (error) {
         console.error("Erreur lors de la connexion :", error);
@@ -75,7 +76,7 @@ const navigate=useNavigate();
         console.log("Réponse backend delete own :", data);
 
         if (data.check) {
-        navigate(0); 
+          getRecipes();
         }
       } catch (error) {
         console.error("Erreur lors de la connexion :", error);

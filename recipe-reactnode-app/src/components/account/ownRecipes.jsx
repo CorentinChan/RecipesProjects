@@ -9,8 +9,8 @@ import { useNavigate } from "react-router-dom";
 export default function  OwnRecipes() {
 const navigate =useNavigate();
 const [recipes,setRecipes]=useState([])
-   useEffect(() => {         
-         async function getRecipes(){ 
+
+ async function getRecipes(){ 
           const response = await axios.get(import.meta.env.VITE_API_URL+"/getOwnRecipes", {
           headers: {
             "Content-Type": "application/json",
@@ -22,6 +22,8 @@ const [recipes,setRecipes]=useState([])
              setRecipes(data.ownRecipes);
     
             }
+
+   useEffect(() => {            
           getRecipes();
       }, []);
 
@@ -48,7 +50,7 @@ const [recipes,setRecipes]=useState([])
         console.log("Réponse backend delete own :", data);
 
         if (data.check) {
-        navigate(0); 
+          getRecipes();
         }
       } catch (error) {
         console.error("Erreur lors de la connexion :", error);

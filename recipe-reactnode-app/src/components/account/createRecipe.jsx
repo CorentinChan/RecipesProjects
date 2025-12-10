@@ -42,13 +42,16 @@ export default function CreateRecipe() {
           "Content-Type": "application/json",
         },
         credentials: "include",
-  
+        
            });
   
       const data = await response.json();
       console.log("Réponse backend cat :", data.category);
       setCategoryList(data.category);
-  
+      
+      if (data.category && data.category.length > 0) {
+          setCategory(data.category[0].id);
+      }  
           }
         getCategory();
     }, []);
@@ -136,12 +139,10 @@ export default function CreateRecipe() {
   onChange={(e)=>setCategory(e.target.value)} value={category}>
   <option  disabled>choose category</option>
 
-    {  categoryList.map((element,index) =>{ 
-      if(index===0)setCategory=element.id;
-      return(  
+    {  categoryList.map(element => (  
                 <option key={`category+${element.id}`} value={element.id}>{element.name}</option>
 
-    )})}
+    ))}
 
 </select>
 

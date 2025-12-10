@@ -48,9 +48,9 @@ const [recipes,setRecipes]=useState([])
         //setMessage(data.message);
         console.log("Réponse backend delete own :", data);
 
-        // if (data.check) {
-        // navigate(0); 
-        // }
+        if (data.check) {
+        navigate(0); 
+        }
       } catch (error) {
         console.error("Erreur lors de la connexion :", error);
          //setMessage(error.response?.data?.message || "Erreur réseau");

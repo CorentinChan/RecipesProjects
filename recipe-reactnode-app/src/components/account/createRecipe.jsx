@@ -136,10 +136,12 @@ export default function CreateRecipe() {
   onChange={(e)=>setCategory(e.target.value)} value={category}>
   <option  disabled>choose category</option>
 
-    {  categoryList.map(element => (  
+    {  categoryList.map((element,index) =>{ 
+      if(index===0)setCategory=element.id;
+      return(  
                 <option key={`category+${element.id}`} value={element.id}>{element.name}</option>
 
-    ))}
+    )})}
 
 </select>
 

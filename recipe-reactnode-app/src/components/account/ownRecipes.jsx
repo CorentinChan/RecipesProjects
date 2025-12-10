@@ -75,9 +75,10 @@ return (
          img={recipe.image?recipe.image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwAdnj607fkyztZ3TkKVTdEy-FG-tD-gEGJQ&s"} 
          />
         <div className="d-flex flex-column flex-lg-row justify-content-around  ">
-        <form method="post" action={`modifyForm?recipe=${recipe.id}`}>
           <button className="btn  text-center rounded-pill mx-1  mb-2 bg-primary border border-black" 
-          name="modifyOwn" value="recipe.id">Modify</button></form>
+          onClick={()=>navigate("/modifyRecipe", { state: { recipeID:recipe.id } })}
+           name="modifyOwn" value="recipe.id">Modify</button>
+
           <button className="btn  text-center rounded-pill mx-1  mb-2 bg-danger border border-black" 
           name="deleteOwn" value={recipe.id} onClick={deleteSubmit}>Delete</button>
         </div>

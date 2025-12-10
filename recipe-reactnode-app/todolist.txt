@@ -1,8 +1,6 @@
-
-- state bug at commentform
-
-- remplacer les navigate(0) par fetch et message plutot que refresh
-- note form and display
-- if userrole===admin pour les partie admin
+- mettre a jour state message addList, notes quand on udpate la note
+- redirection modify state en retard parfois
+- auth google
+- remplacer les navigate par fetch et message plutot que refresh
 - auth insta twitter fb ...
 - refaire un fetch page pas par composants

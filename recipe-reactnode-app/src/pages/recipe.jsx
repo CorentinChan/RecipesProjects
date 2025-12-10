@@ -82,7 +82,7 @@ export default function  Recipe({user,userRole}) {
 
  { recipeID &&( <>
 
-       <Description  recipeID={recipeID} userRole={userRole}   />
+       <Description  recipeID={recipeID} userRole={userRole} udpateForm={udpateForm}   />
   <div className="m-1 p-1 m-lg-5 p-lg-3 makeRecipe-container">
 <div className="  recipeLeft">
 

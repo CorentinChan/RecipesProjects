@@ -1479,7 +1479,7 @@ app.get("/auth/instagram/callback",
 
 // --- auth to BDD ---
 app.get("/profile", async(req, res) => {
-  if (!req.isAuthenticated())     res.redirect('http://localhost:5173'); 
+  if (!req.isAuthenticated())     res.redirect('/'); 
 
 
 
@@ -1522,7 +1522,7 @@ app.get("/profile", async(req, res) => {
 		});		
 
 
-    		res.redirect('http://localhost:5173'); 
+    		res.redirect('/'); 
 
 
 

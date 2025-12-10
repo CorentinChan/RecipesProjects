@@ -48,7 +48,6 @@ export default function Decription({recipeID,userRole}){
 
     }
 
-useEffect(() => {
     async function fetchDescription() {
       const ytRegex = /(https?:\/\/(?:www\.)?(youtube\.com|youtu\.be)\/\S+)/; // (http(s):)//(www.)?youtube.com||youtu.be/S+
 
@@ -63,6 +62,8 @@ useEffect(() => {
             withCredentials: true,
           }
         );
+         setMessage("");
+
         setMeal(data.recipe[0]);
         setNbNotes(data.nbNotes);
         setNbRecipes(data.nbRecipes);
@@ -79,9 +80,16 @@ useEffect(() => {
         console.error("error axios :", error);
       }
     }
+
+useEffect(() => {
+    
     console.log(recipeID);
     fetchDescription();
   }, [recipeID]);
+
+  useEffect(() => {
+    fetchDescription();
+  }, [updateForm]);
 
     return(
         <div className="recipeTitle row gx-0">

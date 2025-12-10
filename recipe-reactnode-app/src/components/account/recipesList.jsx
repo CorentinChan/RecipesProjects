@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
  export default function  RecipesList() {
   // const location=useLocation();
-  // const navigate=useNavigate();
+   const navigate=useNavigate();
 const [recipes,setRecipes]=useState([])
    useEffect(() => {         
          async function getRecipes(){ 

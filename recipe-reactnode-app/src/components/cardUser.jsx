@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom";
  export default function  CardUser({title,img,id,note,author}) {
  let url ='/recipe?id='+id;
   let navigate = useNavigate();
-.0
-
 
  return( 
 

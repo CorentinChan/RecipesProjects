@@ -19,10 +19,10 @@ export default function  Account({user,userRole}) {
         user&&<>
         
        <Profil  user={user} userRole={userRole}  />
-       {/* <CommentsList/> 
-        <RecipesList/> 
-        <OwnRecipes/>
-        {(userRole==="admin")?<AdminZone/>:undefined}  */}
+       <CommentsList/> 
+        {/* <RecipesList/> 
+        <OwnRecipes/> */}
+        {(userRole==="admin")?<AdminZone/>:undefined} 
 
         </>
     )

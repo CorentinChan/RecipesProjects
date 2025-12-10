@@ -50,7 +50,8 @@ const [recipes,setRecipes]=useState([])
         console.log("Réponse backend delete own :", data);
 
         if (data.check) {
-          getRecipes();
+          console.log('delete ownrecipes');
+         setRecipes(currentRecipes => currentRecipes.filter(r => String(r.id) !== recipeID));
         }
       } catch (error) {
         console.error("Erreur lors de la connexion :", error);

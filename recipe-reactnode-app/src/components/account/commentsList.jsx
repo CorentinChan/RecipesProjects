@@ -76,7 +76,7 @@ const navigate=useNavigate();
         console.log("Réponse backend delete own :", data);
 
         if (data.check) {
-          getRecipes();
+          getComments();
         }
       } catch (error) {
         console.error("Erreur lors de la connexion :", error);

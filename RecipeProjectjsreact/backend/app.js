@@ -938,9 +938,9 @@ app.post('/deleteRecipeList', (req, res) => {
 
 					res.clearCookie('recipeID');
 					console.log("supprimée :", results)
-					res.json({check:true,checkUser:true});
 
 				});
+					res.json({check:true,checkUser:true});
 
 		}
 

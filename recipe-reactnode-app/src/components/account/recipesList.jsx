@@ -51,8 +51,10 @@ const [recipes,setRecipes]=useState([]);
         console.log("Réponse backend delete list :", data);
 
         if (data.check) {
-        getRecipes();
- 
+          console.log("delete recipelist")
+        //getRecipes();
+              setRecipes(currentRecipes => currentRecipes.filter(r => String(r.id) !== recipeID));
+
         }
       } catch (error) {
         console.error("Erreur lors de la connexion :", error);

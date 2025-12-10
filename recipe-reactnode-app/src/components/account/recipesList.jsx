@@ -4,10 +4,12 @@
 
   import axios from 'axios';
   import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
  export default function  RecipesList() {
   location=useLocation();
+  const navigate=useNavigate();
 const [recipes,setRecipes]=useState([])
    useEffect(() => {         
          async function getRecipes(){ 
@@ -25,9 +27,8 @@ const [recipes,setRecipes]=useState([])
           getRecipes();
       }, []);
 
-       async function deleteSubmit(e){
-        e.preventDefault();
-          let recipeID = e.target.value;
+       async function deleteSubmit(recipeID){
+          //let recipeID = e.target.value;
           let type = "favoris";
           console.log(recipeID);
                 try {
@@ -78,7 +79,7 @@ return (
         <div className="d-flex flex-column flex-lg-row justify-content-around ">
         
       <button className="btn  text-center rounded-pill mx-1  mb-2 bg-danger border border-black" 
-          name="deleteOwn" value={recipe.id} onClick={deleteSubmit}>Delete</button>
+          name="deleteOwn" onClick={() => deleteSubmit(recipe.id)}>Delete</button>
           </div>
       </div>     
       ))}

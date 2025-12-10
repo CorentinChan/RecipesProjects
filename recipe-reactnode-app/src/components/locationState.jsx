@@ -11,9 +11,8 @@ import { useNavigate } from "react-router-dom";
       
 
       console.log("API" + import.meta.env.VITE_API_URL);
- try {
-     
-        const { data } = await axios.post(
+        try {
+        const { data } = await axios.get(
           import.meta.env.VITE_API_URL + "/getPseudo",
           {
           },

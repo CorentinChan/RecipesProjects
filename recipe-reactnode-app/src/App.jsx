@@ -47,10 +47,10 @@ function App() {
          });
 
     const data = await response.json();
-    console.log("Réponse backend :", data);
+    console.log("Réponse backend app :", data);
         setUser(data.pseudo);
         setUserRole(data.role);
-
+         console.log(user+role);
         }
       getPseudo();
   }, [locationState]);

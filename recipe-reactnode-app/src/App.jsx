@@ -26,7 +26,8 @@ import LocationState from './components/locationState'
 function App() {
   const [count, setCount] = useState(0);
   //const [user, setUser] = useState("");
-    const [userRole, setUserRole] = useState("");
+    const userRole = useStore((state) => state.userRole);
+   const setUserRole = useStore((state) => state.setUserRole)
       const [locationState, setLocationState] = useState(0);
 
     const user = useStore((state) => state.user);
@@ -50,15 +51,16 @@ function App() {
     console.log("Réponse backend app :", data);
         setUser(data.pseudo);
         setUserRole(data.role);
-         console.log(user+role);
+         console.log('userrole'+user+userRole+locationState);
         }
       getPseudo();
-  }, [locationState]);
+  },[locationState,user] );
 
   return (
     <>
          <BrowserRouter basename="/">
-       <LocationState setLocationState={setLocationState} /> 
+       <LocationState user={user} userRole={userRole} locationState={locationState} 
+       setLocationState={setLocationState} /> 
 
       {/* Routes */}
     

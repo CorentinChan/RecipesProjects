@@ -8,9 +8,12 @@ import AdminZone from '/src/components/account/AdminZone.jsx';
 
 
 
-
 export default function  Account({user,userRole}) {
  
+    
+  if (!user||!userRole) {
+    return <div>Chargement...</div>;
+  }
       
     return (
         user&&<>

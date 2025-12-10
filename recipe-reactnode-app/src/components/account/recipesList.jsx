@@ -3,10 +3,11 @@
   import imgCard from '../images/background1.png'
 
   import axios from 'axios';
+  import { useLocation } from "react-router-dom";
 
 
  export default function  RecipesList() {
-
+  location=useLocation();
 const [recipes,setRecipes]=useState([])
    useEffect(() => {         
          async function getRecipes(){ 
@@ -22,7 +23,7 @@ const [recipes,setRecipes]=useState([])
     
             }
           getRecipes();
-      }, []);
+      }, [location.path,user]);
 
        async function deleteSubmit(e){
         e.preventDefault();

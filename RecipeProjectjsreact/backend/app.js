@@ -940,12 +940,13 @@ app.post('/deleteRecipeList', (req, res) => {
 					console.log("supprimée :", results)
 
 				});
-					res.json({check:true,checkUser:true});
 
 		}
 
 
 	}
+						res.json({check:true,checkUser:true});
+
 });
 
 //delete own recipe completely on database

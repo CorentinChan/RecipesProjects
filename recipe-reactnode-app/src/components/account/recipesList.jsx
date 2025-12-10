@@ -23,7 +23,7 @@ const [recipes,setRecipes]=useState([])
     
             }
           getRecipes();
-      }, [location.path,user]);
+      }, [location.path]);
 
        async function deleteSubmit(e){
         e.preventDefault();

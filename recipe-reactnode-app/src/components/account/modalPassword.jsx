@@ -5,7 +5,7 @@
   import axios from 'axios';
 
 
-export default function Profil({ user, userRole }) {
+export default function ModalPassword({ user, userRole }) {
   const [currentPassword,setCurrentPassword]=useState("");
   const [newPassword,setNewPassword]=useState("");
   const [newPassword2,setNewPassword2]=useState("");

@@ -27,7 +27,7 @@
     
             }
           getProfil();
-      }, [location.path,user]);
+      }, [location.path]);
 
 return ( 
 <div className="d-lg-flex container mx-lg-5 px-lg-5">

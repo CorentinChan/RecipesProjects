@@ -23,7 +23,7 @@ const navigate=useNavigate();
     
             }
           getComments();
-      }, [location.path,user]);
+      }, [location.path]);
 
       async function commentSubmit(e){
         e.preventDefault();

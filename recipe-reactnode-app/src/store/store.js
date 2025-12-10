@@ -8,7 +8,7 @@ export const useStore = create((set) => ({
 
   // --- setters ---
   setUser: (user) => set({ user }),
-  setUserRole: (user) => set({ user }),
+  setUserRole: (userRole) => set({ userRole }),
   setRecipeID: (recipeID) => set({ recipeID }),
 
 }));

@@ -3,10 +3,13 @@ import { useLocation } from "react-router-dom";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
  
- export default function  LocationState({setLocationState,user,userRole,setUser,setUserRole,locationState}) {
+ export default function  LocationState({user,userRole,setUser,setUserRole}) {
       const location =useLocation();
 
-  useEffect(async() => {
+  useEffect(() => {
+    async function getPseudo() {
+      
+
       console.log("API" + import.meta.env.VITE_API_URL);
  try {
      
@@ -32,7 +35,9 @@ import { useNavigate } from "react-router-dom";
         console.error("Erreur lors de la connexion :", error);
       }
     
-  }, [location.pathname,user]);
+    }
+    getPseudo();
+  }, [location.pathname]);
 
 
 

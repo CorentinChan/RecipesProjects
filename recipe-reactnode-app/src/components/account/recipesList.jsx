@@ -46,7 +46,7 @@ const [recipes,setRecipes]=useState([])
         );
 
         //setMessage(data.message);
-        console.log("Réponse backend delete own :", data);
+        console.log("Réponse backend delete list :", data);
 
         if (data.check) {
         navigate(0); 

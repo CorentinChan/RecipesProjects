@@ -71,8 +71,9 @@ return (
 
       {recipes&&recipes.map( (recipe,index)=>( 
       <div key={`ownrecipe ${recipe.id}`} className="cardExt">
-        <CardUser  id={recipe.id} title={recipe.title} 
-         img={recipe.image?recipe.image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwAdnj607fkyztZ3TkKVTdEy-FG-tD-gEGJQ&s"} />
+        {/* <CardUser  id={recipe.id} title={recipe.title} 
+         img={recipe.image?recipe.image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwAdnj607fkyztZ3TkKVTdEy-FG-tD-gEGJQ&s"} 
+         /> */}
         <div className="d-flex flex-column flex-lg-row justify-content-around  ">
         <form method="post" action={`modifyForm?recipe=${recipe.id}`}>
           <button className="btn  text-center rounded-pill mx-1  mb-2 bg-primary border border-black" 

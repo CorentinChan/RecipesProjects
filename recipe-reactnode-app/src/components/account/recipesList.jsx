@@ -52,8 +52,7 @@ const [recipes,setRecipes]=useState([]);
 
         if (data.check) {
           console.log("delete recipelist")
-        //getRecipes();
-              setRecipes(currentRecipes => currentRecipes.filter(r => String(r.recipeID) !== recipeID));
+        getRecipes();
 
         }
       } catch (error) {

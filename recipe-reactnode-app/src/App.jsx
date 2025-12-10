@@ -33,33 +33,12 @@ function App() {
     const user = useStore((state) => state.user);
    const setUser = useStore((state) => state.setUser)
 
-      useEffect(() => {
 
-    console.log("API" + import.meta.env.VITE_API_URL);
-
-     async function getPseudo(){ 
-      const response = await fetch(import.meta.env.VITE_API_URL+"/getPseudo", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-
-         });
-
-    const data = await response.json();
-    console.log("Réponse backend app :", data);
-        setUser(data.pseudo);
-        setUserRole(data.role);
-         console.log('userrole'+user+userRole+locationState);
-        }
-      getPseudo();
-  },[locationState,user] );
 
   return (
     <>
          <BrowserRouter basename="/">
-       <LocationState user={user} userRole={userRole} locationState={locationState} 
+       <LocationState user={user} setUser={setUser} userRole={userRole} setUserRole={setUserRole} locationState={locationState} 
        setLocationState={setLocationState} /> 
 
       {/* Routes */}

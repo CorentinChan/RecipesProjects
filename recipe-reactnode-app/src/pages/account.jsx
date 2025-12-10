@@ -11,18 +11,18 @@ import AdminZone from '/src/components/account/AdminZone.jsx';
 export default function  Account({user,userRole}) {
  
     
-  if (!user||!userRole) {
-    return <div>Chargement...</div>;
-  }
+  // if (!user||!userRole) {
+  //   return <div>Chargement...</div>;
+  // }
       
     return (
         user&&<>
         
        <Profil  user={user} userRole={userRole}  />
-       <CommentsList/> 
+       {/* <CommentsList/> 
         <RecipesList/> 
         <OwnRecipes/>
-        {(userRole==="admin")?<AdminZone/>:undefined} 
+        {(userRole==="admin")?<AdminZone/>:undefined}  */}
 
         </>
     )

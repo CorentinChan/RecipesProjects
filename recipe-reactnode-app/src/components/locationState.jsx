@@ -22,7 +22,7 @@ import { useNavigate } from "react-router-dom";
           }
         );
 
-        console.log("Réponse backend :", data);
+        console.log("Réponse backend app :", data);
 
        
         setUser(data.pseudo);

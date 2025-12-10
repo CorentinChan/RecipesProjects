@@ -71,9 +71,7 @@ app.use('/assets', express.static(path.join(reactBuildPath, 'assets')));
 // 2. Ensuite, on sert le reste du dossier dist (pour favicon.ico, etc.)
 app.use(express.static(reactBuildPath));
 
-app.get(/.*/, (req, res) => {
-    res.sendFile(path.join(reactBuildPath, 'index.html'));
-});
+
 
 
 
@@ -616,9 +614,9 @@ app.post('/logout', (req, res) => {
 app.get('/getPseudo', (req, res) => {
 		const pseudo = req.cookies.pseudo||"";
 	const pseudoID = req.cookies.pseudoID;
-	let test='test';
+	//let test='test';
 	res.json({pseudo : pseudo,role : req.cookies.userRole });
-	console.log("pseudo cookes :"+req.cookies.pseudo)
+	//console.log("pseudo cookes :"+req.cookies.pseudo)
 })
 
 app.post('/signin', (req, res) => {
@@ -636,7 +634,7 @@ app.post('/signin', (req, res) => {
 
 			else {
 			hash = result[0].mdp;
-			console.log(result[0].pseudo + result[0].id);
+			console.log(result[0].pseudo + result[0].id + result[0].role);
 			let pseudoBDD = result[0].pseudo;
 			let pseudoIDBDD = result[0].id;
 			let userRole= result[0].role
@@ -1531,4 +1529,13 @@ app.get("/profile", async(req, res) => {
     console.error("Database error:", err);
     //res.status(500).json("Server error");
   }
+});
+
+
+
+
+
+
+app.get(/.*/, (req, res) => {
+    res.sendFile(path.join(reactBuildPath, 'index.html'));
 });

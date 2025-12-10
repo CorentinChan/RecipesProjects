@@ -51,7 +51,7 @@ const [recipes,setRecipes]=useState([])
 
         if (data.check) {
           console.log('delete ownrecipes');
-         setRecipes(currentRecipes => currentRecipes.filter(r => String(r.id) !== recipeID));
+         setRecipes(currentRecipes => currentRecipes.filter(r => String(r.recipeID) !== recipeID));
         }
       } catch (error) {
         console.error("Erreur lors de la connexion :", error);

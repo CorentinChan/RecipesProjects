@@ -118,8 +118,10 @@ return (
             <li key={`comlist${index}`} className="d-lg-flex flex-column bg-warning-subtle mb-2 p-1 rounded-pill border">
               <p>{comment.title} : </p>
              <p>{comment.commentaire}</p>
+             <div>
                 <button type="submit" className="rounded-5 bg-danger" 
                 value={comment.recipeID} onClick={commentSubmit} >Delete</button>
+              </div>
             </li>
             ))}
           </ul>

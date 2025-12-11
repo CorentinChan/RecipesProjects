@@ -24,6 +24,7 @@
           const data = response.data;
         console.log("Réponse backend cat :", data);
        setProfil(data.user);
+       if(!data.user.image||data.user.image==="")data.user.image="https://picsum.photos/400/250?random=1";
     
             }
           getProfil();

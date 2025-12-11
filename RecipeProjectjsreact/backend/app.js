@@ -1334,10 +1334,7 @@ function sendMail(mail,subject,text)
 	else{ 
 	let transporter = nodemailer.createTransport({
 		service: 'gmail',
-		port: 587,            // On tente le 587
-		secure: false,        // <--- IMPORTANT : Mettre 'false' pour le port 587
-		requireTLS: true,     // On force le chiffrement TLS
-		connectionTimeout: 10000, 
+		family: 4 ,
 
 		auth: {
 			user: 'droneuramateur@gmail.com',

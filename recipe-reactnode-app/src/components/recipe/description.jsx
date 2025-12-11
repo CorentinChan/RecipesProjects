@@ -81,15 +81,15 @@ export default function Decription({recipeID,userRole,updateForm}){
       }
     }
 
-useEffect(() => {
-    
-    console.log(recipeID);
-    fetchDescription();
-  }, [recipeID]);
+    useEffect(() => {
+        
+        console.log(recipeID);
+        fetchDescription();
+      }, [recipeID]);
 
-  useEffect(() => {
-    fetchDescription();
-  }, [updateForm]);
+      useEffect(() => {
+        fetchDescription();
+      }, [updateForm]);
 
     return(
         <div className="recipeTitle row gx-0">

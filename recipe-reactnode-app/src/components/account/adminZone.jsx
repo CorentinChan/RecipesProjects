@@ -11,7 +11,7 @@ const [pseudoToRole,setPseudoToRole]= useState("");
 const [pseudoToBan,setPseudoToBan] = useState('');
 const [message,setMessage] = useState('');
 
-
+// send fetch to update role user on BDD
    async function giveAdmin(e){
         e.preventDefault();
         let act=e.target.value;
@@ -41,6 +41,7 @@ const [message,setMessage] = useState('');
       
       }
 
+      //fetch for update role(ban) on BDD
   async function ban(e){
         e.preventDefault();
         let act=e.target.value;

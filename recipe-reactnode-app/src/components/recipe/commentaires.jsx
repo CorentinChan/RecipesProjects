@@ -69,7 +69,7 @@ async function fetchComment() {
   }
 
     return(
- <div className="comments mt-lg-5 pt-5 id='commentPart'  ">
+ <div className="comments mt-lg-5 pt-5 noprint" id='commentPart'   >
       <h3>Comments</h3>
 
    {comments&& comments.map((comment,index) => (

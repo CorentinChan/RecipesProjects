@@ -384,8 +384,13 @@
 
 
 
-
+/*responsive for print page*/
 @media print {
+
+    .noprint{
+      display: none;
+    }
+
     .navbar {
       display: none;
     }

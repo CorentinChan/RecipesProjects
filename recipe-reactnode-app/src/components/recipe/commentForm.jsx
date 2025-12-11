@@ -74,7 +74,7 @@ const navigate = useNavigate();
     }
 
     return(
-      <div className="list-group p-lg-3">
+      <div className="list-group p-lg-3 noprint">
           <div className="list-group-item" aria-current="true">
             <div className=" d-flex w-100 justify-content-between">
               <div className="d-flex"><i className="fa-solid fa-star p-3"></i> 

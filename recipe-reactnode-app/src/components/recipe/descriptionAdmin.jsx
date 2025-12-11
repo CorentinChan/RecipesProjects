@@ -43,7 +43,7 @@ export default function DecriptionAdmin({recipeID}){
     return(
        
 
-             <div className=" w-75 d-flex justify-content-between mt-5">
+             <div className=" w-75 d-flex justify-content-between mt-5 noprint">
                 <p className="mx-3 rounded-pill  p-1">Recipe ID : {recipeID} </p>
               <button type="button"  onClick={()=>navigate("/modifyRecipe", { state: { recipeID:recipeID } })}
               className=" btn-outline-primary bg-primary mx-2 rounded-pill border border-black p-1 ">Modify recipe</button> 

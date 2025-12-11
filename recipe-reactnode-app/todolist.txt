@@ -1,4 +1,4 @@
-- mettre a jour state message addList, notes quand on udpate la note
+- mettre a jour state notes quand on udpate la note
 - redirection modify state en retard parfois
 - auth google
 - remplacer les navigate par fetch et message plutot que refresh

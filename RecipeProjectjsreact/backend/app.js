@@ -1334,6 +1334,8 @@ function sendMail(mail,subject,text)
 	else{ 
 	let transporter = nodemailer.createTransport({
 		service: 'gmail',
+		port: 465,        // Port SSL
+		secure: true,     // True pour le port 465, False pour les autres	
 		auth: {
 			user: 'droneuramateur@gmail.com',
 			pass: 'vigw yvbl ducq bevq'

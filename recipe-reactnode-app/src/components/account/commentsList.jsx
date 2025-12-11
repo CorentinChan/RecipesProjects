@@ -8,6 +8,7 @@ const [comments,setComments]=useState([]);
 const [notes,setNotes]=useState([]);
 const navigate=useNavigate();
 
+//use axios for fetch to backend to get comments writted by user connected
  async function getComments(){ 
           const response = await axios.get(import.meta.env.VITE_API_URL+"/getComments", {
           headers: {
@@ -26,6 +27,7 @@ const navigate=useNavigate();
           getComments();
       }, []);
 
+      //use fetch to delete a comment from BDD
       async function commentSubmit(e){
         e.preventDefault();
         let recipeID=e.target.value;
@@ -56,6 +58,7 @@ const navigate=useNavigate();
       
       }
 
+      //delete note from mysql BDD
       async function noteSubmit(e){
         e.preventDefault();
         let recipeID=e.target.value;

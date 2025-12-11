@@ -1334,7 +1334,6 @@ function sendMail(mail,subject,text)
 	else{ 
 	let transporter = nodemailer.createTransport({
 		service: 'gmail',
-		family: 4 ,
 
 		auth: {
 			user: 'droneuramateur@gmail.com',

@@ -73,7 +73,7 @@ return (
     </h2>
   </div>
 
-    <div className=" m-lg-5 d-flex flex-nowrap  overflow-x" id="videos-container">
+    <div className=" m-lg-5 d-flex flex-nowrap  overflow-x z-5" id="videos-container">
 
       {recipes&&recipes.map( (recipe,index)=> {
                   const recipeID = String(recipe.id);

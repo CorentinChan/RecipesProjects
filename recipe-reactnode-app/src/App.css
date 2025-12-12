@@ -462,14 +462,17 @@ width: 100%;
     {
         flex-wrap: nowrap;       
         overflow-x: auto;      
-        overflow-y: hidden;      
         -webkit-overflow-scrolling: touch; 
         touch-action: pan-x;     
-        -webkit-user-select: none;
-        user-select: none;
+
         scroll-behavior: smooth; 
     }
-
+    .videos-container .card
+    {
+        touch-action: manipulation;
+        -webkit-user-select: none;
+        user-select: none;
+    }
     .videos-container .card-title
     {
       height: 5em;

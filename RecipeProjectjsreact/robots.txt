@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Empêche l’indexation de fichiers sensibles ou inutiles
+Disallow: /admin/
+Disallow: /login/
+Disallow: /tmp/
+Disallow: /private/
+Disallow: /cgi-bin/
+
+# Indique le sitemap (si tu en as un)
+Sitemap: https://corentinchan.de/sitemap.xml

@@ -194,7 +194,7 @@ color: blue!important;
 .background-perso{
 background-color: #0b5dd700; 
 /* background-image: url("https://www.themealdb.com/images/media/meals/qptpvt1487339892.jpg"); */
- background-image: url("/background2.png");
+ background-image: url("/background2.webp");
 background-size: cover;
 
 text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);

@@ -7,8 +7,20 @@ import { WhatsappShareButton, WhatsappIcon } from "react-share";
  export default function  Footer() {
 const url = "https://corentinchan.de";
 const title = "Découvrez de nombreuses recettes!";
+
+function toggleTheme() {
+  const html = document.documentElement;
+  html.setAttribute( "data-bs-theme",html.getAttribute("data-bs-theme") === "dark" ? "light" : "dark" );
+}
+
  return( 
 <footer>
+
+<div className="justify-content-around">
+  
+{/* <button onClick={toggleTheme}>
+  Dark / Light
+</button> */}
 
   <div className="logos me-5 pe-lg-5">
     <div>
@@ -27,6 +39,7 @@ const title = "Découvrez de nombreuses recettes!";
     </div>
 
   </div>
+</div>
 
   <div className="container mt-3 table-perso">
 

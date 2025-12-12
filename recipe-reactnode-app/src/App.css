@@ -458,7 +458,11 @@ width: 100%;
       object-fit: cover;            
     } 
 
-  
+     .overflow-y
+    {
+   overflow-y: auto ;
+    }
+
     .videos-container .card-title
     {
       height: 5em;

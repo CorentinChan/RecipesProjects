@@ -82,7 +82,8 @@ async function fetchComment() {
 
               <div className="d-flex ">
 
-              <img className="imageComm fs-1 mx-lg-0 me-2 me-lg-3 py-1   rounded-circle" src={comment.image}/>
+              <img className="imageComm fs-1 mx-lg-0 me-2 me-lg-3 py-1   rounded-circle" 
+              src={comment.image!=''?comment.image:'https://picsum.photos/400/250?random=1'}/>
                
                <div className="d-flex flex-column mt-2 mt-lg-3">
               <h5 className="mb-1">{comment.pseudo}</h5> 

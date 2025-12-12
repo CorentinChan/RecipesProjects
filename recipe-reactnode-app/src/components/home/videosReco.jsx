@@ -121,7 +121,7 @@ import axios from 'axios';
   </select>
   </div>
 
-<div className="videos-container m-lg-5" id="videos-container">
+<div className="videos-container m-lg-5 nowrap overflow-auto" id="videos-container">
               
              {selection==='videos'&&videos.map((video,index) => (
                 <CardIframe key= {index} title={video.title} videoUrl={video.url}   />))}

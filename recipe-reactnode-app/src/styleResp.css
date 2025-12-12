@@ -145,15 +145,22 @@
 
       /* videos container 2 par ligne*/
       .videos-container {
-        flex-wrap: wrap;
+        /* flex-wrap: wrap; */
+          overflow-x: auto;
         gap: 0em;
+          scroll-snap-type: x mandatory;
+
       }
+
 
       .videos-container .card {
-        width: 45% !important;
-
+       min-width: 90%;
+        scroll-snap-align: center;
+        width:50em ;
       }
-
+      .videos-container .iframe {
+        width:50em ;
+      }
 
       .videos-container2 .card {
         width: 40% !important;
@@ -379,6 +386,12 @@
       display: block;
       }
 
+          /* .card iframe {
+  width: 100%;
+  aspect-ratio: 4/3;
+
+    } */
+
     }
 
 
@@ -431,6 +444,7 @@
      .clickable{
       display: none;
     }
+
 
   
     body {

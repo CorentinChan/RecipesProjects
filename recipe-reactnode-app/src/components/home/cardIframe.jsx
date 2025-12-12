@@ -17,7 +17,10 @@ import { useNavigate } from "react-router-dom";
 
              <div  className="card shadow-sm h-100  " id='card'  >
 
-          <iframe src={videoUrl} title="videoframe" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen />
+          <iframe src={videoUrl} title="videoframe" frameBorder="0" allow="accelerometer;
+           autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          referrerPolicy="strict-origin-when-cross-origin" allowFullScreen />
+
            <div className="card-body" onClick={ isRecipe? ()=>{navigate(url)}:undefined} >
               <h5 className="card-title">{title}</h5>
       

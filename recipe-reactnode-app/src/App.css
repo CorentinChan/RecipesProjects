@@ -458,9 +458,16 @@ width: 100%;
       object-fit: cover;            
     } 
 
-     .overflow-y
+     .overflow-x
     {
-   overflow-y: auto ;
+        flex-wrap: nowrap;       
+        overflow-x: auto;      
+        overflow-y: hidden;      
+        -webkit-overflow-scrolling: touch; 
+        touch-action: pan-x;     
+        -webkit-user-select: none;
+        user-select: none;
+        scroll-behavior: smooth; 
     }
 
     .videos-container .card-title

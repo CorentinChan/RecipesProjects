@@ -71,7 +71,7 @@ return (
       </h2>
     </div>
   
-    <div className=" m-lg-5 d-flex flex-nowrap  overflow-y" id="videos-container">
+    <div className=" m-lg-5 d-flex flex-nowrap  overflow-x" id="videos-container">
 
       {recipes&&recipes.map( (recipe,index)=>( 
       <div key={`ownrecipe ${recipe.id}`} className="cardExt">

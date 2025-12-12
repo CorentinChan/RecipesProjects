@@ -1,6 +1,9 @@
-import {FacebookShareButton,FacebookIcon,TwitterShareButton,TwitterIcon,} from "react-share";
-import { WhatsappShareButton, WhatsappIcon } from "react-share";
-
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  TwitterShareButton,
+  TwitterIcon,
+} from "react-share";
 
  
  
@@ -20,9 +23,7 @@ const title = "Découvrez de nombreuses recettes!";
         <TwitterIcon size={32} round />
       </TwitterShareButton>
 
-         <WhatsappShareButton className="m-2" url={url} title={title} separator=":: ">
-           <WhatsappIcon size={32} round />
-         </WhatsappShareButton>
+     
      
     </div>
 

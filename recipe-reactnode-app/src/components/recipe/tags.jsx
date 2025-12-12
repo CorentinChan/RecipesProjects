@@ -45,7 +45,7 @@ export default function Tags({recipeID}){
 
     </div>
 
-    <div className="shareRecipe pt-3 mt-3">
+    {/* <div className="shareRecipe pt-3 mt-3">
       <h3 >Share recipes</h3>
   <div className="d-flex justify-content-center me-5 pe-lg-5">
 <i className="fa-brands fa-facebook fa-2x p-3" ></i>
@@ -53,7 +53,7 @@ export default function Tags({recipeID}){
 <i className="fa-brands fa-twitter fa-2x p-3"></i>
 
   </div>
-    </div>
+    </div> */}
     
 </>
     );

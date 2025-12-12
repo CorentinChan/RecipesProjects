@@ -7,6 +7,7 @@ import Instructions from '/src/components/recipe/instructions.jsx'
 import Commentaires from '/src/components/recipe/commentaires.jsx'
 import Ingredients from '/src/components/recipe/ingredients.jsx'
 import Tags from '/src/components/recipe/tags.jsx'
+import Share from '/src/components/recipe/share.jsx'
 import CommentForm from '/src/components/recipe/commentForm.jsx'
 
 import { useStore } from "../store/store";
@@ -82,7 +83,7 @@ export default function  Recipe({user,userRole}) {
 
  { recipeID &&( <>
 
-       <Description  recipeID={recipeID} userRole={userRole} udpateForm={udpateForm}   />
+       <Description  recipeID={recipeID} userRole={userRole} udpateForm={udpateForm} meal={meal} setMeal={setMeal}   />
   <div className="m-1 p-1 m-lg-5 p-lg-3 makeRecipe-container">
 <div className="  recipeLeft">
 
@@ -97,6 +98,8 @@ export default function  Recipe({user,userRole}) {
       <div className="recipeRight">
       <Ingredients recipeID={recipeID} />
       <Tags recipeID={recipeID}/>
+      <Share recipeID={recipeID} meal={meal}/>
+
       </div>
 
 </div>

@@ -7,8 +7,8 @@ import { NavLink } from "react-router-dom";
 import DescriptionAdmin from '/src/components/recipe/descriptionAdmin.jsx'
 
 
-export default function Decription({recipeID,userRole,updateForm}){
-    const [meal, setMeal] = useState(null);
+export default function Decription({recipeID,userRole,updateForm,meal,setMeal}){
+    // const [meal, setMeal] = useState(null);
     const [message, setMessage] = useState("");
     const [nbNotes, setNbNotes] = useState(0);
         const [nbRecipes, setNbRecipes] = useState(0);

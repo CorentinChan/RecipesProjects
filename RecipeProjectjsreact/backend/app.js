@@ -137,20 +137,17 @@ app.post('/getRecipeReco', async (req, res) => {
 		const pseudoID = req.cookies.pseudoID;
 		let recipeID=req.body.recipeID;
 		
-	const [recipeReco] = await pool.execute(`SELECT r.*, 
-(
-    (r.categoryID = (SELECT categoryID FROM recipe WHERE id = ?)) * 2 +
-    (SELECT COUNT(*) FROM tagslist t1 
-        WHERE t1.recipeID = r.id 
-        AND t1.tag IN (SELECT tag FROM tagslist WHERE recipeID = ?)
-    )
-) AS score
-FROM recipe r
-WHERE r.id != ?
-HAVING score > 0
-ORDER BY score DESC, RAND()
-LIMIT 8;
-
+	const [recipeReco] = await pool.execute(`SELECT r.*
+											FROM recipe r
+											JOIN tagslist t ON t.recipeID = r.id
+											WHERE r.id != ?
+											AND (
+													r.categoryID = (SELECT categoryID FROM recipe WHERE id = ?)
+													OR t.tag IN (SELECT tag FROM tagslist WHERE recipeID = ?)
+												)
+											GROUP BY r.id
+											ORDER BY RAND()
+											LIMIT 8;
 											`, [recipeID,recipeID,recipeID]); 
 	//select recipe ID with left join and join
 

@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
         <div  className="col-6 col-lg-4 px-1 my-lg-3 "       data-testid={`card-${id}`} 
         onClick={()=>{navigate(url);window.scrollTo({ top: 0, behavior: 'smooth' });}}>
           <div  className="card shadow-sm h-100  " key={id}>
-            <img src={img}  className="card-img-top" alt="Card 1"/>
+            <img src={img?img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwAdnj607fkyztZ3TkKVTdEy-FG-tD-gEGJQ&s"}  className="card-img-top" alt="Card 1"/>
             <div  className="card-body">
               <h5  className="card-title"> {title} </h5>
               <div className="d-flex mt-5 justify-content-between"> 

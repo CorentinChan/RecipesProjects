@@ -98,7 +98,7 @@ export default function Decription({recipeID,userRole,updateForm,meal,setMeal}){
         {/* <!--img--> */}
         <div className="col-lg-6">
         <div className=" justify-content-center  image-container">
-        <img src={meal.image} className=" tilt1  pt-3 rounded-5 recipePhoto" alt="image"/>
+        <img src={meal.image?meal.image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwAdnj607fkyztZ3TkKVTdEy-FG-tD-gEGJQ&s"} className=" tilt1  pt-3 rounded-5 recipePhoto" alt="image"/>
         </div>
           </div>
         {/* <!--description--> */}

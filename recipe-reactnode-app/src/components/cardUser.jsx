@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
                       <Link  to={url} state={{ scrollTop: Date.now() }}>
 
             {/* onClick={(e)=>{ e.stopPropagation();navigate(url,{ state: { scrollTop: Date.now() } })}} */}
-            <img src={img}  className="card-img-top" alt="Card 1"/>
+            <img src={img?img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwAdnj607fkyztZ3TkKVTdEy-FG-tD-gEGJQ&s"}  className="card-img-top" alt="Card 1"/>
             <div  className="card-body">
               <h5  className="card-title"> {title} </h5>
               <div className="d-flex mt-5 justify-content-between"> 

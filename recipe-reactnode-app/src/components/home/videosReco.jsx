@@ -128,9 +128,9 @@ import axios from 'axios';
              {(selection==='recipes')&&mealsBDD.map(meal => (
                  <CardIframe key= {meal.id} id= {meal.id} isRecipe={true} title={meal.title} videoUrl={meal.description} />
               ))}
-             { selection==='random'&&meals.map((meal,index) => (
+             {/* { selection==='random'&&meals.map((meal,index) => (
                 <CardUser key={meal.idMeal} title={meal.strMeal} img={meal.strMealThumb} 
-                id={meal.idMeal}  />))}
+                id={meal.idMeal}  />))} */}
               
 
 </div>

@@ -139,7 +139,6 @@ app.post('/getRecipeReco', async (req, res) => {
 		
 	const [recipeReco] = await pool.execute(`SELECT DISTINCT r.*
 	FROM recipe r JOIN recipe r0 ON r0.id = ?
-	LEFT JOIN recipe r1 ON t1.categoryID = r0.categoryID
 	LEFT JOIN tagslist t0 ON t0.recipeID = r0.id
 	LEFT JOIN tagslist t  ON t.recipeID = r.id
 	WHERE r.id != r0.id AND t.tag = t0.tag ORDER BY rand() LIMIT 8;`, [recipeID]); 

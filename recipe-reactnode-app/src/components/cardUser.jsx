@@ -7,7 +7,10 @@ import { useNavigate } from "react-router-dom";
 
  return( 
 
-          <div  className="card shadow-sm h-100 m-2 z-10  " key={id} onClick={(e)=>{ e.stopPropagation();navigate(url,{ state: { scrollTop: Date.now() } })}}>
+          <div  className="card shadow-sm h-100 m-2 z-10  " key={id} > 
+                      <Link  to={url} state={{ scrollTop: Date.now() }}>
+
+            {/* onClick={(e)=>{ e.stopPropagation();navigate(url,{ state: { scrollTop: Date.now() } })}} */}
             <img src={img}  className="card-img-top" alt="Card 1"/>
             <div  className="card-body">
               <h5  className="card-title"> {title} </h5>
@@ -16,7 +19,7 @@ import { useNavigate } from "react-router-dom";
                 <span className="card-text">{author}</span>
               </div>
             </div>         
+</Link>
 
       </div>
-
         )}

@@ -1321,7 +1321,7 @@ app.post('/sendMailContact', (req, res) => {
 	let textSubject = " Contact Message by " + req.body.name;
 	let message=req.body.message + "\n\n Writed by " + req.body.name + "\n\n Email : " +req.body.mail;
 
-	checkMessage=sendMail('droneuramateur@gmail.com'  ,textSubject,message);
+	checkMessage=sendMail( process.env.DB_SMTP_MAIL  ,textSubject,message);
 	res.json({check: "Mail sent!" })
 
 
@@ -1343,14 +1343,14 @@ function sendMail(mail,subject,text)
 		service: 'gmail',
 
 		auth: {
-			user: DB_SMTP_MAIL,
-			pass: DB_SMTP_PASSWORD
+			user: process.env.DB_SMTP_MAIL,
+			pass: process.env.DB_SMTP_PASSWORD
 		}
 		
 	});
 
 	let mailOptions = {
-		from: DB_SMTP_MAIL,
+		from: process.env.DB_SMTP_MAIL,
 		to: mail,
 		subject: subject+' [RECIPE PROJECT]',
 		text: text

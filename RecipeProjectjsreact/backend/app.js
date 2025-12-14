@@ -1343,14 +1343,14 @@ function sendMail(mail,subject,text)
 		service: 'gmail',
 
 		auth: {
-			user: 'droneuramateur@gmail.com',
-			pass: 'vigw yvbl ducq bevq'
+			user: DB_SMTP_MAIL,
+			pass: DB_SMTP_PASSWORD
 		}
 		
 	});
 
 	let mailOptions = {
-		from: 'droneuramateur@gmail.com',
+		from: DB_SMTP_MAIL,
 		to: mail,
 		subject: subject+' [RECIPE PROJECT]',
 		text: text

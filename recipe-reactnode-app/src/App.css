@@ -269,11 +269,28 @@ width: 50rem;
     }
     
     
+    .card:active{
+      transform: scale(0.9);  
+    }
 
+    .heart-icon {
+      position: absolute;
+      top: 1em;
+      right: 1em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 20;
+    }
 
-.card:active{
-  transform: scale(0.9);  
-}
+    .heart-icon i {
+      color: #dc3545;
+      font-size: 1.2rem;
+    }
+
+    .heart-icon:hover {
+      transform: scale(1.1);
+    }
+
 
     .recipeSearch .card {
       height: 280px;                 

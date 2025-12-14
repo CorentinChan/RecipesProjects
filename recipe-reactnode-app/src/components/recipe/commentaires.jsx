@@ -86,7 +86,7 @@ async function fetchComment() {
               src={comment.image?comment.image:'https://picsum.photos/400/250?random=1'}/>
                
                <div className="d-flex flex-column mt-2 mt-lg-3">
-              <h5 className="mb-1">{comment.pseudo}</h5> 
+              <h5 className={`mb-1 ${userRole === 'admin' ? 'text-info' : ''}`}>{comment.pseudo}</h5> 
               {userRole==="admin"&&(<p>id : {comment.userID} , {comment.mail} </p>) }
               <small className="text-black-50">{comment.date}</small>
               <div> <span className="">

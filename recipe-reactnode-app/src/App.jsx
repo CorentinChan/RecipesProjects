@@ -13,8 +13,6 @@ import Account from '/src/pages/account.jsx'
 import Signin from '/src/components/signin.jsx'
 
 
-import Nav from '/src/components/nav.jsx'
-import Footer from '/src/components/footer.jsx'
 
 import { useLocation } from "react-router-dom";
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';

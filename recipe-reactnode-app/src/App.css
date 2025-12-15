@@ -220,6 +220,10 @@ margin: 0rem 0 1rem 1rem;
     transform: scale(0.9);
 }
 
+.searchHome .search-select{
+margin-right: 3rem ;
+}
+
 /* .recipeSearch form{
 width: 50rem;
 } */

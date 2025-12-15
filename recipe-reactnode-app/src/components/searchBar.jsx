@@ -57,7 +57,7 @@ import { KeywordContext } from "./keyword";
 
 
 <div className="searchList mt-2">
-  <select className="form-select fs-5 rounded-pill form-select-lg mx-2 "  defaultValue={""} 
+  <select className="form-select fs-5 rounded-pill form-select-lg mx-2 search-select "  defaultValue={""} 
   id="recipeFilter" onChange={(e)=>setFilter(e.target.value)}>
     <option value="" disabled>Sort by : </option>
     <option value="date">Sort by : date</option>

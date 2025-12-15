@@ -8,7 +8,7 @@ import { useState,useEffect } from 'react'
   let navigate = useNavigate();
   const user = useStore((state) => state.user);
 
-  async function addFav(){
+  async function addFav(e){
      e.stopPropagation();
     console.log(favoris);
     setFavoris(!favoris);

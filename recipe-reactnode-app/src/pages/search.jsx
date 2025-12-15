@@ -4,6 +4,8 @@ import { useSearchParams } from "react-router-dom";
 import Caroussel from '/src/components/caroussel.jsx'
 import SearchBar from '/src/components/searchBar.jsx'
 
+import './search.css'
+
 
 export default function  Search() {
      const [searchParams] = useSearchParams();

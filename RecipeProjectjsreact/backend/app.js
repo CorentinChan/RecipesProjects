@@ -443,29 +443,29 @@ app.post('/modifyRecipe', (req, res) => {
 });
 
 
-app.get('/search', async(req, res) => {
-	pseudo = req.cookies.pseudo;
+// app.get('/search', async(req, res) => {
+// 	pseudo = req.cookies.pseudo;
 
-	try{ 
-	const [result] = await pool.execute('SELECT * FROM recipe LIMIT 500 ');
-		// Neat!
-		console.log(result);
-		console.log(fields);
+// 	try{ 
+// 	const [result] = await pool.execute('SELECT * FROM recipe LIMIT 500 ');
+// 		// Neat!
+// 		console.log(result);
+// 		console.log(fields);
 
-		res.cookie('searchKey', "", {
-			maxAge: 60 * 60 * 1000, // 1 jour
-			httpOnly: true,              // inaccessible en JS client
-			secure: false,               // mettre true si HTTPS
-			sameSite: 'lax'              // protection CSRF basique
-		});
+// 		res.cookie('searchKey', "", {
+// 			maxAge: 60 * 60 * 1000, // 1 jour
+// 			httpOnly: true,              // inaccessible en JS client
+// 			secure: false,               // mettre true si HTTPS
+// 			sameSite: 'lax'              // protection CSRF basique
+// 		});
 
-		res.render('search', { title: 'Recipe page', user: pseudo, recipes: result });
+// 		res.render('search', { title: 'Recipe page', user: pseudo, recipes: result });
 
-	}catch (err){
-		res.json(err);
-	}
+// 	}catch (err){
+// 		res.json(err);
+// 	}
 
-});
+// });
 
 // app.get('/login', (req, res) => {
 // 	console.log("login");

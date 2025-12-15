@@ -1054,10 +1054,10 @@ app.post('/searchRecipeHome', (req, res) => {
 				filter = " ORDER BY title ASC";
 				break;
 			case 'date':
-				filter = " ORDER BY date DESC";
+				filter = " ORDER BY date DESC ";
 				break;
 			case 'note':
-				filter = " ORDER BY note DESC";
+				filter = " ORDER BY recipe.note DESC ";
 				break;
 			default:
 				filter = " ";

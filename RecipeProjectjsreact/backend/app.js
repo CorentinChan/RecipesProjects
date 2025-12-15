@@ -888,10 +888,10 @@ app.post('/goRecipe', (req, res) => {
 app.post('/addList', (req, res) => {
 	//if (!pseudo) res.redirect('/recipe');
 
-	console.log("url " + req.cookies.recipeID);
-	if (req.cookies.pseudoID && req.cookies.recipeID)
+	console.log("url " + req.body.recipeID);
+	if (req.cookies.pseudoID && req.body.recipeID)
 		var query = connection.query('INSERT IGNORE INTO recipe_list(`recipeID`, `userID`, `type`) VALUES (?, ?, ?)'
-			, [req.cookies.recipeID, req.cookies.pseudoID, "favoris"], function (error, results, fields) {
+			, [req.body.recipeID, req.cookies.pseudoID, "favoris"], function (error, results, fields) {
 				if (error) {
 					console.error('Erreur MySQL:', error.message);
 					return;

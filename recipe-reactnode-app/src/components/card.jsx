@@ -63,7 +63,7 @@ import { useState,useEffect } from 'react'
     console.log(favoris);
     //setFavoris(!favoris);
     if(!favoris)fetchAddList();
-    else deleteFromList
+    else deleteFromList();
   }
 
  return( 

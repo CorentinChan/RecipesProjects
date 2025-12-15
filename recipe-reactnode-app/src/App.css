@@ -478,7 +478,7 @@ width: 100%;
       margin: 1em;         
     }
         .card-title {
-        height: 4em;  
+        min-height : 2.5em;  
        }
 
 

@@ -85,7 +85,7 @@ fetchRecipes();
       </div>
 
       {/* boutons indicateurs */}
-      <div className="carousel-indicators w-75 position-static mt-3 flex-wrap overflow-auto">
+      <div className="carousel-indicators w-75 position-static mt-3 flex-nowrap overflow-auto">
                 <button className="btn btn-outline-primary bg-white " type="button" data-bs-target="#cardCarousel" data-bs-slide="prev">
                 ⬅️ 
               </button>
@@ -95,7 +95,7 @@ fetchRecipes();
             type="button"
             data-bs-target="#cardCarousel"
             data-bs-slide-to={i}
-            className={i === 0 ? "active" : ""}
+            className={`i === 0 ? "active" : "" btn text-black  bg-transparent`}
           >
             {i + 1}
           </button>

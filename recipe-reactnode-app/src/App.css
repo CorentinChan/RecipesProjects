@@ -256,6 +256,10 @@ width: 50rem;
     
 }
 
+.fa-star{
+  color:#ffe600
+}
+
 .card:hover {
   transform: translateY(-5px); 
   transform: scale(1.02); 
@@ -485,6 +489,8 @@ width: 100%;
     {
         flex-wrap: nowrap;       
         overflow-x: auto;      
+          overflow-y: hidden;      
+
         -webkit-overflow-scrolling: touch; 
         touch-action: pan-x;     
 

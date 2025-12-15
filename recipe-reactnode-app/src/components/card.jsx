@@ -51,7 +51,7 @@ import { useState,useEffect } from 'react'
         );
 
         if (data.check) {
-          setFavoris(true);
+          setFavoris(false);
         }
       } catch (error) {
         console.error("Erreur lors de la connexion :", error);

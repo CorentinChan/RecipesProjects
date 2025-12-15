@@ -269,7 +269,7 @@ width: 50rem;
     }
     
     
-    .card:active{
+    .card:active:not(:has(.heart-icon:hover)){
       transform: scale(0.9);  
     }
 

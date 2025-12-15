@@ -8,10 +8,60 @@ import { useState,useEffect } from 'react'
   let navigate = useNavigate();
   const user = useStore((state) => state.user);
 
+   async function fetchAddList() {
+    let recipeID=id;
+      try {
+        const { data } = await axios.post(
+          import.meta.env.VITE_API_URL + "/addList",
+          {
+            recipeID,
+          },
+          {
+            headers: {"Content-Type": "application/json",},
+            withCredentials: true,
+          }
+        );
+       
+             
+             if(data.message==='List Added')setFavoris(true);
+      } catch (error) {
+        console.error("error axios :", error);
+      }
+    }
+
+    
+       async function deleteFromList(){
+          //let recipeID = e.target.value;
+          let type = "favoris";
+          let recipeID =id;
+                try {
+
+        const { data } = await axios.post(
+          import.meta.env.VITE_API_URL + "/deleteRecipeList",
+          {
+            recipeID,
+            type,
+          },
+          {
+            headers: {"Content-Type": "application/json",},
+            withCredentials: true,
+          }
+        );
+
+        if (data.check) {
+          setFavoris(true);
+        }
+      } catch (error) {
+        console.error("Erreur lors de la connexion :", error);
+      }
+      }
+
   async function addFav(e){
      e.stopPropagation();
     console.log(favoris);
-    setFavoris(!favoris);
+    //setFavoris(!favoris);
+    if(!favoris)fetchAddList();
+    else deleteFromList
   }
 
  return( 

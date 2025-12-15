@@ -73,20 +73,7 @@ app.use(express.static(reactBuildPath));
 
 
 
-
-
-// app.set('view engine', 'ejs');
-// app.set('views', path.join(__dirname, '..', 'frontend'));
-
-// app.use(express.static(path.join(__dirname, '..', 'frontend')));
-
 let pseudo = '';
-
-
-// app.get('/', (req, res) => {
-
-// 		res.send('bienvenue!');
-// });
 
 
 app.post('/setRecipeID', async (req, res) => {
@@ -112,8 +99,6 @@ app.post('/setRecipeID', async (req, res) => {
 			const [recipeIDres] = await pool.execute('SELECT id FROM recipe ORDER BY RAND() LIMIT 1;');
 			 recipeID = recipeIDres[0].id ;
 
-			 //recipeID = "174" ;
-			//req.session.recipeID = recipeID;   
 
 			res.cookie('recipeID', recipeID, {
 				maxAge: 60 * 60 * 1000, // 1 jour
@@ -430,8 +415,6 @@ app.post('/modifyRecipe', (req, res) => {
 					console.log(req.body.ingredients)
 					console.log("fin"); // INSERT INTO contact SET `id` = 1, `title` = 'Hello MySQL'
 					res.json({check:true})
-					//res.redirect('/account?message=recipeModified#ownrecipe')
-					//if(url.pathname==="recipe") res.redirect('/recipe?message=recipeMod')
 
 			});
 	});
@@ -444,13 +427,9 @@ app.post('/modifyRecipe', (req, res) => {
 
 
 
-
-
 app.listen(3001, '0.0.0.0',  () => {
 	console.log(` app listening at http://localhost:3001`);
 });
-
-
 
 
 app.post('/signup', (req, res) => {
@@ -475,8 +454,8 @@ app.post('/signup', (req, res) => {
 	};
 	var query = connection.query('INSERT IGNORE INTO users SET ?', post, function (error, results, fields) {
 		if (error) throw error;
-		// Neat!
-	console.log(query.sql); // INSERT INTO contact SET `id` = 1, `title` = 'Hello MySQL'
+
+	console.log(query.sql); 
 
 	if(results.affectedRows===0)
 	{message="mailExist";
@@ -518,15 +497,12 @@ app.post('/logout', (req, res) => {
 	res.clearCookie('userRole');
 	console.log('Cookie "pseudo" supprimé ✅');
 	res.send({succeed:true})
-	//res.redirect(req.get('referer'));
 });
 
 app.get('/getPseudo', (req, res) => {
 		const pseudo = req.cookies.pseudo||"";
 	const pseudoID = req.cookies.pseudoID;
-	//let test='test';
 	res.json({pseudo : pseudo,role : req.cookies.userRole });
-	//console.log("pseudo cookes :"+req.cookies.pseudo)
 })
 
 app.post('/signin', (req, res) => {
@@ -616,7 +592,8 @@ app.get('/getCategory',async(req,res) =>
 	}
 })
 
-app.get('/getProfil',async(req,res) =>
+
+app.get('/getProfil',async(req,res) => //select user table
 {	
 
 	try{
@@ -630,7 +607,7 @@ app.get('/getProfil',async(req,res) =>
 	}
 })
 
-app.get('/getComments',async(req,res) =>
+app.get('/getComments',async(req,res) => //select all comment from this user
 {	
 
 	try{
@@ -646,7 +623,7 @@ app.get('/getComments',async(req,res) =>
 	}
 })
 
-app.get('/getOwnRecipes',async(req,res) =>
+app.get('/getOwnRecipes',async(req,res) => //select recipe created by user
 {	
 
 	try{
@@ -662,7 +639,7 @@ app.get('/getOwnRecipes',async(req,res) =>
 })
 
 
-app.get('/getRecipesList',async(req,res) =>
+app.get('/getRecipesList',async(req,res) => //select favoris list from user
 {	
 
 	try{
@@ -678,10 +655,10 @@ app.get('/getRecipesList',async(req,res) =>
 })
 
 
-app.post('/createRecipe', (req, res) => {
+app.post('/createRecipe', (req, res) => { //create recipe save on database
 	console.log(req.body);
 
-	if (req.cookies.pseudoID) {
+	if (req.cookies.pseudoID) { //create post for recipe table
 		let post = {
 			title: req.body.title,
 			description: req.body.description,
@@ -699,8 +676,8 @@ app.post('/createRecipe', (req, res) => {
 				const recipeID = results.insertId;  // ← récupère l’ID auto-incrémenté
 				console.log('Dernier recipeID inséré =', recipeID);
 
-		let step = req.body.steps.filter(item => item !== null && item !== "");
-		let tag = req.body.tags.filter(item => item !== null && item !== "");
+		let step = req.body.steps.filter(item => item !== null && item !== ""); // prepare steps data for instructions table(filter empty input)
+		let tag = req.body.tags.filter(item => item !== null && item !== ""); // prepare tags data for tagslist table
 		console.log(tag);
 
 
@@ -709,7 +686,7 @@ app.post('/createRecipe', (req, res) => {
 
 		// On filtre les deux tableaux en même temps :
 		let filtered = ingredient
-			.map((ing, index) => ({ ingredient: ing, measure: measure[index] }))
+			.map((ing, index) => ({ ingredient: ing, measure: measure[index] })) //prepare ingredients data to ingredients table
 			.filter(item => item.ingredient && item.ingredient.trim() !== ""); // garde seulement si ingredient non vide
 
 		// Puis on sépare à nouveau :
@@ -718,9 +695,9 @@ app.post('/createRecipe', (req, res) => {
 
 		console.log(ingredient); console.log(measure);
 
-		const stepPost = step.map(txt => [txt, recipeID]);
+		const stepPost = step.map(txt => [txt, recipeID]); // data instructions for mysql
 
-		const ingPost = ingredient.map((ingTexte, index) => {
+		const ingPost = ingredient.map((ingTexte, index) => { // data ingrefients for mysql
 			const measureTexte = measure[index];      // correspondante
 			return [ingTexte, measureTexte, recipeID];
 		});
@@ -775,20 +752,20 @@ app.post('/createRecipe', (req, res) => {
 
 
 
-app.post('/goRecipe', (req, res) => {
-	console.log("url " + req.body.recipeID);
-	res.clearCookie('recipeID');
-	res.cookie('recipeID', req.body.recipeID, {
-		maxAge: 3600000,   // expire dans 1h
-		httpOnly: true,    // inaccessible côté client (document.cookie)
-		secure: false,     // true si HTTPS
-	});
+// app.post('/goRecipe', (req, res) => {
+// 	console.log("url " + req.body.recipeID);
+// 	res.clearCookie('recipeID');
+// 	res.cookie('recipeID', req.body.recipeID, {
+// 		maxAge: 3600000,   // expire dans 1h
+// 		httpOnly: true,    // inaccessible côté client (document.cookie)
+// 		secure: false,     // true si HTTPS
+// 	});
 
-	console.log(" recipe ID = " + req.body.recipeID);
-	res.redirect('/recipe');
-});
+// 	console.log(" recipe ID = " + req.body.recipeID);
+// 	res.redirect('/recipe');
+// });
 
-app.post('/addList', (req, res) => {
+app.post('/addList', (req, res) => { // add recipe to favoris and ownrecipe recipe_list tabme
 	//if (!pseudo) res.redirect('/recipe');
 
 	console.log("url " + req.body.recipeID);
@@ -807,20 +784,6 @@ app.post('/addList', (req, res) => {
 
 });
 
-// app.post('/deleteFav', (req, res) => {
-// 	if (!pseudo) res.redirect('/');
-// 	else {
-// 		console.log(req.body.deleteFav);
-// 		var query = connection.query(`DELETE FROM recipe_list WHERE recipeID = ? AND userID = ? AND type = 'favoris' `
-// 			, [req.body.deleteFav, req.cookies.pseudoID], function (error, results, fields) {
-
-// 				if (error) throw error;
-
-// 				console.log("supprimée :", results)
-// 				res.redirect('/account#fav');
-// 			});
-// 	}
-// });
 
 
 //delete own recipe completely on database

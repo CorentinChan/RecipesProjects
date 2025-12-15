@@ -120,32 +120,32 @@ useEffect(() => {
           <h3 className="m-5 p-3 text-center bg-danger rounded-4 text-white">Write your own recipe!</h3>
 
           <label className="form-label">Recipe Picture</label>
-          <input className="form-control form-control-sm mb-5 p-2 w-75" type="text" 
+          <input className="form-control form-control-sm mb-5 p-2 w-75" type="text"  maxLength={3000}
           placeholder="enter picture url" value={image} onChange={(e)=>setImage(e.target.value)} />
 
           <label className="form-label">Recipe Title</label>
           <input className="form-control form-control-sm mb-5 p-2 w-75" type="text" placeholder="enter title recipe"
-          value={title} onChange={(e)=>setTitle(e.target.value)}  />
+          value={title} onChange={(e)=>setTitle(e.target.value)}  maxLength={37} />
 
           <label className="form-label">Recipe Description</label>
-          <input className="form-control form-control-sm mb-5 p-2 w-75" type="text"
+          <input className="form-control form-control-sm mb-5 p-2 w-75" type="text" maxLength={100}
            placeholder="enter description recipe" value={description} onChange={(e)=>setDescription(e.target.value)}  />
 
           <div className="d-flex text-center descriptionLogos border">
             <div className="logo1 p-2 mx-2 m-lg-3 px-lg-5 text-center border-end">
               <i className="fa-regular fa-clock fs-3 rotatec"></i>
               <input className="form-control form-control-sm" type="text" placeholder="enter active time"
-              value={activeTime} onChange={(e)=>setActiveTime(e.target.value)}  />
+              value={activeTime} onChange={(e)=>setActiveTime(e.target.value)} maxLength={20}  />
             </div>
             <div className="logo2 p-2 mx-2 m-lg-3 px-lg-5 text-center border-end">
               <i className="fa-solid fa-clock-rotate-left fs-3 rotatec"></i>
               <input className="form-control form-control-sm" type="text" placeholder="enter total time" 
-              value={totalTime} onChange={(e)=>setTotalTime(e.target.value)} />
+              value={totalTime} onChange={(e)=>setTotalTime(e.target.value)} maxLength={20}/>
             </div>
             <div className="logo3 p-2 mx-2 m-lg-3 px-lg-5 text-center">
               <i className="fa-solid fa-users fs-3"></i>
               <input className="form-control form-control-sm" type="text" placeholder="enter yield"
-              value={nbPerson} onChange={(e)=>setNbPerson(e.target.value)}  />
+              value={nbPerson} onChange={(e)=>setNbPerson(e.target.value)}  maxLength={20}/>
             </div>
           </div>
 

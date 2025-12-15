@@ -47,7 +47,7 @@ import { KeywordContext } from "./keyword";
             <i className="fa-solid fa-magnifying-glass "  ></i>
       </span>  
        
-      <input type="text" className="form-control w-lg-50" placeholder="Search"
+      <input type="text" className="form-control searchbar " placeholder="Search"
        id="textSearch" aria-label="Search" aria-describedby="basic-addon1" onChange={(e) => setInputValue(e.target.value)} 
       value={inputValue}
       />
@@ -57,7 +57,7 @@ import { KeywordContext } from "./keyword";
 
 
 <div className="searchList mt-2">
-  <select className="form-select fs-5 rounded-pill form-select-lg mx-2 mx-lg-5"  defaultValue={""} 
+  <select className="form-select fs-5 rounded-pill form-select-lg mx-2 "  defaultValue={""} 
   id="recipeFilter" onChange={(e)=>setFilter(e.target.value)}>
     <option value="" disabled>Sort by : </option>
     <option value="date">Sort by : date</option>

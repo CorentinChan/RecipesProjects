@@ -220,9 +220,9 @@ margin: 0rem 0 1rem 1rem;
     transform: scale(0.9);
 }
 
-.recipeSearch form{
+/* .recipeSearch form{
 width: 50rem;
-}
+} */
 
 .recipeGroup{
     display: flex;   
@@ -363,6 +363,10 @@ width: 50rem;
     color: white !important;
     }
 
+          .searchbar {
+    width: 20em!important;
+    }
+
     
 
     .subscribeSection .btn{
@@ -398,10 +402,10 @@ width: 50rem;
       height: 200px;                
       object-fit: cover;            
     }
-
+/* 
     .recipeForm form{
       width: 50%;
-    }
+    } */
 
  /*Recipe Page*/
 

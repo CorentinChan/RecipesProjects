@@ -294,12 +294,12 @@ width: 50rem;
 
     .recipeSearch .card {
       height: 280px;                 
-      width: 340px;
+      width: 300px;
 
     }
      .recipeSearch .card-img-top {
-      height: 200px;  
-      width: 340px;
+      height: 169px;  
+      width: 300px;
               
       object-fit: cover;            
     }

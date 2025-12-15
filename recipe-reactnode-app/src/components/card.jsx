@@ -22,7 +22,7 @@ import { useState,useEffect } from 'react'
             <div className="imagePart rounded-4 ">
             <img src={img?img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwAdnj607fkyztZ3TkKVTdEy-FG-tD-gEGJQ&s"}  className="card-img-top border-0 rounded-4" alt="Card 1"/>
                 { user&& <span className="heart-icon">
-            <i className={`${favoris?"fa-solid":"fa-regular"} "fa-heart fs-5"`} onClick={addFav}></i>
+            <i className={`${favoris?"fa-solid":"fa-regular"} fa-heart fs-1`} onClick={addFav}></i>
                  </span>}
            </div>
             <div  className="card-body">

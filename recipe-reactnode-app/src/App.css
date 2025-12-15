@@ -487,7 +487,11 @@ width: 100%;
       margin: 1em;         
     }
         .card-title {
+<<<<<<< HEAD
         min-height : 1em;  
+=======
+        height: 4em;  
+>>>>>>> parent of 29b1e1c (corr)
        }
 
 

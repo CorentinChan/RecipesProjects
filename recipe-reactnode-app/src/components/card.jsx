@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useStore } from "../store/store";
 import { useState,useEffect } from 'react'
+  import axios from 'axios';
+
 
  export default function  Card({title,img,id,note,author,isFavoris}) {
  const [favoris,setFavoris]=useState(isFavoris);

@@ -75,7 +75,7 @@ fetchRecipes();
                // <div key={meal.idMeal}>     
                 <Card key={index} title={meal.title} 
                 img={meal.image?meal.image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwAdnj607fkyztZ3TkKVTdEy-FG-tD-gEGJQ&s"} 
-                id={meal.id} note={meal.note} author={meal.auteur} favoris={meal.userID?true:false}   />
+                id={meal.id} note={meal.note} author={meal.auteur} isFavoris={meal.userID?true:false}   />
                 // </div>
               ))}
             </div>

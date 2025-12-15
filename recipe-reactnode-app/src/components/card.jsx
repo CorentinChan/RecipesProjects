@@ -2,8 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { useStore } from "../store/store";
 import { useState,useEffect } from 'react'
 
- export default function  Card({title,img,id,note,author,fav}) {
- const [favoris,setFavoris]=useState(fav);
+ export default function  Card({title,img,id,note,author,isFavoris}) {
+ const [favoris,setFavoris]=useState(isFavoris);
  let url ='/recipe?id='+id;
   let navigate = useNavigate();
   const user = useStore((state) => state.user);

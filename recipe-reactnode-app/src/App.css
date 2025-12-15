@@ -321,6 +321,18 @@ width: 50rem;
       margin: 0 5px;
       border: none;
     }
+
+
+    .carousel-indicators .btn{
+          cursor: pointer;
+          transition: transform 0.2s ease;
+
+    }
+
+        .carousel-indicators .btn:hover{
+      transform: scale(1.2);
+    }
+
     .carousel-indicators .active {
       background-color: #0b5ed7;   
     }

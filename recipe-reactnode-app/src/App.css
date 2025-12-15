@@ -334,7 +334,8 @@ width: 50rem;
     }
 
     .carousel-indicators .active {
-      background-color: #0b5ed7;   
+      color:#34c6ff;
+      font-weight: bold;
     }
 
     .videos-container{

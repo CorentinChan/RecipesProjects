@@ -95,7 +95,7 @@ fetchRecipes();
             type="button"
             data-bs-target="#cardCarousel"
             data-bs-slide-to={i}
-            className={`btn   bg-transparent   ${i === 0 ? "active text-info  fw-bold" : "text-black"} `}
+            className={`btn   bg-transparent   ${i === 0 ? "active " : ""} `}
           >
             {i + 1}
           </button>

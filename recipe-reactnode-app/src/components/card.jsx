@@ -1,20 +1,29 @@
 import { useNavigate } from "react-router-dom";
- 
- export default function  Card({title,img,id,note,author}) {
+import { useStore } from "../store/store";
+import { useState,useEffect } from 'react'
+
+ export default function  Card({title,img,id,note,author,fav}) {
+ const [favoris,setFavoris]=useState(fav);
  let url ='/recipe?id='+id;
   let navigate = useNavigate();
+  const user = useStore((state) => state.user);
+
+  async function addFav(){
+     e.stopPropagation();
+    console.log(favoris);
+    setFavoris(!favoris);
+  }
 
  return( 
-
 
         <div  className="col-6 col-lg-4 px-1 my-lg-3 "       data-testid={`card-${id}`} 
         onClick={()=>{navigate(url);window.scrollTo({ top: 0, behavior: 'smooth' });}}>
           <div  className="card shadow-sm h-100  border-0 rounded-4  " key={id}>
-            <div className="imagePart">
+            <div className="imagePart rounded-4 ">
             <img src={img?img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwAdnj607fkyztZ3TkKVTdEy-FG-tD-gEGJQ&s"}  className="card-img-top border-0 rounded-4" alt="Card 1"/>
-                  <span className="heart-icon">
-            <i className="fa-regular fa-heart"></i>
-      </span>
+                { user&& <span className="heart-icon">
+            <i className={`${favoris?fa-solid:fa-regular} "fa-heart fs-5"`} onClick={addFav}></i>
+                 </span>}
            </div>
             <div  className="card-body">
               <h5  className="card-title fw-bold"> {title} </h5>

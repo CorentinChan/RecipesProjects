@@ -1048,17 +1048,7 @@ app.post('/searchRecipes', (req, res) => {
 app.post('/searchRecipeHome', (req, res) => {
 	let filter = "";
 	let textSearch = req.body.textSearch;
-	//let formSelect = req.body.formSelect ?? 'false';
-	// if (!req.body.formSelect) {
-	// 	textSearch = req.body.textSearch;
-	// 	res.cookie('searchKey', req.body.textSearch, {
-	// 		maxAge: 3600000,   // expire dans 1h
-	// 		httpOnly: true,    // inaccessible côté client (document.cookie)
-	// 		secure: false,     // true si HTTPS
-	// 	});
-	// } else {
-		//textSearch = req.cookies.searchKey;
-		//differentes options du sortby form-select
+	
 		switch (req.body.searchFilter) {
 			case 'title':
 				filter = " ORDER BY title ASC";
@@ -1089,7 +1079,11 @@ app.post('/searchRecipeHome', (req, res) => {
 
 			let categoryID = result[1]?.[0]?.id || '0';
 
-			connection.query(`SELECT * FROM recipe WHERE title LIKE ?   OR id in (?) OR categoryID=? ${filter} LIMIT 150`,
+			let recipeList="";
+			if(req.cookies.pseudoID){ recipeList=`LEFT JOIN recipe_list on type="favoris"
+													AND recipe_list.recipeID=recipe.id AND userID=${req.cookies.pseudoID}`;}
+			
+			connection.query(`SELECT * FROM recipe ${recipeList} WHERE title LIKE ?   OR id in (?) OR categoryID=?  ${filter} LIMIT 150`,
 				[`%${textSearch}%`, cleanRecipeIDs, categoryID], function (error, result, fields) {
 					if (error) throw error;
 					console.log(" searchKey = " + textSearch," filter : "+filter);
@@ -1100,9 +1094,7 @@ app.post('/searchRecipeHome', (req, res) => {
 					res.json( {recipes: result});
 				 }
 
-					if (result.length === 0) {
-	
-					}
+			
 					
 				});
 

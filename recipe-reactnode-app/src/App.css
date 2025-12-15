@@ -304,26 +304,15 @@ width: 50rem;
     .recipeSearch .card {
       height: 280px;                 
       width: 360px;
-
     }
+    
      .recipeSearch .card-img-top {
       height: 180px;  
-      width: 360px;
-              
+      width: 360px;             
       object-fit: cover;            
     }
 
-      .recipeHome .recipeSearch .card {
-      height: 280px;                 
-      width: 320px;
 
-    }
-     .recipeHome  .recipeSearch .card-img-top {
-      height: 180px;  
-      width: 320px;
-              
-      object-fit: cover;            
-    }
     .carousel-indicators [data-bs-target] {
       width: 40px;
       height: 40px;

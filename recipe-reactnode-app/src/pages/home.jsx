@@ -6,7 +6,7 @@ import HomeNav from '/src/components/home/homeNav.jsx'
 import Subscribe from '/src/components/home/subscribe.jsx'
 import VideosReco from "../components/home/videosReco";
 
-
+import './home.css'
 
 
 export default function  Home({user}) {

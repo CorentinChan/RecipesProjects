@@ -1,0 +1,11 @@
+    .recipeSearch .card {
+      height: 280px;                 
+      width: 320px;
+    }
+    
+     .recipeSearch .card-img-top {
+      height: 180px;  
+      width: 320px;             
+      object-fit: cover;            
+    }
+

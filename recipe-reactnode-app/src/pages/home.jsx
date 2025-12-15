@@ -44,7 +44,7 @@ export default function  Home({user}) {
                 <div className="searchHome">
             <SearchBar  keyword={keyword} setKeyword={setKeyword} filter={filter} setFilter={setFilter}/>
             </div>
-            <div className="ms-lg-0 recipeList recipeSearch">
+            <div className="ms-lg-0 recipeList ">
                 <Caroussel keyword={keyword} filter={filter}/>
             </div>
         </div>

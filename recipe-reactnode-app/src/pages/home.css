@@ -1,9 +1,9 @@
-    .searchHome .card {
+    .recipeList .card {
       height: 280px;                 
       width: 320px;
     }
     
-    .searchHome .card-img-top {
+    .recipeList .card-img-top {
       height: 180px;  
       width: 320px;             
       object-fit: cover;            

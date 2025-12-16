@@ -153,7 +153,7 @@ useEffect(() => {
             <div className="container">
               <label className="form-label">Recipe Author</label>
               <input className="form-control form-control-sm mb-5 p-2 w-75" type="text" placeholder="enter name author"
-              value={author} onChange={(e)=>setAuthor(e.target.value)}  />
+              value={author} onChange={(e)=>setAuthor(e.target.value)}  maxLength={20} />
             </div>
           </div>
         </div>

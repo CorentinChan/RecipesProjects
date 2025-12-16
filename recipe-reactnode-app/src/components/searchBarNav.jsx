@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 
 
  
- export default function  SearchBarNav() {
+ export default function  SearchBarNav({setSearchDisplay}) {
   const [keySearch, setKeySearch] = useState("");
   const [showGlass, setShowGlass] = useState(false);
   const navigate = useNavigate();
@@ -13,14 +13,14 @@ import { useLocation } from "react-router-dom";
   const location = useLocation();   // contient la route actuelle
 
  useEffect(() => {
-    setShowGlass(false);
+    setShowGlass(false);setSearchDisplay(false);
   }, [location.pathname]); // close search bar when route
 
   useEffect(() => {
     function handleClickOutside(event) {
       // si on clique en dehors de l'élément référencé
       if ( ref.current && !ref.current.contains(event.target)) {
-        setShowGlass(false);
+        setShowGlass(false);setSearchDisplay(false);
       }
     }
 
@@ -54,7 +54,7 @@ import { useLocation } from "react-router-dom";
       { 
             setTimeout(() => {    searchWindow.classList.add('slide-in-blurred-left')
     }, 1); 
-    setShowGlass(true); 
+    setShowGlass(true); setSearchDisplay(true);
   }
 
        }

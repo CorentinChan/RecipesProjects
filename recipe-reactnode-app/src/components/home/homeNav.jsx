@@ -2,8 +2,8 @@
 
 return ( 
   
-    <div className="recipeMenu">
-      <h1 className="ms-2"> Recipes</h1>
+    <div className="recipeMenu my-4">
+      <h2 className="ms-4 "> Recipes</h2>
       
     <div className="container mt-3 ">
 

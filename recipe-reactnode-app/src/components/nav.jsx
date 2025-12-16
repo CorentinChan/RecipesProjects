@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 
  
  export default function  Nav({}) {
+    const [searchDisplay, setSearchDisplay] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
     const user = useStore((state) => state.user);
       const setUser = useStore((state) => state.setUser);
@@ -72,18 +73,19 @@ async function logout(e) {
       </form>    
 
     </div>
-          <div className="rightNav">
+          <div className={`rightNav flex-row ${searchDisplay?"searchNav  ":"flex-row"}`}>
           
-           <SearchBarNav/>               
-            {!user?(<>
+           <SearchBarNav setSearchDisplay={setSearchDisplay}/>     
+              <div className={`d-flex flex-row ${searchDisplay?"  ":""}`}>       
+            {!user&&!searchDisplay?(<>
             {/* <button type="button" className="btn btnAc fs-5 rounded-pill mx-2 btnCustom2 " id="signinButton"  >Sign in</button> */}
              <NavLink to="/signin" className={({ isActive }) => " pt-2 mx-2 nav-link fs-5" + (isActive ? " urlActive" : "") }>Sign in</NavLink>
             <button type="button" className="btn  btnAc btn-primary fs-5 rounded-pill mx-2 btnCustom " onClick={()=>setShowSignup(true)}  >Sign up</button>
             </>): ( <>  <NavLink to="/account" className={({ isActive }) => " pt-2 mx-2 nav-link fs-5" + (isActive ? " urlActive" : "") }>{user}</NavLink>
                
-                <button type="button" onClick={()=>logout()} className="btn btn-primary bg-danger fs-5 rounded-pill mx-2 btnCustom " >Sign out</button>
-                </>  )}
-
+            { !searchDisplay?<button type="button" onClick={()=>logout()} className="btn btn-primary bg-danger fs-5 rounded-pill mx-2 btnCustom " >Sign out</button>
+               :undefined }</>  )}
+              </div>   
           
           </div>
   </div>

@@ -57,6 +57,7 @@ import { isMobile } from "react-device-detect";
             setTimeout(() => {    searchWindow.classList.add('slide-in-blurred-left')
     }, 1); 
     setShowGlass(true);
+     //isMobile = window.matchMedia("(max-width: 768px)").matches;
     if(isMobile) setSearchDisplay(true);
   }
 
@@ -67,7 +68,9 @@ import { isMobile } from "react-device-detect";
 <div>
     <form  ref={ref}  className="d-flex mt-1" onSubmit={handleSubmit}>
  
- {showGlass&&<input   type="text" className="form-control  w-100  " id='searchWindow'   value={keySearch} onChange={handleChange} />   }      
+ {showGlass&&<input   type="text" className="form-control  w-100  " id='searchWindow' placeholder='search a recipe'
+               value={keySearch} onChange={handleChange} />   }      
+
   <button type="submit" className="btn clickable bg-grey"   >
     <i className="fa-solid fa-magnifying-glass    " id='glass'></i>
   </button>     

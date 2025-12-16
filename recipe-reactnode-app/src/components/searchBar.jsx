@@ -47,7 +47,7 @@ import { KeywordContext } from "./keyword";
             <i className="fa-solid fa-magnifying-glass "  ></i>
       </span>  
        
-      <input type="text" className="form-control form-control-lg searchbar border-0 bg-transparent " placeholder="Search"
+      <input type="text" className="form-control form-control-lg searchbar border-0 bg-transparent " placeholder="Search a recipe"
        id="textSearch" aria-label="Search" aria-describedby="basic-addon1" onChange={(e) => setInputValue(e.target.value)} 
       value={inputValue}
       />

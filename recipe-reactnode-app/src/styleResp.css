@@ -61,7 +61,10 @@
       .searchWindow {
         display: none;
         width: 6em;
-        
+      }
+
+     .searchBar {
+        width: 80%;
       }
 
       /*classe de la recherche et liste des recette*/

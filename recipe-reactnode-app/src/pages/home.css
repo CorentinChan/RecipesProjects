@@ -9,3 +9,11 @@
       object-fit: cover;            
     }
 
+
+   @media (max-width: 768px) {
+    .recipeSearch .card-img-top {
+      height: 150px;  
+      width: 100% ;      
+      object-fit: cover;            
+    }
+  }

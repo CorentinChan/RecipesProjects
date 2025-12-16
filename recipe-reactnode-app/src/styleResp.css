@@ -98,23 +98,21 @@
 
     .card-img-top  {
       max-height: 150px;  
-     width: 100%;
+     width: 150px;
         object-fit: contain;
       }
 
       .card-title{
-        height: 2em;
+        height: 3em;
       }
 
      .recipeSearch .card-img-top {
       height: 150px;  
-      width: 100%;
-              
+      width: 100%;      
       object-fit: cover;            
     }
       
       .recipeList {
-
         display: flex;
         flex-direction: column;
       }

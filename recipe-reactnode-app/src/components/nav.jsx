@@ -7,6 +7,7 @@ import { useStore } from "../store/store";
 import { useNavigate } from "react-router-dom";
 
 
+
  
  export default function  Nav({}) {
     const [searchDisplay, setSearchDisplay] = useState(false);
@@ -15,6 +16,9 @@ import { useNavigate } from "react-router-dom";
       const setUser = useStore((state) => state.setUser);
       const pathTab= [{path:'',title:"Home"},{path:'recipe',title:"Recipe"},
         {path:'search',title:"Search"},{path:'contact',title:"Contact"}]
+
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
 
     let navigate=useNavigate();
 

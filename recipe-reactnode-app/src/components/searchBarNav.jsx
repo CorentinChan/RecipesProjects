@@ -2,6 +2,7 @@
 import { useState,useContext,useRef, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { isMobile } from "react-device-detect";
 
 
  
@@ -13,7 +14,8 @@ import { useLocation } from "react-router-dom";
   const location = useLocation();   // contient la route actuelle
 
  useEffect(() => {
-    setShowGlass(false);setSearchDisplay(false);
+    setShowGlass(false);
+    setSearchDisplay(false);
   }, [location.pathname]); // close search bar when route
 
   useEffect(() => {
@@ -54,7 +56,8 @@ import { useLocation } from "react-router-dom";
       { 
             setTimeout(() => {    searchWindow.classList.add('slide-in-blurred-left')
     }, 1); 
-    setShowGlass(true); setSearchDisplay(true);
+    setShowGlass(true);
+    if(isMobile) setSearchDisplay(true);
   }
 
        }

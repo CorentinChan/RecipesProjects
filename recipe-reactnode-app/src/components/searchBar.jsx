@@ -36,9 +36,9 @@ import { KeywordContext } from "./keyword";
  return( 
   
 
-<section className="d-lg-flex recipeForm mx-lg-5 ">
+<section className="d-lg-flex recipeForm my-3 mx-lg-5 ">
 
-  <div className="container mt-3  justify-content-between " >
+  <div className="container mt-2  justify-content-between " >
   <div className="d-lg-flex ms-lg-3" role="search">
     
         <div className="input-group w-lg-50 slide-in-blurred-left">
@@ -47,7 +47,7 @@ import { KeywordContext } from "./keyword";
             <i className="fa-solid fa-magnifying-glass "  ></i>
       </span>  
        
-      <input type="text" className="form-control searchbar " placeholder="Search"
+      <input type="text" className="form-control form-control-lg searchbar " placeholder="Search"
        id="textSearch" aria-label="Search" aria-describedby="basic-addon1" onChange={(e) => setInputValue(e.target.value)} 
       value={inputValue}
       />

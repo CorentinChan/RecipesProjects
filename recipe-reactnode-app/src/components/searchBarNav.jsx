@@ -66,7 +66,7 @@ import { isMobile } from "react-device-detect";
 
  return( 
 <div>
-    <form  ref={ref}  className="d-flex mt-1" onSubmit={handleSubmit}>
+    <form  ref={ref}  className="d-flex mt-2" onSubmit={handleSubmit}>
  
  {showGlass&&<input   type="text" className="form-control  w-100  " id='searchWindow' placeholder='search a recipe'
                value={keySearch} onChange={handleChange} />   }      

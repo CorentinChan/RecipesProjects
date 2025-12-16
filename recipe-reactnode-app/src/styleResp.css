@@ -72,9 +72,8 @@
       /* nav search for mobile*/
       .searchNav{
         position: relative;
-        
-        flex-direction: column!important;
-        /* padding-top: 3em; */
+        padding-top: 0em;
+        margin-top: 0; 
       }
 
       /*classe de la recherche et liste des recette*/

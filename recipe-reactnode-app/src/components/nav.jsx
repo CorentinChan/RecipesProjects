@@ -50,7 +50,7 @@ async function logout(e) {
   
  <nav className="navbar navbar-expand-sm navbar-white bg-white"> 
   <div className="container-fluid">
-    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+    <button className="navbar-toggler mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
       <span className="navbar-toggler-icon"></span>
     </button>
 
@@ -80,12 +80,12 @@ async function logout(e) {
           <div className={`rightNav flex-row ${searchDisplay?"searchNav  ":"flex-row"}`}>
           
            <SearchBarNav setSearchDisplay={setSearchDisplay}/>     
-              <div className={`d-flex flex-row ${searchDisplay?"  ":""}`}>       
-            {!user&&!searchDisplay?(<>
+              <div className={`d-flex  mt-1 flex-row ${searchDisplay?"  ":""}`}>       
+            {!user?!searchDisplay&&(<>
             {/* <button type="button" className="btn btnAc fs-5 rounded-pill mx-2 btnCustom2 " id="signinButton"  >Sign in</button> */}
              <NavLink to="/signin" className={({ isActive }) => " pt-2 mx-2 nav-link fs-5" + (isActive ? " urlActive" : "") }>Sign in</NavLink>
             <button type="button" className="btn  btnAc btn-primary fs-5 rounded-pill mx-2 btnCustom " onClick={()=>setShowSignup(true)}  >Sign up</button>
-            </>): ( <>  <NavLink to="/account" className={({ isActive }) => " pt-2 mx-2 nav-link fs-5" + (isActive ? " urlActive" : "") }>{user}</NavLink>
+            </>): (!searchDisplay&& <>  <NavLink to="/account" className={({ isActive }) => " pt-2 mx-2 nav-link fs-5" + (isActive ? " urlActive" : "") }>{user}</NavLink>
                
             { !searchDisplay?<button type="button" onClick={()=>logout()} className="btn btn-primary bg-danger fs-5 rounded-pill mx-2 btnCustom " >Sign out</button>
                :undefined }</>  )}

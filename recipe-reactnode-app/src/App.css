@@ -10,6 +10,8 @@ h1{
 .navbar {
     margin: 2rem 1rem;
     padding: 2rem;
+    /* padding-top: 1rem; */
+    margin-top: 1rem;
 }
 
 .rightNav{

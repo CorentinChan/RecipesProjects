@@ -79,8 +79,8 @@ import { useState,useEffect } from 'react'
            </div>
             <div  className="card-body">
               <h5  className="card-title fw-bold"> {title} </h5>
-              <div className="d-flex mt-5 justify-content-between"> 
-                <span>{note}<i className="pb-1  ms-1 fa-solid fa-star"></i></span>
+              <div className="d-flex  justify-content-between"> 
+                <span className="noteCard">{note}<i className="pb-1  ms-1 fa-solid fa-star"></i></span>
                 <span className="card-text fst-italic">{author}</span>
               </div>
              </div>

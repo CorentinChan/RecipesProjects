@@ -41,13 +41,13 @@ import { KeywordContext } from "./keyword";
   <div className="container mt-2  justify-content-between " >
   <div className="d-lg-flex ms-lg-3" role="search">
     
-        <div className="input-group w-lg-50 slide-in-blurred-left">
+        <div className="input-group w-lg-50 slide-in-blurred-left rounded-5 border searchbar-group ">
 
-      <span className="input-group-text btnSearch" id="basic-addon1 " onClick={handleSubmit} >
+      <span className="input-group-text btnSearch border-0 bg-transparent" id="basic-addon1 " onClick={handleSubmit} >
             <i className="fa-solid fa-magnifying-glass "  ></i>
       </span>  
        
-      <input type="text" className="form-control form-control-lg searchbar " placeholder="Search"
+      <input type="text" className="form-control form-control-lg searchbar border-0 bg-transparent " placeholder="Search"
        id="textSearch" aria-label="Search" aria-describedby="basic-addon1" onChange={(e) => setInputValue(e.target.value)} 
       value={inputValue}
       />

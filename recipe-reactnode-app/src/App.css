@@ -358,10 +358,13 @@ width: 50rem;
     color: white !important;
     }
 
-          .searchbar {
-            background-color: #fff9ef;
+   .searchbar {
+    background-color: #fff9ef;
     }
 
+    .searchbar-group {
+    background-color: #fff9ef;
+    } 
      
 
     .subscribeSection .btn{

@@ -10,7 +10,7 @@ import './search.css'
 export default function  Search() {
      const [searchParams] = useSearchParams();
      
-   let tag = searchParams.get("tag")||"chicken"; 
+   let tag = searchParams.get("tag")||"seafood"; 
       const [keyword, setKeyword] = useState(tag); 
       const [filter, setFilter] = useState(""); 
       

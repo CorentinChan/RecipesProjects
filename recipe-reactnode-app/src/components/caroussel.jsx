@@ -85,10 +85,12 @@ fetchRecipes();
       </div>
 
       {/* boutons indicateurs */}
-      <div className="carousel-indicators p-2 w-75 position-static mt-3 flex-nowrap overflow-auto">
+      <div className="carousel-indicators p-2 w-75 position-static mt-3 ">
                 <button className="btn btn-outline-primary bg-white " type="button" data-bs-target="#cardCarousel" data-bs-slide="prev">
                 ⬅️ 
               </button>
+
+              <div className='flex-nowrap overflow-auto'>
         {slides.map((_, i) => (
           <button
             key={i}
@@ -100,6 +102,8 @@ fetchRecipes();
             {i + 1}
           </button>
         ))}
+
+        </div>
             <button className="btn btn-outline-primary bg-white" type="button" data-bs-target="#cardCarousel" data-bs-slide="next">
             ➡️
           </button>

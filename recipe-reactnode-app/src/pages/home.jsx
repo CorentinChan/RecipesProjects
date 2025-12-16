@@ -10,7 +10,7 @@ import './home.css'
 
 
 export default function  Home({user}) {
-      const [keyword, setKeyword] = useState("beef"); // variable globale
+      const [keyword, setKeyword] = useState("chinese"); // variable globale
       const [showSignup, setShowSignup] = useState(false);
       const [filter, setFilter] = useState(""); 
 

@@ -68,9 +68,7 @@
       }
 
       /*classe de la recherche et liste des recette*/
-      .recipeSearch form {
-        width: 30rem;
-      }
+  
 
       .searchHome .search-select{
         margin-right: 0.5rem ;
@@ -109,32 +107,14 @@
         height: 3em;
       }
 
-     .recipeSearch .card-img-top {
-      height: 150px;  
-      width: 100%;      
-      object-fit: cover;            
-    }
+
       
-      .recipeList {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .recipeList .form-select {
-        height: 2em;
-      }
+      
+   
 
 
-      .recipeSearch {
-        display: flex;
-        flex-direction: column;
-        margin: 0;
-      }
 
-      .recipeSearch form {
-        width: 80%;
-        margin: 1rem;
-      }
+    
 
       .card {
         max-width: 90%;

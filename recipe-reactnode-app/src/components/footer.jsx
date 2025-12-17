@@ -24,15 +24,15 @@ function toggleTheme() {
 
   <div className="logos me-5 pe-lg-5">
     <div>
-      <FacebookShareButton className="m-2" url={url} quote={title}>
+      <FacebookShareButton className="m-2" url={url} quote={title} aria-label="facebook share">
         <FacebookIcon size={32} round />
       </FacebookShareButton>
 
-      <TwitterShareButton className="m-2" url={url} title={title}>
+      <TwitterShareButton className="m-2" url={url} title={title} aria-label="twitter share">
         <TwitterIcon size={32} round />
       </TwitterShareButton>
 
-         <WhatsappShareButton className="m-2" url={url} title={title} separator=":: ">
+         <WhatsappShareButton className="m-2" url={url} title={title}  aria-label="whatsapp share" separator=":: ">
            <WhatsappIcon size={32} round />
          </WhatsappShareButton>
      

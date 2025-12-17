@@ -84,10 +84,10 @@ async function logout(e) {
             {!user?!searchDisplay&&(<>
             {/* <button type="button" className="btn btnAc fs-5 rounded-pill mx-2 btnCustom2 " id="signinButton"  >Sign in</button> */}
              <NavLink to="/signin" className={({ isActive }) => " pt-2 mx-2 nav-link fs-5" + (isActive ? " urlActive" : "") }>Sign in</NavLink>
-            <button type="button" className="btn  btnAc btn-primary fs-5 rounded-pill mx-2 btnCustom " onClick={()=>setShowSignup(true)}  >Sign up</button>
+            <button type="button" className="btn  btnAc btn-primary fs-5 rounded-pill mx-2 btnCustom " onClick={()=>setShowSignup(true)} aria-label="display signup" >Sign up</button>
             </>): (!searchDisplay&& <>  <NavLink to="/account" className={({ isActive }) => " pt-2 mx-2 nav-link fs-5" + (isActive ? " urlActive" : "") }>{user}</NavLink>
                
-            { !searchDisplay?<button type="button" onClick={()=>logout()} className="btn btn-primary bg-danger fs-5 rounded-pill mx-2 btnCustom " >Sign out</button>
+            { !searchDisplay?<button type="button" onClick={()=>logout()} className="btn btn-primary bg-danger fs-5 rounded-pill mx-2 btnCustom " aria-label="logout">Sign out</button>
                :undefined }</>  )}
               </div>   
           

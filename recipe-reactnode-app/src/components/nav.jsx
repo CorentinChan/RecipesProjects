@@ -80,7 +80,7 @@ async function logout(e) {
           <div className={`rightNav flex-row ${searchDisplay?"searchNav  ":"flex-row"}`}>
           
            <SearchBarNav setSearchDisplay={setSearchDisplay}/>     
-              <div className={`d-flex  mt-1 flex-row ${searchDisplay?"  ":""}`}>       
+              <div className={`d-flex  mt-1  flex-row ${searchDisplay?"  ":""}`}>       
             {!user?!searchDisplay&&(<>
             {/* <button type="button" className="btn btnAc fs-5 rounded-pill mx-2 btnCustom2 " id="signinButton"  >Sign in</button> */}
              <NavLink to="/signin" className={({ isActive }) => " pt-2 mx-2 nav-link fs-5" + (isActive ? " urlActive" : "") }>Sign in</NavLink>

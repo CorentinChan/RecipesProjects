@@ -5,7 +5,7 @@
 
       
 
- 
+ // admin zone to change user role
  export default function  AdminZone() {
 const [pseudoToRole,setPseudoToRole]= useState("");
 const [pseudoToBan,setPseudoToBan] = useState('');

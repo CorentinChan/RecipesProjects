@@ -20,7 +20,7 @@ export default function Signin() {
    const setUser = useStore((state) => state.setUser)
    const setUserRole = useStore((state) => state.setUserRole)
 
-  
+  //call API pour se loger en envoyant mail,pseudo,password, le backend va checker le login et password
   async function handleSubmit(e) {
     e.preventDefault();
 

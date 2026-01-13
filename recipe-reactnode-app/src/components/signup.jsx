@@ -22,6 +22,7 @@ let  mail=mailInput.current.value;
 let pseudo=pseudoInput.current.value;
 let password=passwordInput.current.value;
 
+//call API pour s'inscrire en envoyant mail,pseudo,password, le backend va checker les conditions d'inscriptions 
       try {
         const { data } = await axios.post(
           import.meta.env.VITE_API_URL + "/signup",
@@ -36,9 +37,11 @@ let password=passwordInput.current.value;
           }
         );
 
-        setMessage(data.message);
+        setMessage(data.message);//reponse du backend
         console.log("Réponse backend :", data);
 
+
+        // verifie si l'inscription a été effectué
         if (data.succeed) {
           //setUser(data.pseudo);
           console.log("succed")
@@ -53,9 +56,12 @@ let password=passwordInput.current.value;
 }
 
   return (
-<div class="overlay" id="overlay2" onClick={overlayClick}>
+   
+   
+<div className="overlay" id="overlay2" onClick={overlayClick}> {/*overlay du signup*/}
     <div className="container signup"   >
       
+    {/*close button*/}
       <button
         type="button"
         className="btn btnAc text-center btn-danger border p-1 btnClose2"
@@ -64,6 +70,8 @@ let password=passwordInput.current.value;
         X
       </button>
 
+
+{/*signup form*/}
       <div className="p-4 bg-danger border text-white rounded-5" onClick={(e) => e.stopPropagation()}>
 
         <form className="contactForm" onSubmit={handleSubmit}>

@@ -19,6 +19,8 @@ export default function ModalPassword({ user, userRole }) {
     let passwordCurrent=currentPassword;
 
     try {
+
+      // send input to backand , to comparent current password, then change hash password in DBB
         const { data } = await axios.post(
           import.meta.env.VITE_API_URL + "/changePassword",
           {
@@ -35,11 +37,7 @@ export default function ModalPassword({ user, userRole }) {
         setMessage(data.message);
         console.log("Réponse backend :", data);
 
-        // if (data.succeed) {
-        //   //setUser(data.pseudo);
-        //   console.log("succed")
-        //   navigate("/account"); 
-        // }
+
       } catch (error) {
         console.error("Erreur lors de la connexion :", error);
          setMessage(error.response?.data?.message || "Erreur réseau");

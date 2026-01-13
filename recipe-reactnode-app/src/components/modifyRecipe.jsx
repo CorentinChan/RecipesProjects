@@ -1,8 +1,7 @@
-import { useState,useEffect } from "react";
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-
 
 export default function ModifyRecipe() {
   const navigate = useNavigate();
@@ -21,30 +20,93 @@ export default function ModifyRecipe() {
   const [nbPerson, setNbPerson] = useState("");
   const [author, setAuthor] = useState("");
 
-  const [steps, setSteps] = useState([]); // initalise un tableau de 3 valleurs null
+  const [steps, setSteps] = useState([]);
   const [ingredients, setIngredients] = useState(Array(2).fill(null));
   const [measures, setMeasures] = useState(Array(2).fill(null));
   const [tags, setTags] = useState([""]);
 
+  //add new columns when click on add function
   const addStep = () => setSteps([...steps, ""]);
-  const addIngredient = () => { setIngredients([...ingredients, ""]); setMeasures([...measures, ""]); }
+  const addIngredient = () => {
+    setIngredients([...ingredients, ""]);
+    setMeasures([...measures, ""]);
+  };
   const addTag = () => setTags([...tags, ""]);
 
   const handleChange = (setter, index, value, stateTab) => {
-    const newTab = [...stateTab]; newTab[index] = value; setter(newTab);
+    const newTab = [...stateTab];
+    newTab[index] = value;
+    setter(newTab);
   };
 
-  //const handleSubmit = (e) => { };
-useEffect(() => {
-  
-  async function getRecipe() {
-    let recipeID=location.state.recipeID;
-    console.log(recipeID);
+  useEffect(() => {
+    //get recipe data with axios=>backend=>SQL
+    async function getRecipe() {
+      let recipeID = location.state.recipeID;
+      console.log(recipeID);
+      try {
+        const { data } = await axios.post(
+          import.meta.env.VITE_API_URL + "/getRecipeMod",
+          {
+            recipeID,
+          },
+          {
+            headers: { "Content-Type": "application/json" },
+            withCredentials: true,
+          }
+        );
+
+        //set useState data with actual recipe data
+        setTitle(data.recipe.title);
+        setImage(data.recipe.image);
+        setDescription(data.recipe.description);
+
+        setActiveTime(data.recipe.activeTime);
+        setTotalTime(data.recipe.totalTime);
+        setNbPerson(data.recipe.yield);
+
+        setAuthor(data.recipe.auteur);
+        setCategory(data.recipe.categoryID);
+        setCategoryList(data.category);
+
+        setIngredients(data.ingredients.map((item) => item.ingredient));
+        setMeasures(data.ingredients.map((item) => item.measure));
+        setSteps(data.instructions.map((item) => item.instruction));
+        setTags(data.tags.map((item) => item.tag));
+
+        console.log("Réponse recipe :", data);
+      } catch (error) {
+        console.error("Erreur lors de la connexion :", error);
+      }
+    }
+
+    getRecipe();
+  }, []);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    let categoryID = category;
+    let recipeID = location.state.recipeID;
+
+    console.log({ steps, ingredients, measures, tags, categoryID });
+
     try {
       const { data } = await axios.post(
-        import.meta.env.VITE_API_URL + "/getRecipeMod",
+        import.meta.env.VITE_API_URL + "/modifyRecipe",
         {
-          recipeID
+          recipeID,
+          title,
+          image,
+          description,
+          activeTime,
+          totalTime,
+          nbPerson,
+          categoryID,
+          author,
+          steps,
+          ingredients,
+          tags,
+          measures,
         },
         {
           headers: { "Content-Type": "application/json" },
@@ -52,129 +114,134 @@ useEffect(() => {
         }
       );
 
-      setTitle(data.recipe.title);
-      setImage(data.recipe.image);
-      setDescription(data.recipe.description);
+      //setMessage(data.message);
+      console.log("Réponse backend :", data);
 
-      setActiveTime(data.recipe.activeTime);      
-      setTotalTime(data.recipe.totalTime);
-      setNbPerson(data.recipe.yield);
-
-      setAuthor(data.recipe.auteur);
-      setCategory(data.recipe.categoryID);
-      setCategoryList(data.category);
-
-      setIngredients(data.ingredients.map(item => item.ingredient));
-      setMeasures(data.ingredients.map(item => item.measure));
-      setSteps(data.instructions.map(item => item.instruction));
-      setTags(data.tags.map(item => item.tag));
-
-      console.log("Réponse recipe :", data);
-
-      
+      if (data.check) {
+        console.log("succed");
+        navigate("/recipe?id=" + recipeID);
+      }
     } catch (error) {
       console.error("Erreur lors de la connexion :", error);
+      //setMessage(error.response?.data?.message || "Erreur réseau");
     }
-  }
-
-  getRecipe();
-}, []);
-
-  async function handleSubmit(e){
-     e.preventDefault(); 
-     let categoryID=category;
-    let recipeID=location.state.recipeID;
-
-     console.log({steps, ingredients, measures, tags, categoryID});
-
-         try {
-        const { data } = await axios.post(
-          import.meta.env.VITE_API_URL + "/modifyRecipe",
-          { recipeID,
-            title,image,description,activeTime,totalTime,nbPerson,categoryID,author,
-            steps,ingredients,tags, measures
-          },
-          {
-            headers: {"Content-Type": "application/json",},
-            withCredentials: true,
-          }
-        );
-
-        //setMessage(data.message);
-        console.log("Réponse backend :", data);
-
-        if (data.check) {
-          console.log("succed")
-          navigate("/recipe?id="+recipeID); 
-        }
-      } catch (error) {
-        console.error("Erreur lors de la connexion :", error);
-         //setMessage(error.response?.data?.message || "Erreur réseau");
-      }
-
   }
   return (
     <form onSubmit={handleSubmit}>
       <section className="recipeTitle gx-0">
         <div className="container justify-content-center">
-          <h3 className="m-5 p-3 text-center bg-danger rounded-4 text-white">Write your own recipe!</h3>
+          <h3 className="m-5 p-3 text-center bg-danger rounded-4 text-white">
+            Write your own recipe!
+          </h3>
 
           <label className="form-label">Recipe Picture</label>
-          <input className="form-control form-control-sm mb-5 p-2 w-75" type="text"  maxLength={3000}
-          placeholder="enter picture url" value={image} onChange={(e)=>setImage(e.target.value)} />
+          <input
+            className="form-control form-control-sm mb-5 p-2 w-100"
+            type="text"
+            maxLength={3000}
+            placeholder="enter picture url"
+            value={image}
+            onChange={(e) => setImage(e.target.value)}
+          />
 
           <label className="form-label">Recipe Title</label>
-          <input className="form-control form-control-sm mb-5 p-2 w-75" type="text" placeholder="enter title recipe"
-          value={title} onChange={(e)=>setTitle(e.target.value)}  maxLength={37} />
+          <input
+            className="form-control form-control-sm mb-5 p-2 w-100"
+            type="text"
+            placeholder="enter title recipe"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            maxLength={37}
+          />
 
           <label className="form-label">Recipe Description</label>
-          <input className="form-control form-control-sm mb-5 p-2 w-75" type="text" maxLength={100}
-           placeholder="enter description recipe" value={description} onChange={(e)=>setDescription(e.target.value)}  />
+          <input
+            className="form-control form-control-sm mb-5 p-2 w-100"
+            type="text"
+            maxLength={100}
+            placeholder="enter description recipe"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
 
           <div className="d-flex text-center descriptionLogos border">
             <div className="logo1 p-2 mx-2 m-lg-3 px-lg-5 text-center border-end">
               <i className="fa-regular fa-clock fs-3 rotatec"></i>
-              <input className="form-control form-control-sm" type="text" placeholder="enter active time"
-              value={activeTime} onChange={(e)=>setActiveTime(e.target.value)} maxLength={20}  />
+              <input
+                className="form-control form-control-sm"
+                type="text"
+                placeholder="enter active time"
+                value={activeTime}
+                onChange={(e) => setActiveTime(e.target.value)}
+                maxLength={20}
+              />
             </div>
             <div className="logo2 p-2 mx-2 m-lg-3 px-lg-5 text-center border-end">
               <i className="fa-solid fa-clock-rotate-left fs-3 rotatec"></i>
-              <input className="form-control form-control-sm" type="text" placeholder="enter total time" 
-              value={totalTime} onChange={(e)=>setTotalTime(e.target.value)} maxLength={20}/>
+              <input
+                className="form-control form-control-sm"
+                type="text"
+                placeholder="enter total time"
+                value={totalTime}
+                onChange={(e) => setTotalTime(e.target.value)}
+                maxLength={20}
+              />
             </div>
             <div className="logo3 p-2 mx-2 m-lg-3 px-lg-5 text-center">
               <i className="fa-solid fa-users fs-3"></i>
-              <input className="form-control form-control-sm" type="text" placeholder="enter yield"
-              value={nbPerson} onChange={(e)=>setNbPerson(e.target.value)}  maxLength={20}/>
+              <input
+                className="form-control form-control-sm"
+                type="text"
+                placeholder="enter yield"
+                value={nbPerson}
+                onChange={(e) => setNbPerson(e.target.value)}
+                maxLength={20}
+              />
             </div>
           </div>
 
           <div className="d-flex mt-5 bottomDescription">
             <div className="container">
               <label className="form-label">Recipe Author</label>
-              <input className="form-control form-control-sm mb-5 p-2 w-75" type="text" placeholder="enter name author"
-              value={author} onChange={(e)=>setAuthor(e.target.value)}  maxLength={20} />
+              <input
+                className="form-control form-control-sm mb-5 p-2 w-100"
+                type="text"
+                placeholder="enter name author"
+                value={author}
+                onChange={(e) => setAuthor(e.target.value)}
+                maxLength={20}
+              />
             </div>
           </div>
         </div>
       </section>
 
-        <label htmlFor="" className="form-label">Category</label>
-  <select className="form-select  mb-5 p-2" defaultValue={category} aria-label="Default select example" 
-  onChange={(e)=>setCategory(e.target.value)} value={category}>
-  <option  disabled>choose category</option>
+      <div className="justify-content-center align-items-center">
+        <label htmlFor="" className="form-label">
+          Category
+        </label>
+        <select
+          className="form-select  mb-5 p-2"
+          defaultValue={category}
+          aria-label="Default select example"
+          onChange={(e) => setCategory(e.target.value)}
+          value={category}
+        >
+          <option disabled>choose category</option>
 
-    {  categoryList.map(element => (  
-                <option key={`category+${element.id}`} value={element.id}>{element.name}</option>
-
-    ))}
-
-</select>
+          {categoryList.map((element) => (
+            <option key={`category+${element.id}`} value={element.id}>
+              {element.name}
+            </option>
+          ))}
+        </select>
+      </div>
 
       <section className="m-1 p-1 m-lg-5 p-lg-3 makeRecipe-container">
         <div className="recipeLeft">
           <div className="recipeSteps">
             <h2 className="mt-5 my-lg-0">How to make it</h2>
+            
             <ol className="mt-lg-4 list-group instructionsList">
               {steps.map((step, i) => (
                 <li key={i} className="list-group-item border-0 mb-2">
@@ -183,12 +250,24 @@ useEffect(() => {
                     <h4 className="text-danger pt-1">STEP {i + 1}</h4>
                   </div>
                   <div className="border-top my-2"></div>
-                  <input className="form-control form-control-sm m-2 p-2 w-75" type="text" placeholder={`write step ${i + 1}`} 
-                  value={step} onChange={(e) => handleChange(setSteps, i, e.target.value, steps)} />
+                  <input
+                    className="form-control form-control-sm m-2 p-2 w-100"
+                    type="text"
+                    placeholder={`write step ${i + 1}`}
+                    value={step}
+                    onChange={(e) =>
+                      handleChange(setSteps, i, e.target.value, steps)
+                    }
+                  />
                 </li>
               ))}
             </ol>
-            <i className="fa-regular fa-plus fs-5 my-2 mx-3  clickable" onClick={addStep}><span className="">Add more steps</span></i>
+            <i
+              className="fa-regular fa-plus fs-5 my-2 mx-3  clickable"
+              onClick={addStep}
+            >
+              <span className="">Add more steps</span>
+            </i>
           </div>
         </div>
 
@@ -199,8 +278,20 @@ useEffect(() => {
               <ul className="list-group ingredientsList">
                 {ingredients.map((ing, i) => (
                   <li key={i} className="mb-2">
-                    <input className="form-control form-control-sm m-2 p-2 w-75" type="text" placeholder={`write ingredient ${i + 1}`} 
-                    value={ing} onChange={(e) => handleChange(setIngredients, i, e.target.value, ingredients)} />
+                    <input
+                      className="form-control form-control-sm m-2 p-2 w-100"
+                      type="text"
+                      placeholder={`write ingredient ${i + 1}`}
+                      value={ing}
+                      onChange={(e) =>
+                        handleChange(
+                          setIngredients,
+                          i,
+                          e.target.value,
+                          ingredients
+                        )
+                      }
+                    />
                   </li>
                 ))}
               </ul>
@@ -211,32 +302,61 @@ useEffect(() => {
               <ul className="list-group measureList list-unstyled">
                 {measures.map((m, i) => (
                   <li key={i} className="mb-2">
-                    <input className="form-control form-control-sm m-2  p-2 w-75" type="text" placeholder={`write measure ${i + 1}`} 
-                    value={m} onChange={(e) => handleChange(setMeasures, i, e.target.value, measures)} />
+                    <input
+                      className="form-control form-control-sm m-2  p-2 w-100"
+                      type="text"
+                      placeholder={`write measure ${i + 1}`}
+                      value={m}
+                      onChange={(e) =>
+                        handleChange(setMeasures, i, e.target.value, measures)
+                      }
+                    />
                   </li>
                 ))}
               </ul>
             </div>
           </div>
 
-           <i className="fa-regular fa-plus  fs-5 my-2 mb-3  mx-3 clickable" onClick={addIngredient}><span className="">Add more ingredients</span></i>
-
+          <i
+            className="fa-regular fa-plus  fs-5 my-2 mb-3  mx-3 clickable"
+            onClick={addIngredient}
+          >
+            <span className="">Add more ingredients</span>
+          </i>
 
           <div className="pt-3 mt-3">
             <h3>Tags</h3>
             <div className="dflex tags">
               {tags.map((tag, i) => (
-                <input key={i} className="form-control form-control-sm m-2 p-2 w-75" type="text" placeholder={`write TAG ${i + 1}`} 
-                value={tag} onChange={(e) => handleChange(setTags, i, e.target.value, tags)} />
+                <input
+                  key={i}
+                  className="form-control form-control-sm m-2 p-2 w-100"
+                  type="text"
+                  placeholder={`write TAG ${i + 1}`}
+                  value={tag}
+                  onChange={(e) =>
+                    handleChange(setTags, i, e.target.value, tags)
+                  }
+                />
               ))}
             </div>
-            <i className="fa-regular fa-plus  fs-5 my-2 mb-3 mx-3 clickable" onClick={addTag}><span className="">Add more tags</span></i>
+            <i
+              className="fa-regular fa-plus  fs-5 my-2 mb-3 mx-3 clickable"
+              onClick={addTag}
+            >
+              <span className="">Add more tags</span>
+            </i>
           </div>
         </div>
       </section>
 
       <div className="d-flex justify-content-center">
-        <button type="submit" className="text-center btn btn-danger p-3 px-5 mb-5 fs-4 rounded-pill">Submit</button>
+        <button
+          type="submit"
+          className="text-center btn btn-danger p-3 px-5 mb-5 fs-4 rounded-pill"
+        >
+          Submit
+        </button>
       </div>
     </form>
   );

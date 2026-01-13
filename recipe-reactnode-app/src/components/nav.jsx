@@ -24,6 +24,7 @@ import { useNavigate } from "react-router-dom";
 
       console.log('user:'+user);
 
+      
 async function logout(e) {
     //e.preventDefault();
       console.log("signout")
@@ -60,14 +61,11 @@ async function logout(e) {
 
         { pathTab.map((path,index)=>(   
             <li key={`nav ${index}`} className="nav-item  ">
-              <NavLink to={`/${path.path}`}  className={({ isActive }) => "nav-link fs-5" + (isActive ? " urlActive" : "") }> {path.title}</NavLink>
+              <NavLink to={`/${path.path}`} aria-label=" link"  className={({ isActive }) => "nav-link fs-5" + (isActive ? " urlActive" : "") }> {path.title}</NavLink>
         </li>     
         ))}
          
-           {/* <li className="nav-item ">
-             <NavLink to="/signin"className={({ isActive }) => "nav-link text-black fs-5  pb-1 mb-2 pb-lg-0 mb-lg-0 border-0 urlCustom2"
-              + (isActive ? " urlActive" : "") }> Sign in</NavLink>
-        </li> */}
+  
       </ul>
       <form className="d-flex">
          <a className="nav-link fs-5 urlCustom" href="javascript:void(0)"></a>
@@ -82,8 +80,7 @@ async function logout(e) {
            <SearchBarNav setSearchDisplay={setSearchDisplay}/>     
               <div className={`d-flex  mt-1  flex-row ${searchDisplay?"  ":""}`}>       
             {!user?!searchDisplay&&(<>
-            {/* <button type="button" className="btn btnAc fs-5 rounded-pill mx-2 btnCustom2 " id="signinButton"  >Sign in</button> */}
-             <NavLink to="/signin" className={({ isActive }) => " pt-2 mx-2 nav-link fs-5" + (isActive ? " urlActive" : "") }>Sign in</NavLink>
+             <NavLink to="/signin" aria-label="signin in link" className={({ isActive }) => " pt-2 mx-2 nav-link fs-5" + (isActive ? " urlActive" : "") }>Sign in</NavLink>
             <button type="button" className="btn  btnAc btn-primary fs-5 rounded-pill mx-2 btnCustom " onClick={()=>setShowSignup(true)} aria-label="display signup" >Sign up</button>
             </>): (!searchDisplay&& <>  <NavLink to="/account" className={({ isActive }) => " pt-2 mx-2 nav-link fs-5" + (isActive ? " urlActive" : "") }>{user}</NavLink>
                
@@ -95,6 +92,7 @@ async function logout(e) {
   </div>
 </nav>
 {showSignup&&( <Signup  setShowSignup={setShowSignup} />)}
+
 
 </>
  );}

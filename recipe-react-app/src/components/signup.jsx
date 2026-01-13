@@ -5,9 +5,10 @@ setShowSignup(false);
 }
 
   return (
-<div class="overlay" id="overlay2" onClick={overlayClick}>
+<div classname="overlay" id="overlay2" onClick={overlayClick}>
     <div className="container signup"   >
-      
+      ^
+         {/*close button*/}
       <button
         type="button"
         className="btn btnAc text-center btn-danger border p-1 btnClose2"

@@ -5,11 +5,11 @@
  return( 
 <footer>
 
+              {/*logos*/}
   <div className="logos me-5 pe-lg-5">
 <i className="fa-brands fa-facebook fa-2x p-3" ></i>
 <i className="fa-brands fa-instagram fa-2x p-3"></i>
 <i className="fa-brands fa-twitter fa-2x p-3"></i>
-
   </div>
 
   <div className="container mt-3 table-perso">

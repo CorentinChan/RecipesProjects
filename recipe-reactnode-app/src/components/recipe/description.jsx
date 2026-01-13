@@ -47,7 +47,7 @@ export default function Decription({recipeID,userRole,updateForm,meal,setMeal}){
     fetchAddList();
 
     }
-
+      /* description text or video link if text is yt url */
     async function fetchDescription() {
       const ytRegex = /(https?:\/\/(?:www\.)?(youtube\.com|youtu\.be)\/\S+)/; // (http(s):)//(www.)?youtube.com||youtu.be/S+
 

@@ -9,12 +9,12 @@ import { KeywordContext } from "./keyword";
   const [inputValue, setInputValue] = useState(keyword);
   const skipTimeout = useRef(false);
 
-  function handleSubmit() {
+  function handleSubmit() { //change search keyword on submit
     skipTimeout.current = true;
     setKeyword(inputValue);
   }
 
-  useEffect(() => {
+  useEffect(() => { // timer 100ms to retape a letter
     const handler = setTimeout(() => {
       if (!skipTimeout.current) {
         setKeyword(inputValue);
@@ -54,7 +54,7 @@ import { KeywordContext } from "./keyword";
   </div>
 </div>
 
-
+    {/*recipe filter*/}
 <div className="searchList mt-2">
   <select className="form-select fs-5 rounded-pill form-select-lg mx-2 mx-lg-5"  id="recipeFilter">
     <option selected disabled>Sort by : </option>

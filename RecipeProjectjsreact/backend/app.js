@@ -24,21 +24,37 @@ app.use(session({
 	secret: process.env.DB_SECRET,      // clé pour signer la session (change-la)
 	resave: false,              // ne pas sauvegarder si rien n’a changé
 	saveUninitialized: true,    // sauvegarder les nouvelles sessions même si vides
-	cookie: { maxAge: 3600000 } // durée de vie du cookie en ms (ici 1h)
+	cookie: { maxAge: 3600000 } // durée de vie du cookie en ms ( 1h)
 }));
 
 
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Sécurité : Configuration des Trusted Types
+if (window.trustedTypes && window.trustedTypes.createPolicy) {
+    
+    // 1. Déclaration de la politique 'dompurify' (citée dans ton Nginx)
+    // Elle nécessite d'avoir chargé la bibliothèque DOMPurify
+    window.purifyPolicy = trustedTypes.createPolicy('dompurify', {
+        createHTML: (input) => DOMPurify.sanitize(input)
+    });
 
+    // 2. Déclaration de la politique 'default'
+    // C'est le filet de sécurité qui s'active automatiquement
+    trustedTypes.createPolicy('default', {
+        createHTML: (input) => DOMPurify.sanitize(input)
+    });
+}
+
+//authorize cookies
 app.use(cors({
-  origin: "http://37.27.248.236:3001", // ton frontend React
+  origin: "http://37.27.248.236:3001", //  frontend React
   credentials: true                // permet d’envoyer/recevoir les cookies
 }));
 
 
-
+//init connection for mysql
 const pool = mysql2.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -64,18 +80,17 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
-
+//set path files
 const reactBuildPath = path.join(__dirname, '../frontend/dist');
 app.use('/assets', express.static(path.join(reactBuildPath, 'assets')));
 
-// 2. Ensuite, on sert le reste du dossier dist (pour favicon.ico, etc.)
 app.use(express.static(reactBuildPath));
 
 
 
 let pseudo = '';
 
-
+//post to set recipe id on cookies
 app.post('/setRecipeID', async (req, res) => {
 
 
@@ -115,6 +130,7 @@ app.post('/setRecipeID', async (req, res) => {
 
 });
 
+//API to send recipe recommanded to frontend
 app.post('/getRecipeReco', async (req, res) => {
 
 
@@ -144,7 +160,7 @@ app.post('/getRecipeReco', async (req, res) => {
 
 
 
-
+// API to send data recipe to front end
 app.post('/recipeDescription', async (req, res) => {
 	try {
 		// Connect to the database using promises
@@ -163,6 +179,7 @@ app.post('/recipeDescription', async (req, res) => {
 	}
 });
 
+// API to send instructions data to frontend
 app.post('/getSteps', async (req, res) => {
 	try {
 		// Connect to the database using promises
@@ -177,6 +194,7 @@ app.post('/getSteps', async (req, res) => {
 	}
 });
 
+// API to send ingredients data to frontend
 app.post('/getIngredients', async (req, res) => {
 	try {
 		// Connect to the database using promises
@@ -192,6 +210,7 @@ const [ingredients] = await pool.execute('SELECT * FROM liste_ingredients WHERE 
 	}
 });
 
+// API to send tags data to frontend
 
 app.post('/getTags', async (req, res) => {
 	try {
@@ -208,6 +227,7 @@ app.post('/getTags', async (req, res) => {
 	}
 });
 
+// API to send commentaires data to frontend
 app.post('/getComment', async (req, res) => {
 	try {
 		console.log(req.body.recipeID);
@@ -226,7 +246,7 @@ app.post('/getComment', async (req, res) => {
 });
 
 
-
+// ban user
 app.post('/ban', async(req, res) => {
 	act = req.body.act;
 	console.log(act);
@@ -250,6 +270,7 @@ app.post('/ban', async(req, res) => {
 
 });
 
+// give admin role to user
 app.post('/giveAdmin', async(req, res) => {
 	act = req.body.act;
 	console.log(act);
@@ -277,6 +298,7 @@ app.post('/giveAdmin', async(req, res) => {
 });
 
 
+// recip data to modify recipe form
 let recipeModID;
 app.post('/getRecipeMod', async(req, res) => {
 	try {
@@ -322,10 +344,12 @@ app.post('/getRecipeMod', async(req, res) => {
 
 });
 
+//modify recipe submit
 app.post('/modifyRecipe', (req, res) => {
 
 	if (req.cookies.pseudo) {
 	recipeModID=req.body.recipeID;
+	// delete actual data
 	var query = connection.query(`DELETE FROM instructions WHERE recipeID= ?;DELETE FROM liste_ingredients WHERE recipeID= ?;
 				DELETE FROM tagslist WHERE recipeID= ?;`
 			, [recipeModID, recipeModID, recipeModID], function (error, results, fields) {
@@ -333,6 +357,7 @@ app.post('/modifyRecipe', (req, res) => {
 
 				console.log("supprimée :", results)
 
+		//prepare post with front end input
 		let post = {
 			title: req.body.title,
 			description: req.body.description,
@@ -346,6 +371,7 @@ app.post('/modifyRecipe', (req, res) => {
 		console.log('step :', req.body.steps);
 		console.log('ingredient :', req.body.ingredients);
 
+		//Update data
 		var query = connection.query('UPDATE recipe SET ? where id= ?', [post,recipeModID],
 			function (error, results, fields) {
 				if (error) throw error;
@@ -426,14 +452,14 @@ app.post('/modifyRecipe', (req, res) => {
 });
 
 
-
 app.listen(3001, '0.0.0.0',  () => {
 	console.log(` app listening at http://localhost:3001`);
 });
 
-
+//signup submit : check input from frontend, manage rrors and add to database 
 app.post('/signup', (req, res) => {
 	
+	//regex for mail
 		const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 	if (!regex.test(req.body.mail))  {res.json({succeed: false, message : "mail format incorrect"});}
 
@@ -441,7 +467,8 @@ app.post('/signup', (req, res) => {
 	,[req.body.pseudo], function (error, results, fields) {
 	if (results.length> 0 ) {res.json({succeed: false, message : "pseudo already exists"});}
 	else{
-
+	
+		//hash password
 	const salt = bcrypt.genSaltSync(10);
 	const hashmdp = bcrypt.hashSync(req.body.password, salt);
 
@@ -491,6 +518,7 @@ app.post('/signup', (req, res) => {
 
 });
 
+//logout submit
 app.post('/logout', (req, res) => {
 	res.clearCookie('pseudo');
 	res.clearCookie('pseudoID');
@@ -499,12 +527,14 @@ app.post('/logout', (req, res) => {
 	res.send({succeed:true})
 });
 
+// send pseudo data or not connected to frontend
 app.get('/getPseudo', (req, res) => {
 		const pseudo = req.cookies.pseudo||"";
 	const pseudoID = req.cookies.pseudoID;
 	res.json({pseudo : pseudo,role : req.cookies.userRole });
 })
 
+// signin post
 app.post('/signin', (req, res) => {
 	console.log(req.body);
 	let mail = req.body.mail;
@@ -524,7 +554,8 @@ app.post('/signin', (req, res) => {
 			let pseudoBDD = result[0].pseudo;
 			let pseudoIDBDD = result[0].id;
 			let userRole= result[0].role
-
+			
+			//compare password with bcrypt
 			bcrypt.compare(mdp, hash, (err, resultCompare) => {
 				if (err) {
 					// Handle error
@@ -579,6 +610,7 @@ app.post('/signin', (req, res) => {
 				});
 			});
 
+			// get category to front end
 app.get('/getCategory',async(req,res) =>
 {	
 
@@ -750,20 +782,6 @@ app.post('/createRecipe', (req, res) => { //create recipe save on database
 
 });
 
-
-
-// app.post('/goRecipe', (req, res) => {
-// 	console.log("url " + req.body.recipeID);
-// 	res.clearCookie('recipeID');
-// 	res.cookie('recipeID', req.body.recipeID, {
-// 		maxAge: 3600000,   // expire dans 1h
-// 		httpOnly: true,    // inaccessible côté client (document.cookie)
-// 		secure: false,     // true si HTTPS
-// 	});
-
-// 	console.log(" recipe ID = " + req.body.recipeID);
-// 	res.redirect('/recipe');
-// });
 
 app.post('/addList', (req, res) => { // add recipe to favoris and ownrecipe recipe_list tabme
 	//if (!pseudo) res.redirect('/recipe');
@@ -968,7 +986,7 @@ app.post('/searchRecipeHome', (req, res) => {
 
 });
 
-
+// select recipe with youtube url and send to front end
 app.post('/searchRecipeYT', (req, res) => {
 	let textSearch = req.body.textSearch;
 	
@@ -990,13 +1008,7 @@ app.post('/giveNote', async (req, res) => {
 	let note = parseInt(req.body.note);
 	console.log("note" + note);
 	try {
-		// Connect to the database using promises
-		// const pool = await mysql2.createConnection({
-		// 	host: process.env.DB_HOST,
-		// 	user: process.env.DB_USER,
-		// 	password: process.env.DB_PASSWORD,
-		// 	database: process.env.DB_NAME,
-		// });
+	
 		let recipeID = req.cookies.recipeID;
 
 		const [existing] = await pool.execute(
@@ -1037,6 +1049,7 @@ app.post('/giveNote', async (req, res) => {
 	}
 });
 
+// add commentaire to database
 app.post('/addComment', async (req, res) => {
 	console.log("comm :  " + req.body.comment + "   id :" + req.cookies.pseudoID + "   recipeid" + req.cookies.recipeID);
 	let comment = req.body.comment;
@@ -1070,7 +1083,7 @@ app.post('/addComment', async (req, res) => {
 	}
 });
 
-
+// delete commentaire from database
 app.post('/deleteComm', (req, res) => {
 	const pseudo = req.cookies.pseudo;
 	const recipeID = req.body.recipeID; 
@@ -1088,6 +1101,7 @@ app.post('/deleteComm', (req, res) => {
 	}
 });
 
+//deleteComm with admin role
 app.post('/deleteCommAdmin', (req, res) => {
 	const recipeID = req.body.recipeID; 
 	const userID = req.body.pseudoID;
@@ -1105,6 +1119,7 @@ app.post('/deleteCommAdmin', (req, res) => {
 	}
 });
 
+// delete note
 app.post('/deleteNote',async (req, res) => {
 	//const pseudo = req.cookies.pseudo;
 	const recipeID = req.body.recipeID; 
@@ -1130,7 +1145,7 @@ app.post('/deleteNote',async (req, res) => {
 	}
 });
 
-
+// modify pseudo or description or image 
 app.post('/modifyProfil', async (req, res) => {
 	let pseudo = req.body.pseudo;
 	let image = req.body.image;
@@ -1138,7 +1153,7 @@ app.post('/modifyProfil', async (req, res) => {
 	let pseudoID = req.cookies.pseudoID;
 	console.log(pseudo + image + description + pseudoID);
 	try {
-
+			//check if pseudo already exist
 			const [pseudoCheck] = await pool.execute('SELECT * FROM users WHERE pseudo=?',
 			[pseudo]);
 
@@ -1164,7 +1179,7 @@ app.post('/modifyProfil', async (req, res) => {
 	}
 });
 
-
+// send mail by contact page form
 app.post('/sendMailContact', (req, res) => {
 	let checkMessage="";
 	const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -1188,7 +1203,7 @@ app.post('/sendMailContact', (req, res) => {
 });
 
 
-
+// function to send mail
 function sendMail(mail,subject,text)
 {
 	let checkMessage="";
@@ -1254,26 +1269,20 @@ app.post('/getPasswordMail', (req, res) => {
 });
 
 
-
+// change password
 app.post('/changePassword', async(req, res) => {
 	//console.log("changemdp" + req.body.passwordNew + req.body.passwordNew2)
 		if(req.body.passwordNew!=req.body.passwordNew2 ) res.json({succeed : false, message: 'retape same password' })
 		else if(req.body.passwordNew.length<4) res.json({succeed : false, message: 'minimum 4 characters' })
 		else{ 
 	try {
-		// Connect to the database using promises
-		// const pool = await mysql2.createConnection({
-		// 	host: process.env.DB_HOST,
-		// 	user: process.env.DB_USER,
-		// 	password: process.env.DB_PASSWORD,
-		// 	database: process.env.DB_NAME,
-		// });
+	
 		let recipeID = req.cookies.recipeID;
 
 	mdp = req.body.passwordCurrent;
 	console.log(mdp);
 	//check password
-	
+	//select actual password and compare with bcrypt
 	const [checkPass] = await pool.execute('SELECT mdp FROM users WHERE id = ? ',[req.cookies.pseudoID]);
 	let checkHash=false;
 	if (checkPass && checkPass.length > 0) {
@@ -1281,7 +1290,7 @@ app.post('/changePassword', async(req, res) => {
 			console.log(checkPass[0].mdp);
 			resultCompare = await bcrypt.compare(mdp, hash);
 			
-	
+	//if password match , new password is udpated!
 			if(resultCompare){
 			console.log('Passwords match! ');				
 			const salt = bcrypt.genSaltSync(10);

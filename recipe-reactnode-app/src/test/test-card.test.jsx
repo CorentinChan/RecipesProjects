@@ -1,18 +1,18 @@
- 
+import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from "@testing-library/react";
 import React from 'react';
 
 import "@testing-library/jest-dom";
-import Card from "/src/components/Card";
+import Card from "../components/Card";
 
-global.React = React; // this also works for other globally available libraries
+global.React = React; 
 
-const mockNavigate = jest.fn();
-jest.mock("react-router-dom", () => ({
+const mockNavigate = vi.fn();
+vi.mock("react-router-dom", () => ({
   useNavigate: () => mockNavigate,
 }));
 
-test("affiche le titre, l'image et l'id", () => {
+it("affiche le titre, l'image et l'id", () => {
   render(<Card id="10" title="Hello World" img="test.jpg" />);
 
   // test title
@@ -27,13 +27,11 @@ test("affiche le titre, l'image et l'id", () => {
   expect(screen.getByTestId("card-10")).toBeInTheDocument();
 });
 
-test("navigate click", () => {
+it("navigate click", () => {
   render(<Card id="10" title="Hello World" img="test.jpg" />);
 
   const card = screen.getByTestId("card-10");
   card.click();
 
   expect(mockNavigate).toHaveBeenCalledWith("/recipe?id=10");
-
-
 });

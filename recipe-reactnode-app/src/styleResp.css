@@ -193,7 +193,6 @@
       /*footer : tableau 2 par lignes */
 
       .table-perso {
-        flex: column;
         flex-direction: column;
 
         margin-bottom: 5rem;

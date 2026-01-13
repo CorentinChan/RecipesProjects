@@ -18,10 +18,7 @@ function toggleTheme() {
 
 <div className="justify-content-around">
   
-{/* <button onClick={toggleTheme}>
-  Dark / Light
-</button> */}
-
+  {/* logos faire share button*/}
   <div className="logos me-5 pe-lg-5">
     <div>
       <FacebookShareButton className="m-2" url={url} quote={title} aria-label="facebook share">

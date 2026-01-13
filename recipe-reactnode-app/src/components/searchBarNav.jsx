@@ -31,15 +31,17 @@ import { isMobile } from "react-device-detect";
   }, []);
 
 
+    // update text bar
    function handleChange(e) {
    e.preventDefault();    // avoid submit
-       setKeySearch(e.target.value);
+   setKeySearch(e.target.value);
+   //navigate url when enter key is pressed
      if (e.key === 'Enter') {
         let url = "/search?tag="+keySearch;
-      navigate(url);
-  }
+      navigate(url);}
   }
 
+  //navigate to url when click on button or display bar
   function handleSubmit(e) {
 
         e.preventDefault();

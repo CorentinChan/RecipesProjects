@@ -4,7 +4,7 @@ import axios from 'axios';
 export default function Tags({recipeID}){
   const [tagsTab, setTagsTab] = useState([]);
  
-
+// get tags via axios and display
   useEffect(() => {
     async function fetchTags() {
       try {
@@ -45,15 +45,7 @@ export default function Tags({recipeID}){
 
     </div>
 
-    {/* <div className="shareRecipe pt-3 mt-3">
-      <h3 >Share recipes</h3>
-  <div className="d-flex justify-content-center me-5 pe-lg-5">
-<i className="fa-brands fa-facebook fa-2x p-3" ></i>
-<i className="fa-brands fa-instagram fa-2x p-3"></i>
-<i className="fa-brands fa-twitter fa-2x p-3"></i>
-
-  </div>
-    </div> */}
+    
     
 </>
     );

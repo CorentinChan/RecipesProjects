@@ -8,7 +8,7 @@ import axios from 'axios';
   useEffect(() => {
     async function getPseudo() {
       
-
+      //when path change , check cookies for authentification
       console.log("API" + import.meta.env.VITE_API_URL);
         try {
         const { data } = await axios.get(

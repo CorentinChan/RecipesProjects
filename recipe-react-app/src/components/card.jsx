@@ -6,10 +6,12 @@ import { useNavigate } from "react-router-dom";
 
  return( 
 
-
+        //card component
         <div  className="col-6 col-lg-4 px-1 my-lg-3 "       data-testid={`card-${id}`} onClick={()=>{navigate(url)}}>
           <div  className="card shadow-sm h-100  " key={id}>
+                  {/* card image */}
             <img src={img}  className="card-img-top" alt="Card 1"/>
+                  {/* card description */}
             <div  className="card-body">
               <h5  className="card-title"> {title} </h5>
               <div className="d-flex mt-5 justify-content-between"> 

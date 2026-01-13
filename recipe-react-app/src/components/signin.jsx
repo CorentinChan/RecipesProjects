@@ -15,6 +15,7 @@ export default function Signin() {
                   <div className="w-100 w-lg-75 mx-auto text-center text-grey">
                     <h2 className="text-center m-4 text-black fw-bold pt-5">Sign in</h2>
 
+                        {/*connect with passport auth*/}
                     <div className="logosLogin text-center d-flex justify-content-center">
                       <i className="fa-brands fa-facebook fa-2x p-3"></i>
                       <i className="fa-brands fa-instagram fa-2x p-3"></i>

@@ -13,6 +13,8 @@ const navigate = useNavigate();
   const handleNote = (event) => {
    console.log(event.target.value);
     let note=event.target.value;
+
+    //note send to backend
    async function fetchNote() {
       try {
         const { data } = await axios.post(
@@ -45,7 +47,7 @@ const navigate = useNavigate();
   console.log("updateForm changed:", updateForm);
 }, [updateForm]);
 
-
+  //submit comment to backend
     function handleSubmit(e){
      e.preventDefault();
       let comment= message;
@@ -78,6 +80,7 @@ const navigate = useNavigate();
           <div className="list-group-item" aria-current="true">
             <div className=" d-flex w-100 justify-content-between">
               <div className="d-flex"><i className="fa-solid fa-star p-3"></i> 
+                    {/* note selection, send new note each select */}
               <select onChange={handleNote} className="form-select form2" defaultValue={""} >
   <option value="" disabled>Give a note</option>
        <option>1</option>
@@ -88,6 +91,7 @@ const navigate = useNavigate();
    </select>
             </div>
             </div>
+                  {/* comment form */}
             <form className="my-1 py-3" onSubmit={handleSubmit}>
     <div className=" ">
       <label htmlFor="comment">Comments:</label>

@@ -56,9 +56,7 @@ color:orangered!important;
 margin-top: 0.5rem;
 }
 
-.nav-link:hover{
-  color:rgb(0, 94, 255)!important;
-}
+
 
 .signup-container .container-fluid{
 width: 95%;
@@ -69,9 +67,7 @@ width: 95%;
 text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.signup-text a:hover{
-color: blue!important;
-}
+
 
 .clickable{
   cursor: pointer;
@@ -182,9 +178,6 @@ color: blue!important;
       padding: 0.25rem 0;
     }
 
-    .accordion-body a:hover {
-      color: #007bff;
-    }
 
     .textSearchMenu{
       cursor: pointer;
@@ -267,11 +260,6 @@ width: 50rem;
   color:#ffe600
 }
 
-.card:hover {
-  transform: translateY(-5px); 
-  transform: scale(1.02); 
-  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important; 
-}
 
  .card-img-top {
            height: 240px;                 
@@ -280,9 +268,7 @@ width: 50rem;
     }
     
     
-    .card:active:not(:has(.heart-icon:hover)){
-      transform: scale(0.9);  
-    }
+
 
     .heart-icon {
       position: absolute;
@@ -298,9 +284,6 @@ width: 50rem;
       font-size: 1.2rem;
     }
 
-    .heart-icon:hover {
-      transform: scale(1.1);
-    }
 
 
     
@@ -329,10 +312,7 @@ width: 50rem;
 
     }
 
-        .carousel-indicators .btn:hover{
-      transform: scale(1.2);
-    }
-
+   
     .carousel-indicators .active {
       color:#34c6ff;
       font-weight: bold;
@@ -375,9 +355,6 @@ width: 50rem;
         background-color:orange; 
     }
 
-        .subscribeSection .btn:hover{
-        background-color:yellow;     
-    }
 
  iframe {
   width: 100%;
@@ -409,7 +386,7 @@ width: 50rem;
 
  /*Recipe Page*/
 
- .recipteTitle{
+ .recipeTitle{
   max-width: 100%;
  }
  .image-container{
@@ -688,3 +665,44 @@ width: 100%;
 }
  
 
+
+
+@media (hover: hover) {
+
+      .accordion-body a:hover {
+      color: #007bff;
+    }
+
+    .signup-text a:hover{
+    color: blue!important;
+    }
+
+      .nav-link:hover{
+      color:rgb(0, 94, 255)!important;
+    }
+
+      .card:hover {
+        transform: translateY(-5px); 
+        transform: scale(1.02); 
+        box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important; 
+      }
+
+     .carousel-indicators .btn:hover{
+      transform: scale(1.2);
+    }
+
+        .card:active:not(:has(.heart-icon:hover)){
+      transform: scale(0.9);  
+    }
+
+        .heart-icon:hover {
+      transform: scale(1.1);
+    }
+
+       .subscribeSection .btn:hover{
+        background-color:yellow;     
+    }
+
+
+
+}

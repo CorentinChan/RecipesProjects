@@ -1,5 +1,5 @@
  
-  import Card from './card'
+  import Card from './card.jsx'
 import { useState, useEffect } from 'react';
 import { useSearchParams } from "react-router-dom";
 import { KeywordContext } from "./keyword";

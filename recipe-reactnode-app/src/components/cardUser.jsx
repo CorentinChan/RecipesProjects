@@ -13,8 +13,8 @@ import {Link } from 'react-router-dom';
                    {/* image card */}           
             <img 
               loading="lazy" 
-              width="300" 
-              height="300"
+              width="400" 
+              height="240"
               decoding="async"  
             src={img?img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwAdnj607fkyztZ3TkKVTdEy-FG-tD-gEGJQ&s"}  className="card-img-top" alt="Card 1"/>
 

@@ -85,8 +85,8 @@ export default function Card({ title, img, id, note, author, isFavoris }) {
           {/*image*/}
           <img
           loading="lazy" 
-          width="300" 
-          height="300"
+          width="400" 
+          height="240"
           decoding="async"  
             src={
               img

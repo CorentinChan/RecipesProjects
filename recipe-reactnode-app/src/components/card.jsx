@@ -9,6 +9,8 @@ export default function Card({ title, img, id, note, author, isFavoris }) {
   let navigate = useNavigate();
   const user = useStore((state) => state.user);
 
+  img=img+"/preview";
+
   // axios request to add to favorite list
   async function fetchAddList() {
     let recipeID = id;
@@ -82,13 +84,17 @@ export default function Card({ title, img, id, note, author, isFavoris }) {
         <div className="imagePart rounded-4 ">
           {/*image*/}
           <img
+          loading="lazy" 
+          width="300" 
+          height="300"
+          decoding="async"  
             src={
               img
                 ? img
                 : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwAdnj607fkyztZ3TkKVTdEy-FG-tD-gEGJQ&s"
             }
             className="card-img-top border-0 rounded-4"
-            alt="Card 1"
+            alt={img}
           />
           {user && (
             <span className="heart-icon">

@@ -72,6 +72,15 @@ app.use('/assets', express.static(path.join(reactBuildPath, 'assets')));
 
 app.use(express.static(reactBuildPath));
 
+// Route spécifique pour le sitemap
+app.get('/sitemap.xml', (req, res) => {
+    res.sendFile(path.join(__dirname, '../sitemap.xml'));
+});
+
+// Route spécifique pour le robots.txt
+app.get('/robots.txt', (req, res) => {
+    res.sendFile(path.join(__dirname, '../robots.txt'));
+});
 
 
 let pseudo = '';

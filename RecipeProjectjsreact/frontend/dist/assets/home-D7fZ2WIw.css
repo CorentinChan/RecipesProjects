@@ -1,0 +1,1 @@
+.recipeList .card{height:280px;width:320px}.recipeList .card-img-top{height:180px;width:320px;object-fit:cover}@media(max-width:768px){.recipeList .card-img-top{height:150px;width:100%;object-fit:cover}.recipeList{display:flex;flex-direction:column;margin:0}.recipeList form{width:80%;margin:1rem}.recipeList form{width:30rem}}

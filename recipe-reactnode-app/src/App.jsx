@@ -5,22 +5,28 @@ import './animation.css'
 
 import Dashboard from '/src/pages/dashboard.jsx'
 
-import Home from '/src/pages/home.jsx'
-import Contact from '/src/pages/contact.jsx'
-import Recipe from '/src/pages/recipe.jsx'
-import Search from '/src/pages/search.jsx'
-import Account from '/src/pages/account.jsx'
-import Signin from '/src/components/signin.jsx'
+// import Home from '/src/pages/home.jsx'
+// import Contact from '/src/pages/contact.jsx'
+// import Recipe from '/src/pages/recipe.jsx'
+// import Search from '/src/pages/search.jsx'
+// import Account from '/src/pages/account.jsx'
+// import Signin from '/src/components/signin.jsx'
 
-
-import Nav from '/src/components/nav.jsx'
-import Footer from '/src/components/footer.jsx'
 
 import { useLocation } from "react-router-dom";
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { useStore } from "./store/store";
 import ModifyRecipe from './components/modifyRecipe'
 import LocationState from './components/locationState'
+import React, { Suspense, lazy } from 'react';
+
+// with lazy page will load only if needed
+const Home = lazy(() => import('/src/pages/home.jsx'));
+const Contact = lazy(() => import('/src/pages/contact.jsx'));
+const Search = lazy(() => import('/src/pages/search.jsx'));
+const Recipe = lazy(() => import('/src/pages/recipe.jsx'));
+const Account = lazy(() => import('/src/pages/account.jsx'));
+const Signin = lazy(() => import('/src/components/signin.jsx'));
 
 
 function App() {
@@ -42,7 +48,8 @@ function App() {
        setLocationState={setLocationState} /> 
 
       {/* Routes */}
-    
+            {/* fallback display when download */}
+          <Suspense fallback={<div className="container mt-5">loading...</div>}>
       <Routes>
         <Route  element={<Dashboard />}>
         <Route path="/" element={<Home user={user} />} />
@@ -59,6 +66,8 @@ function App() {
 
 
       </Routes>
+     </Suspense>
+
     </BrowserRouter>
 
 

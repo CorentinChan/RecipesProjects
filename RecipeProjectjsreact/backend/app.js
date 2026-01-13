@@ -31,21 +31,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
  
-// Sécurité : Configuration des Trusted Types
-if (window.trustedTypes && window.trustedTypes.createPolicy) {
-    
-    // 1. Déclaration de la politique 'dompurify' (citée dans ton Nginx)
-    // Elle nécessite d'avoir chargé la bibliothèque DOMPurify
-    window.purifyPolicy = trustedTypes.createPolicy('dompurify', {
-        createHTML: (input) => DOMPurify.sanitize(input)
-    });
 
-    // 2. Déclaration de la politique 'default'
-    // C'est le filet de sécurité qui s'active automatiquement
-    trustedTypes.createPolicy('default', {
-        createHTML: (input) => DOMPurify.sanitize(input)
-    });
-}
 
 //authorize cookies
 app.use(cors({

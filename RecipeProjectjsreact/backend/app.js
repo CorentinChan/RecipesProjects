@@ -30,7 +30,7 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-
+ 
 // Sécurité : Configuration des Trusted Types
 if (window.trustedTypes && window.trustedTypes.createPolicy) {
     

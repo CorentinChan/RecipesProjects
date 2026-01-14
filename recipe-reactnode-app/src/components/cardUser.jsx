@@ -7,9 +7,10 @@ import {Link } from 'react-router-dom';
   let navigate = useNavigate();
 
  return( 
-  // card
+                   // card
           <div  className="card shadow-sm h-100 m-2 z-10  " key={id} > 
                       <Link className="text-decoration-none text-reset" to={url} state={{ scrollTop: Date.now() }}>
+
                    {/* image card */}           
             <img 
               loading="lazy" 

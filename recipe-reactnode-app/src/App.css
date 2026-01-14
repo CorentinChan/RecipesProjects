@@ -262,9 +262,10 @@ width: 50rem;
 
 
  .card-img-top {
-           height: 240px;                 
-      width: 400px;               
-      object-fit: cover;            
+  width: 100%;
+  max-width: 400px;
+  height: auto;       /* hauteur s’adapte à l’image */
+  object-fit: contain; /* l’image entière est visible */        
     }
     
     

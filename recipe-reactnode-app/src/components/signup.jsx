@@ -10,6 +10,7 @@ const [message,setMessage]=useState("");
 let mailInput= useRef("");
 let passwordInput= useRef("");
 let pseudoInput=useRef('');
+
 function overlayClick() {
 setShowSignup(false);
 }
@@ -44,9 +45,9 @@ let password=passwordInput.current.value;
         // verifie si l'inscription a été effectué
         if (data.succeed) {
           //setUser(data.pseudo);
-          console.log("succed")
-          navigate("/account"); 
+          console.log("succed");
           setShowSignup(false);
+          navigate("/account"); 
         }
       } catch (error) {
         console.error("Erreur lors de la connexion :", error);

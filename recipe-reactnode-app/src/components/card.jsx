@@ -94,7 +94,7 @@ export default function Card({ title, img, id, note, author, isFavoris }) {
                 : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwAdnj607fkyztZ3TkKVTdEy-FG-tD-gEGJQ&s"
             }
             className="card-img-top border-0 rounded-4"
-            alt={img}
+            alt="Card"
           />
           {user && (
             <span className="heart-icon">

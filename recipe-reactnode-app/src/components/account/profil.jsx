@@ -110,9 +110,10 @@ return (
       <div className="text-center fst-italic m-3 py-lg-2 px-lg-5">
         {profil?.description}
       </div>
-              <div class=" d-flex justify-content-center">
+              <div className=" d-flex justify-content-center">
                     
-                <button class="btn-danger bg-danger rounded-pill" type="button" onClick={deleteProfil} >Delete Profil</button>
+                <button className="btn-danger bg-danger rounded-pill" type="button"  
+                onClick={() => {if (window.confirm("Are you sure, your data will be deleted ?"))deleteProfil(); }} >Delete Account</button>
             
           </div>
     </div>

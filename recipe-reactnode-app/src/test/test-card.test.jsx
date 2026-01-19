@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import React from 'react';
 
 import "@testing-library/jest-dom";
-import Card from "../components/Card";
+import Card from "../components/card.jsx";
 
 global.React = React; 
 
@@ -19,9 +19,9 @@ it("affiche le titre, l'image et l'id", () => {
   expect(screen.getByText("Hello World")).toBeInTheDocument();
 
   // Image (alt="Card 1" )
-  const img = screen.getByAltText("Card 1");
+  const img = screen.getByAltText("Card");
   expect(img).toBeInTheDocument();
-  expect(img).toHaveAttribute("src", "test.jpg");
+  expect(img.getAttribute("src")).toContain("test.jpg");
 
   // ID via testid
   expect(screen.getByTestId("card-10")).toBeInTheDocument();

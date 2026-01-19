@@ -15,7 +15,7 @@ vi.mock("/src/store/store.js", () => ({
 // Import du store après le mock pour pouvoir manipuler sa valeur si besoin
 import { useStore } from "/src/store/store.js";
 
-// 3.  MOCKS axios
+// MOCKS axios
 vi.mock("axios");
 vi.mock("/src/components/recipe/descriptionAdmin.jsx", () => ({
   default: () => <div data-testid="admin-panel">Admin Panel</div>,

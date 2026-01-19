@@ -1196,6 +1196,42 @@ app.post('/deleteNote', (req, res) => {
 	}
 });
 
+//delete profil 
+app.post('/deleteProfil', async (req, res) => {
+	try {
+		// Connect to the database using promises
+		const pool = await mysql2.createConnection({
+			host: process.env.DB_HOST,
+			user: process.env.DB_USER,
+			password: process.env.DB_PASSWORD,
+			database: process.env.DB_NAME,
+		});
+
+		const pseudo = req.cookies.pseudo;
+		const pseudoID = req.cookies.pseudoID;
+		
+		//delete commentaires and users data
+		const [check] = await pool.execute('Delete from commentaires WHERE userID=? ', [ pseudoID]);
+		const [checkDelete] = await pool.execute('delete  from users WHERE id=? ', [ pseudoID]);
+
+
+
+	
+	res.clearCookie('pseudo');
+	res.clearCookie('pseudoID');
+	res.clearCookie('userRole');
+	console.log('Cookie "pseudo" supprimé ✅');
+	res.redirect('/home');
+
+
+	} catch (err) {
+		console.error('Erreur MySQL :', err);
+		res.status(500).send('Erreur serveur');
+	}
+
+});
+
+
 
 app.post('/modifyProfil', async (req, res) => {
 	let pseudo = req.body.pseudo;
@@ -1499,35 +1535,6 @@ app.get("/profile", async(req, res) => {
     res.status(500).send("Server error");
   }
 });
-
-
-//search recipes recommanded with tag
-/*
-app.post('/RecipeForU', (req, res) => {
-
-			
-
-				 connection.query(`SELECT recipeID FROM tagslist WHERE tag =?  `, [tag1,tag2], function (error, result, fields) {
-				if (error) throw error;
-									console.log(" searchKey = " + req.body.textSearch);
-									console.log(result);
-										connection.query(`SELECT * from recipe WHERE recupeID =?  `, [recipeIDtab], function (error, result, fields) {
-							if (error) throw error;
-												console.log(" searchKey = " + req.body.textSearch);
-												console.log(result);
-						
-												res.render('recipe', { 
-						title: 'Recipe page',user : pseudo ,
-						recipesForU : result
-						});        
-					});
-								 
-		});
-
-				 });
-
-				 */
-
 
 
 				 module.exports = app;

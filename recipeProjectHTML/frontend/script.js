@@ -1,3 +1,5 @@
+
+//highlight active url in navbar
 document.addEventListener('DOMContentLoaded', () => {
   const links = document.querySelectorAll('nav a');
   const currentPath = window.location.pathname;
@@ -13,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-
+//display search bar
 searchButton = document.getElementById('searchButton');
 searchWindow = document.getElementById('searchWindow');
 let windowStatus= "none";
@@ -27,21 +29,13 @@ searchButton.addEventListener('click', () => {
   searchWindow.classList.add('slide-in-blurred-left');
 
 
-  /*
-  document.querySelector(".btnCustom").style.width="5em";
-  document.querySelector(".btnCustom2").style.width="5em";
-  */
+
   windowStatus="block";
  }
  else{
 
   sendSearch();
- /* windowStatus="none";
-  searchWindow.style.display = "none";
-  
-  //document.querySelector(".btnCustom").style.width = "5em";
-  //document.querySelector(".btnCustom2").style.width = "5em";
-  */
+
  }
 
 });
@@ -53,6 +47,7 @@ searchButton.addEventListener('click', () => {
    }
 });
 
+//start search : SAVE A KEYWORD IN LOCALSTORAGE AND REDIRECT TO SEARCH PAGE
 function sendSearch(){
       let mot = searchWindow.value;
     localStorage.setItem('searchKey',mot);

@@ -82,6 +82,10 @@ app.get('/robots.txt', (req, res) => {
     res.sendFile(path.join(__dirname, '../robots.txt'));
 });
 
+app.get('/terms', (req, res) => {
+    res.sendFile(path.join(__dirname, '../terms.txt'));
+});
+
 
 let pseudo = '';
 

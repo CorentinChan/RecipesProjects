@@ -6,8 +6,7 @@
     <!-- Responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- secu -->
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <!-- SEO -->
     <meta name="description" content="site de recettes collaboratif">
     <meta name="keywords" content="recettes, cuisine, recipes,cook">
@@ -87,7 +86,7 @@
       <!--right side of nav with button and link always visible-->
           <div class="rightNav">
             <input type="text" class="form-control searchWindow mt-2 " placeholder="Search" id="searchWindow" aria-label="Search"
-              aria-describedby="basic-addon1">
+             >
           
             <i class="fa-solid fa-magnifying-glass fa-lg m-4 mx-3 clickable " id="searchButton"></i>
             <!--
@@ -98,9 +97,9 @@
             <button type="button" class="btn  btnAc btn-primary fs-5 rounded-pill mx-2 btnCustom " aria-label="signup"
             id ="signupButton" onclick="displaySignup()" >Sign up</button>
           
-          
+                    </div>
+
           </div>
-  </div>
 </nav>
 
 <!--presentation section with text and link-->
@@ -189,32 +188,7 @@
 
   </div>
 
-<!--
-  <ul class="nav flex-column">
 
-    
-    <li class="nav-item dropdown nav-item2">
-    <a class="nav-link  nav-link2"  data-bs-toggle="collapse" data-bs-target="#mynavbar2" href="#" role="button" aria-expanded="false"><h2 class="pt-4">Dishes</h2></a>
-    <ul class="dropdown-menu collapse show" id="mynavbar2">
-      <li><a class="dropdown-item" href="#">Action</a></li>
-      <li><a class="dropdown-item" href="#">Another action</a></li>
-      <li><a class="dropdown-item" href="#">Something else here</a></li>
-    </ul>
-  </li>
-      <li class="nav-item dropdown nav-item2">
-    <a class="nav-link  nav-link2"  data-bs-toggle="collapse" data-bs-target="#mynavbar21" href="#" role="button" aria-expanded="false">
-      <h2 class="pt-4">Dishes</h2></a>
-    <ul class="dropdown-menu" id="mynavbar21">
-      <li><a class="dropdown-item" href="#">Action</a></li>
-      <li><a class="dropdown-item" href="#">Another action</a></li>
-      <li><a class="dropdown-item" href="#">Something else here</a></li>
-    </ul>
-  </li>
-
-
-  </ul>
-
--->
 
     </div>
 </section>
@@ -234,12 +208,8 @@
     </div>
   </div>
 </div>
-<!--
- <form class="d-flex">
-        <input class="form-control me-2" type="text" placeholder="Search">
-        <button class="btn btn-primary" type="button">Search</button>
- </form>
- -->
+
+
 <div class="searchList mt-2">
   <select class="form-select fs-5 rounded-pill form-select-lg mx-3"  aria-label="search filter" id="recipeFilter">
     <option selected disabled>Sort by : </option>
@@ -403,13 +373,13 @@
   </div>
 
   <!-- Indicators-->
-  <div class="carousel-indicators position-static mt-3 justify-content-center" href="#cardCarousel">
+  <div class="carousel-indicators position-static mt-3 justify-content-center" id="#cardCarousel">
         <button class="btn btn-outline-primary bg-white " type="button" data-bs-target="#cardCarousel" data-bs-slide="prev">
       ⬅️ 
     </button>
     <div class="d-flex numeroButton" id="numeroButton">
-    <button type="button" data-bs-target="#cardCarousel" data-bs-slide-to="0" class="active bg-white text-black-50" href="#cardCarousel">1</button>
-    <button type="button" class=" bg-white text-black-50" data-bs-target="#cardCarousel" data-bs-slide-to="1"  href="#cardCarousel">2</button>
+    <button type="button" data-bs-target="#cardCarousel" data-bs-slide-to="0" class="active bg-white text-black-50" >1</button>
+    <button type="button" class=" bg-white text-black-50" data-bs-target="#cardCarousel" data-bs-slide-to="1" >2</button>
     <button type="button" class=" bg-white text-black-50" data-bs-target="#cardCarousel" data-bs-slide-to="2">3</button>
     </div>
      <button class="btn btn-outline-primary bg-white" type="button" data-bs-target="#cardCarousel" data-bs-slide="next">
@@ -417,8 +387,6 @@
     </button>
   </div>
 
-  <!-- arrow-->
-  <div class="d-flex justify-content-center mt-4 gap-3">
 
         </section>
 
@@ -493,6 +461,8 @@
 </div>
 
 </section>
+
+
 <footer>
 <!--footer with logos and links -->
 
@@ -534,6 +504,7 @@
              
 
 </div>
+</div>
 
   <p class="textTab">Made by C.C</p> 
 
@@ -546,7 +517,7 @@
 <div class="overlay" id="overlay1">
   <div class="signWindow" id="signWindow">
     <button type="button" class="btn btnAc border text-center btn-danger btnClose " aria-label="Close" id="closeSignWindow" onclick="signinClose()">X</button>
-    <iframe src="login.html" width="100%" height="100%" style="border:none;"></iframe>
+    <iframe src="login.html" style="width:100%; height:100%; border:none;"></iframe>
   </div>
 </div>
 
@@ -565,10 +536,10 @@
    
         <h5 class="text-center m-3 ">Join us and add your own recipes and many more! </h5>
         <label for="mail" class="form-label text-center text-grey fs-4 me-3">Email</label>
-        <input type="text" class="form-control rounded-pill text-black bg-white border border-grey text-center " id="name" placeholder="tom@company.com" >
+        <input type="text" class="form-control rounded-pill text-black bg-white border border-grey text-center " id="mail" placeholder="tom@company.com" >
 
-        <label for="mail" class="form-label  text-center text-grey fs-4 me-3 mt-3">Pseudo</label>
-        <input type="text" class="form-control text-center text-black  w-50 rounded-pill bg-white border border-grey text-center " id="name" placeholder="tom@company.com" >
+        <label for="pseudo" class="form-label  text-center text-grey fs-4 me-3 mt-3">Pseudo</label>
+        <input type="text" class="form-control text-center text-black  w-50 rounded-pill bg-white border border-grey text-center " id="pseudo" placeholder="tom@company.com" >
         
 
         <label for="password" class="form-label fs-4 me-3 mt-3">Password</label>

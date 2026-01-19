@@ -6,11 +6,11 @@ import axios from 'axios';
 import CreateRecipe from "../components/account/createRecipe.jsx"; 
 import "@testing-library/jest-dom";
 
-// 1. Mock d'Axios et de fetch global
+// Mock d'Axios et de fetch global
 vi.mock('axios');
 global.fetch = vi.fn();
 
-// 2. Mock de useNavigate
+// Mock de useNavigate
 const mockNavigate = vi.fn();
 vi.mock("react-router-dom", async () => {
   const actual = await vi.importActual("react-router-dom");

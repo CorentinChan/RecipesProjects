@@ -117,6 +117,8 @@ let password=passwordInput.current.value;
           </div>
 
           <div className="text-center">
+                <p class="pt-3 fst-italic fs-5 text-info">When you sign up, you agree to our <a target="_blank" rel="noopener noreferrer" href="https://corentinchan.de/terms">terms and conditions</a>
+        </p>
             <button type="submit" className="btn btnAc mx-3 fs-5 px-3 mt-3 btn-warning rounded-pill">
               Sign up!
             </button>

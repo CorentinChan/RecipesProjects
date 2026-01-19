@@ -20,7 +20,7 @@ Object.defineProperty(window, 'matchMedia', {
   })),
 });
 
-// 2. Mock de Zustand (le store)
+// Mock de Zustand (le store)
 const mockSetUser = vi.fn();
 vi.mock("../store/store", () => ({
   useStore: vi.fn((selector) => {

@@ -84,10 +84,14 @@ return (
         </div>
       </div>
 
-      <div className="text-center fst-italic m-3 py-lg-4 px-lg-5">
+      <div className="text-center fst-italic m-3 py-lg-2 px-lg-5">
         {profil?.description}
       </div>
-
+              <div class=" d-flex justify-content-center">
+                    <form method="post" action="/deleteProfil"       onsubmit=" confirm('Are you sure? all data will be deleted');">
+                <button class="btn-danger bg-danger rounded-pill" type="submit" >Delete Profil</button>
+              </form>
+          </div>
     </div>
   </div>
 

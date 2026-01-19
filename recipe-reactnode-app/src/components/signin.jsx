@@ -76,14 +76,14 @@ export default function Signin() {
                       Email
                     </label>
                     <input type="email" className="form-control rounded-pill bg-white border border-grey text-center"
-                      id="mail" value={mail} onChange={(e) => setmail(e.target.value)} />
+                        autocomplete="email"  id="mail" value={mail} onChange={(e) => setmail(e.target.value)} />
 
 
                     <label htmlFor="password" className="form-label fs-4 me-3 mt-3">
                       Password
                     </label>
                     <input  type="password"  className="form-control rounded-pill bg-white border border-grey text-center"
-                      id="password" value={password} 
+                      id="password" value={password}    autocomplete="current-password"                      
                       onChange={(e) => setPassword(e.target.value)} placeholder="Min 4 characters" />
                   </div>
 

@@ -104,6 +104,7 @@ let password=passwordInput.current.value;
             </label>
             <input
               type="text"   id="signupPseudo"  placeholder="JohnDoe" ref={pseudoInput} 
+               autocomplete="email"
               className="form-control text-center text-black w-50 rounded-pill bg-white border border-grey"            
             />
 

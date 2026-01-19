@@ -46,6 +46,7 @@ let password=passwordInput.current.value;
           //setUser(data.pseudo);
           console.log("succed")
           navigate("/account"); 
+          setShowSignup(false);
         }
       } catch (error) {
         console.error("Erreur lors de la connexion :", error);

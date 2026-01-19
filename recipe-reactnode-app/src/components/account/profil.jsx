@@ -5,12 +5,35 @@
   import ModalPassword from './modalPassword'
   import ModalProfil from './modalProfil'
   import CreateRecipe from './createRecipe'
-  import imgProfil from '../images/dimsumtransp.png'
+import { useNavigate } from "react-router-dom";
 
  
  export default function  Profil({user,userRole}) {
   const [profil,setProfil]=useState("");
   const [message,setMessage]=useState("");
+    let navigate = useNavigate();
+
+
+    //delete profil function
+      async function deleteProfil() {
+        try {
+          const response = await axios.post(
+            import.meta.env.VITE_API_URL + "/deleteProfil",
+            {},
+            {
+              headers: {
+                "Content-Type": "application/json",
+              },
+              withCredentials: true,
+            }
+          );
+
+          navigate("/");
+        } catch (error) {
+          console.error("Erreur suppression profil :", error);
+          setMessage("Erreur lors de la suppression du profil");
+        }
+      }
 
    useEffect(() => {
           
@@ -88,9 +111,9 @@ return (
         {profil?.description}
       </div>
               <div class=" d-flex justify-content-center">
-                    <form method="post" action="/deleteProfil"       onsubmit=" confirm('Are you sure? all data will be deleted');">
-                <button class="btn-danger bg-danger rounded-pill" type="submit" >Delete Profil</button>
-              </form>
+                    
+                <button class="btn-danger bg-danger rounded-pill" type="button" onClick={deleteProfil} >Delete Profil</button>
+            
           </div>
     </div>
   </div>

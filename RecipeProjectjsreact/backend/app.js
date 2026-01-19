@@ -1144,6 +1144,42 @@ app.post('/deleteNote',async (req, res) => {
 	}
 });
 
+
+//delete profil 
+app.post('/deleteProfil', async (req, res) => {
+	try {
+		// Connect to the database using promises
+		const pool = await mysql2.createConnection({
+			host: process.env.DB_HOST,
+			user: process.env.DB_USER,
+			password: process.env.DB_PASSWORD,
+			database: process.env.DB_NAME,
+		});
+
+		const pseudo = req.cookies.pseudo;
+		const pseudoID = req.cookies.pseudoID;
+		
+		//delete commentaires and users data
+		const [check] = await pool.execute('Delete from commentaires WHERE userID=? ', [ pseudoID]);
+		const [checkDelete] = await pool.execute('delete  from users WHERE id=? ', [ pseudoID]);
+
+
+
+	
+	res.clearCookie('pseudo');
+	res.clearCookie('pseudoID');
+	res.clearCookie('userRole');
+	console.log('Cookie "pseudo" supprimé ✅');
+	res.json({succeed:true});
+
+	} catch (err) {
+		console.error('Erreur MySQL :', err);
+		res.status(500).send('Erreur serveur');
+	}
+
+});
+
+
 // modify pseudo or description or image 
 app.post('/modifyProfil', async (req, res) => {
 	let pseudo = req.body.pseudo;

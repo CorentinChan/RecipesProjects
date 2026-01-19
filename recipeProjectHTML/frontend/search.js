@@ -10,7 +10,7 @@ const mealArea = ["American","British","Canadian","Chinese","Croatian","Dutch","
 let randomCategory = mealCategory[Math.floor(Math.random() * mealCategory.length)];
 let randomArea = mealArea[Math.floor(Math.random() * mealArea.length)];
 
-  if(urlActive==="home.html"||urlActive===""||urlActive==="index.html"){
+  if(urlActive==="home.html"||urlActive==="/home.html"||urlActive==="index.html"){
     setRecipeVideo( "c="+randomCategory);
      searchRecipeGen("c="+randomCategory);
    // searchRecipeGen("a="+randomArea);
@@ -19,7 +19,7 @@ let randomArea = mealArea[Math.floor(Math.random() * mealArea.length)];
   let searchKeySaved=localStorage.getItem("searchKey");
    console.log("mot storé " + localStorage.getItem('searchKey'));
 /*default recipes on search*/
-      if( ( urlActive==="search.html") && searchKeySaved !=null )
+      if( ( urlActive==="search.html"||urlActive==="/search.html") && searchKeySaved !=null )
    {
     searchRecipeAll(searchKeySaved);
      localStorage.setItem('searchKey',randomArea);
@@ -278,8 +278,8 @@ function setRecipeVideo(tag) {
    
 
       json.meals.forEach(meal => {
-        if (count <4 &&  urlActive==="recipe.html"  ) {
-          contenuContainer += `<div class="card shadow-sm h-100" onclick="gotoRecipe('APImealDB','${meal.idMeal}')" >
+        if (count <4 &&  (urlActive==="recipe.html" || urlActive==="/recipe.html")  ) {
+          conteúdoContainer += `<div class="card shadow-sm h-100" onclick="gotoRecipe('APImealDB','${meal.idMeal}')" >
                          <img src="${meal.strMealThumb}" class="card-img-top" alt="Card 1">
                       <div class="card-body pb-0">
                         <h5 class="card-title text-black-50">${meal.strMeal}</h5>
@@ -288,7 +288,7 @@ function setRecipeVideo(tag) {
                       </div>
                     </div>`;
         }
-                if (count <4 &&  (urlActive==="home.html" || urlActive==="index.html" || urlActive==="") ) {
+                if (count <4 &&  (urlActive==="home.html" || urlActive==="index.html" || urlActive==="/home.html") ) {
           contenuContainer += `<div class="card" onclick="gotoRecipe('APImealDB','${meal.idMeal}')" >
                               <img src="${meal.strMealThumb}" class="card-img-top" alt="...">
                               <div class="card-body">
@@ -298,7 +298,7 @@ function setRecipeVideo(tag) {
                             </div>`;
         }
 
-        if (count >4 && count<9 && urlActive==="recipe.html" ) {
+        if (count >4 && count<9 && (urlActive==="recipe.html" || urlActive==="/recipe.html") ) {
        contenuContainer2 += `<div class="card shadow-sm h-100" onclick="gotoRecipe('APImealDB','${meal.idMeal}')" >
                          <img src="${meal.strMealThumb}" class="card-img-top" alt="Card 1">
                       <div class="card-body pb-0">
@@ -318,7 +318,7 @@ function setRecipeVideo(tag) {
       console.log(contenuContainer2);
       //create container in html page
       recipeContainer.innerHTML = contenuContainer;
-       if(urlActive==="recipe.html")recipeContainer2.innerHTML = contenuContainer2;
+       if(urlActive==="recipe.html"||urlActive==="/recipe.html")recipeContainer2.innerHTML = contenuContainer2;
 
     })
     .catch(err => console.error("Erreur :", err));

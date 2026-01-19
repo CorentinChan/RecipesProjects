@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log("url actuel : " + currentPath);
   links.forEach(link => {
     const linkPath = new URL(link.href).pathname;
-    if (linkPath === currentPath) {
+    if (linkPath === currentPath ||linkPath === "/"+currentPath) {
       link.classList.add('urlActive');
       console.log("url active : " + linkPath);
     } else {

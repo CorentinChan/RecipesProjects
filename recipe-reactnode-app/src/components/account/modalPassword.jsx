@@ -68,15 +68,15 @@ export default function ModalPassword({ user, userRole }) {
               <div className="modal-body d-flex flex-column align-items-center">
                 {/* current password */}
                 <label className="form-label">Current password</label>
-                <input type="password" className="form-control form-control-sm mb-5 p-2 w-75" minLength="4" 
+                <input type="password" className="form-control form-control-sm mb-5 p-2 w-75" minLength="4" maxLength={15}
                 name="passwordCurrent" value={currentPassword} onChange={(e)=>setCurrentPassword(e.target.value)} />
                 {/* new password */}
                 <label className="form-label">New password</label>
-                <input type="password" className="form-control form-control-sm mb-5 p-2 w-75" minLength="4" 
+                <input type="password" className="form-control form-control-sm mb-5 p-2 w-75" minLength="4"  maxLength={15}
                 name="passwordNew" value={newPassword} onChange={(e)=>setNewPassword(e.target.value)}/>
                 {/* check password */}
                 <label className="form-label">Retype password</label>
-                <input type="password" className="form-control form-control-sm mb-5 p-2 w-75" minLength="4" 
+                <input type="password" className="form-control form-control-sm mb-5 p-2 w-75" minLength="4" maxLength={15}
                 name="passwordNew2" value={newPassword2} onChange={(e)=>setNewPassword2(e.target.value)}/>
               </div>
             </form>

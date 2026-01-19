@@ -90,7 +90,7 @@ export default function ModalProfil({ user, profilParent, setProfilParent }) {
                 <input
                   className="form-control form-control-sm mb-5 p-2 w-75"
                   type="text"
-                  minLength={3}
+                  minLength={3} maxLength={15}
                   value={profil.pseudo}
                   onChange={(e) =>
                     setProfil((prev) => ({ ...prev, pseudo: e.target.value }))
@@ -105,7 +105,7 @@ export default function ModalProfil({ user, profilParent, setProfilParent }) {
                   type="text"
                   placeholder=""
                   name="image"
-                  minLength={3}
+                  minLength={3} 
                   value={profil.image}
                   onChange={(e) =>
                     setProfil((prev) => ({ ...prev, image: e.target.value }))
@@ -119,7 +119,7 @@ export default function ModalProfil({ user, profilParent, setProfilParent }) {
                   className="form-control mb-5 p-2 w-100"
                   placeholder="description"
                   name="description"
-                  minLength={3}
+                  minLength={3} maxLength={100}
                   value={profil.description}
                   onChange={(e) =>
                     setProfil((prev) => ({

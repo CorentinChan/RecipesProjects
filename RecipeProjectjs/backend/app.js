@@ -18,7 +18,7 @@ const passport = require("passport");
 require("./passportConfig");
 require('dotenv').config();
 const copyMealDBC = require('./copyDBMealC.js'); 
-
+const schedule = require('node-schedule');
 
 
 app.set('trust proxy', 1);
@@ -58,6 +58,11 @@ connection.connect(err => {
 		console.log('✅ Connecté à la base MySQL !');
 	}
 });
+
+const job = schedule.scheduleJob('* * * * *', function(){
+		console.log("MAJ API");
+		copyMealDBC(connection);
+	});
 
 
 	//initialize cookie

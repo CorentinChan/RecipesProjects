@@ -17,7 +17,7 @@ const passport = require("passport");
 require("./passportConfig");
 require('dotenv').config();
 var cors = require('cors');
-const cron = require('node-cron'); // 1. Importer la bibliothèque
+const schedule = require('node-schedule');
 const copyMealDBC = require('./copyDBMealC.js');
 
 let app = express();
@@ -1446,15 +1446,10 @@ app.get("/profile", async(req, res) => {
 });
 
 
-cron.schedule('3 50 20 * *', () => {
-    console.log('--- start MAJ API ---');
-    
-    try {
-        copyMealDBC(connection);
-    } catch (error) {
-        console.error('Erreur lors du scraping automatique :', error);
-    }
-});
+const job = schedule.scheduleJob('5 4 20 * *', function(){
+		console.log("MAJ API");
+		copyMealDBC(connection);
+	});
 
 
 

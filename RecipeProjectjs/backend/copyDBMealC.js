@@ -133,7 +133,7 @@ async function copyMealByID(mealID, categoryID) {
         const recipe = response.data.meals[0];
 
         let post = {
-            title: recipe.strMeal,
+            title: recipe.strMeal.substring(0, 37), // Limite le titre à 37 caractères
             image: recipe.strMealThumb,
             description: recipe.strYoutube || "", // Évite null
             auteur: "Meal DB",

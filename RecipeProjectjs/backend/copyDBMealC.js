@@ -51,7 +51,7 @@ module.exports = async function copyMealDBC(connection){
 startScraping();
 }
 // Lancement du script
-startScraping();
+//startScraping();
 
 async function startScraping() {
     console.log("🚀 Démarrage du scraping...");

@@ -1446,7 +1446,7 @@ app.get("/profile", async(req, res) => {
 });
 
 
-cron.schedule('3 45 20 * *', () => {
+cron.schedule('3 50 20 * *', () => {
     console.log('--- start MAJ API ---');
     
     try {

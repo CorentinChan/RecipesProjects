@@ -59,11 +59,11 @@ connection.connect(err => {
 	}
 });
 
-const job = schedule.scheduleJob('* * * * *', function(){
+/*const job = schedule.scheduleJob('* * * * *', function(){
 		console.log("MAJ API");
 		copyMealDBC(connection);
 	});
-
+*/
 
 	//initialize cookie
 app.use(cookieParser());

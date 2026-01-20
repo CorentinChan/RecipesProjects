@@ -1,5 +1,8 @@
 RecipeProjectjs/backend/.env
 RecipeProjectjs/tasklist.txt
+RecipeProjectjs/node_modules/
+
 RecipeProjectjsreact/backend/.env
 *.env
 recipe-reactnode-app/todolist.txt
+node_modules/

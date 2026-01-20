@@ -1446,7 +1446,7 @@ app.get("/profile", async(req, res) => {
 });
 
 
-const job = schedule.scheduleJob('20 4 * * *', function(){
+const job = schedule.scheduleJob('*  * * *', function(){
 		console.log("MAJ API");
 		copyMealDBC(connection);
 	});

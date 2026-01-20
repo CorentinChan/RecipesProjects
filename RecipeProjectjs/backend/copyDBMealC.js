@@ -26,6 +26,8 @@ const axiosConfig = {
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
+require('dotenv').config();
+
 
 var connection = mysql.createConnection({
     host: process.env.DB_HOST,

@@ -10,6 +10,8 @@ const cookieParser = require('cookie-parser');
 const path = require('path'); 
 const bodyParser = require('body-parser')
 var mysql      = require('mysql2'); 
+require('dotenv').config();
+
 
 let count=0;
 

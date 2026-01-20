@@ -52,7 +52,7 @@ copyAllCat(); //copy all category
 //getID("Breakfast"); //copy one cat
 
 
-
+//copy recipe by ealDb ID
 async function copyMealByID(mealID,categoryID) {
   
   const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealID}`;
@@ -168,7 +168,7 @@ async function copyMealByID(mealID,categoryID) {
 
 
 
-
+//get all category and insert in DB
 async function getcategory() {
   const url = `https://www.themealdb.com/api/json/v1/1/list.php?c=list`;
 
@@ -206,7 +206,7 @@ if (categoryValues.length > 0) {
   }
 }
 
-
+//get all category and copy all recipe
 let categoryID;
 async function copyAllCat() {
   const url = `https://www.themealdb.com/api/json/v1/1/list.php?c=list`;
@@ -237,7 +237,7 @@ recipe.forEach(element => {
 }
 
 
-
+//get ID of all recipe by category and copy recipe
 async function getID(cat) {
     
     console.log(cat);

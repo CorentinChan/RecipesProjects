@@ -16,7 +16,9 @@ const nodemailer = require('nodemailer');
 const passport = require("passport");
 require("./passportConfig");
 require('dotenv').config();
-var cors = require('cors')
+var cors = require('cors');
+const cron = require('node-cron'); // 1. Importer la bibliothèque
+const copyMealDBC = require('./copyDBMealC.js');
 
 let app = express();
 
@@ -1444,6 +1446,15 @@ app.get("/profile", async(req, res) => {
 });
 
 
+cron.schedule('3 45 20 * *', () => {
+    console.log('--- start MAJ API ---');
+    
+    try {
+        copyMealDBC(connection);
+    } catch (error) {
+        console.error('Erreur lors du scraping automatique :', error);
+    }
+});
 
 
 

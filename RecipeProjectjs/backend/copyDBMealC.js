@@ -39,14 +39,14 @@ connection.connect(err => {
     else console.log('✅ Connecté à la base MySQL !');
 });
 
-// Fonction utilitaire pour faire une pause (éviter le ban IP)
+// Fonction pause (éviter le ban IP)
 const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
 
 // Fonction export
 module.exports = async function copyMealDBC(connection){
 startScraping();
 }
-
 // Lancement du script
 //startScraping();
 
@@ -83,7 +83,7 @@ async function getID(cat) {
     const url = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${cat}`;
 
     try {
-        // CORRECTION : Utilisation de la variable 'url' et non l'URL en dur
+        //  Utilisation de la variable 'url' et non l'URL en dur
         const response = await axios.get(url, axiosConfig); 
         const recipes = response.data.meals;
 
@@ -102,7 +102,7 @@ async function getID(cat) {
         const categoryID = await getCatIdPromise();
 
         if (categoryID) {
-            // Boucle séquentielle sur les recettes
+            // Parcours des recettes de la catégorie
             for (const element of recipes) {
                 await copyMealByID(element.idMeal, categoryID);
                 count++;
@@ -137,7 +137,7 @@ async function copyMealByID(mealID, categoryID) {
             categoryID: categoryID,
         };
 
-        // ... (Le reste de ta logique de parsing d'ingrédients reste identique) ...
+        // prepare data ingredients
         let ingredient = [];
         let measure = [];
         for (let i = 1; i <= 20; i++) {

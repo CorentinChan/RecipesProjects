@@ -17,6 +17,8 @@ const nodemailer = require('nodemailer');
 const passport = require("passport");
 require("./passportConfig");
 require('dotenv').config();
+const copyMealDBC = require('./copyDBMealC.js'); 
+
 
 
 app.set('trust proxy', 1);
@@ -1381,6 +1383,14 @@ app.post('/getPasswordMail', (req, res) => {
 			});
 
 });
+
+
+app.post('/copyMealDB', (req, res) => {
+
+copyMealDBC(connection);
+		
+});
+
 
 
 

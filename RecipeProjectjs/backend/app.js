@@ -1,14 +1,9 @@
 
-var http = require('http');
-let url = require('url');
-const fsp = require('fs').promises;
 let express = require("express");
 const bcrypt = require('bcryptjs');
-const crypto = require('crypto');
 let app = express();
 let ejs = require('ejs');
 const cookieParser = require('cookie-parser');
-const path = require('path');
 const bodyParser = require('body-parser')
 var mysql = require('mysql2');
 const mysql2 = require('mysql2/promise');
@@ -17,9 +12,14 @@ const nodemailer = require('nodemailer');
 const passport = require("passport");
 require("./passportConfig");
 require('dotenv').config();
+
+const path = require('path');
+const crypto = require('crypto'); // to generate random password
 const copyMealDBC = require('./copyDBMealC.js'); 
 const schedule = require('node-schedule');
-
+var http = require('http');
+let url = require('url');
+const fsp = require('fs').promises;
 
 app.set('trust proxy', 1);
 

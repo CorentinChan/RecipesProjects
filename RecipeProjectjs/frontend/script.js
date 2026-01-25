@@ -1,5 +1,6 @@
 console.log("script.js chargé !");
 
+// Highlight the active navigation link
 document.addEventListener('DOMContentLoaded', () => {
   const links = document.querySelectorAll('nav a');
   const currentPath = window.location.pathname;
@@ -16,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
   
-
+//search bar , click to open and then click to send search
 searchButton = document.getElementById('searchButton');
 searchWindow = document.getElementById('searchWindow');
 let windowStatus= "none";
@@ -30,26 +31,18 @@ searchButton.addEventListener('click', () => {
   searchWindow.classList.add('slide-in-blurred-left');
 
 
-  /*
-  document.querySelector(".btnCustom").style.width="5em";
-  document.querySelector(".btnCustom2").style.width="5em";
-  */
+
   windowStatus="block";
  }
  else{
 
   sendSearch();
- /* windowStatus="none";
-  searchWindow.style.display = "none";
-  
-  //document.querySelector(".btnCustom").style.width = "5em";
-  //document.querySelector(".btnCustom2").style.width = "5em";
-  */
+
  }
 
 });
 
-
+//start search on enter key
  searchWindow.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
       sendSearch();
@@ -127,16 +120,7 @@ overlay2= document.getElementById('overlay2');
   });
 
 
-  //form page 
-    //add steps
-/*
-    function addStep(){
-      console.log('addstep')
-      let liste=document.querySelector('.instructionsList');
-      
-      liste.innerHTML+=' <li class="list-group-item border-0 border-bottom" > <input class="form-control form-control-sm  m-3 p-2 w-75" type="text" placeholder="write ingredient" ></li>';
-    }
-*/
+
 
 //print page
 if(document.getElementById("print")){ 

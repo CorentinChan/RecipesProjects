@@ -86,10 +86,10 @@
           <form method="post" action="/goRecipe" id="myForm" >
                 <button type="submit" class="p-0 border-0 bg-transparent w-100">
             <input hidden name="recipeID" value ="<%=recipe.id%>" >
-          <div class="card shadow-sm h-100" >
-            <img src="<%= recipe.image %>" class="card-img-top" alt="<%= recipe.title %>">
+          <div class="card shadow-sm rounded-4 h-100" >
+            <img src="<%= recipe.image %>" class="card-img-top rounded-4" alt="<%= recipe.title %>">
             <div class="card-body pb-0">
-              <h5 class="card-title"><%= recipe.title %></h5>
+              <p class="card-title"><%= recipe.title %></p>
               <div class="d-flex justify-content-between pt-3 pb-0 mb-0">
                 <span><%=recipe.note%><i class=" pb-1 ms-1 fa-solid fa-star"></i></span>
                 <span class="card-text"><%= recipe.auteur %></span>

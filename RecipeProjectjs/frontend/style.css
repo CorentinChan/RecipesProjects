@@ -195,7 +195,7 @@ color: blue!important;
 /*classes pour la recherche et la recipe list*/
 .background-perso{
 background-color: #0b5dd700; 
-background-image: url("../images/background2.webp");
+background-image: url("./images/background2.webp");
 background-size: cover;
 text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 

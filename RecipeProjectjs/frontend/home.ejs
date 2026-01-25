@@ -175,10 +175,10 @@
           <form method="post" action="/goRecipe" id="myForm" >
                 <button type="submit" class="p-0 border-0 bg-transparent w-100">
             <input hidden name="recipeID" value ="<%=recipe.id%>" >
-          <div class="card shadow-sm h-100" >
-            <img src="<%= recipe.image %>" class="card-img-top" alt="<%= recipe.title %>">
+          <div class="card shadow-sm rounded-4 h-100" >
+            <img src="<%= recipe.image %>" class="card-img-top rounded-4" alt="<%= recipe.title %>">
             <div class="card-body pb-0">
-              <h5 class="card-title"><%= recipe.title %></h5>
+              <p class="card-title"><%= recipe.title %></p>
               <div class="d-flex justify-content-between pt-3 pb-0 mb-0">
                 <span><%=recipe.note%><i class=" pb-1 ms-1 fa-solid fa-star"></i></span>
                 <span class="card-text"><%= recipe.auteur %></span>
@@ -254,9 +254,9 @@
         <% if(!recipe.image)recipe.image='https://cdn-s-www.dna.fr/images/60C1C7EF-628F-4C3E-B452-A807BA5B8749/NW_raw/photo-shutterstock-1660556772.jpg'; %>
         <img src="<%= recipe.image %>" class="card-img-top" alt="<%= recipe.title %>">
         <div class="card-body pb-0">
-          <h5 class="card-title text-black-50">
+          <p class="card-title text-black-50">
             <%= recipe.title %>
-          </h5>
+          </p>
           <div class="d-flex justify-content-between pt-3 pb-0 mb-0">
             <span><%=recipe.note%><i class=" pb-1 ms-1 fa-solid fa-star"></i></span>
             <span class="card-text">

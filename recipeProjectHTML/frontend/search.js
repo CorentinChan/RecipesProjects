@@ -124,8 +124,8 @@ function recipesDisplay(tag) {
     //create recipe card
     contenuCarousel += `   <div class="col-6 col-lg-4">
                        
-                       <div class="card shadow-sm h-100" onclick="gotoRecipe('APImealDB','${meal.idMeal}')" >
-                         <img src="${meal.strMealThumb}" class="card-img-top" alt="Card  ID${meal.idMeal} ">
+                       <div class="card shadow-sm rounded-4 h-100" onclick="gotoRecipe('APImealDB','${meal.idMeal}')" >
+                         <img src="${meal.strMealThumb}" class="card-img-top rounded-4" alt="Card  ID${meal.idMeal} ">
                       <div class="card-body pb-0">
                         <h5 class="card-title">${meal.strMeal}</h5>
                                               
@@ -215,8 +215,8 @@ function searchRecipeGen(tag) {
         }
         //create recipe card
         contenuCarousel += `   <div class="col-6 col-lg-4">
-                       <div class="card shadow-sm h-100" onclick="gotoRecipe('APImealDB','${meal.idMeal}')" >
-                         <img src="${meal.strMealThumb}" class="card-img-top" alt="Card ID${meal.idMeal}">
+                       <div class="card shadow-sm rounded-4 h-100" onclick="gotoRecipe('APImealDB','${meal.idMeal}')" >
+                         <img src="${meal.strMealThumb}" class="card-img-top rounded-4" alt="Card ID${meal.idMeal}">
                       <div class="card-body">
                         <h5 class="card-title">${meal.strMeal}</h5>
                         <div class="d-flex justify-content-between pt-3 pb-0 mb-0">
@@ -279,8 +279,8 @@ function setRecipeVideo(tag) {
 
       json.meals.forEach(meal => {
         if (count <4 &&  (urlActive==="recipe.html" || urlActive==="/recipe.html")  ) {
-          conteúdoContainer += `<div class="card shadow-sm h-100" onclick="gotoRecipe('APImealDB','${meal.idMeal}')" >
-                         <img src="${meal.strMealThumb}" class="card-img-top" alt="Card ID${meal.idMeal}">
+          conteúdoContainer += `<div class="card shadow-sm h-100 rounded-4" onclick="gotoRecipe('APImealDB','${meal.idMeal}')" >
+                         <img src="${meal.strMealThumb} " class="card-img-top rounded-4" alt="Card ID${meal.idMeal}">
                       <div class="card-body pb-0">
                         <h5 class="card-title text-black-50">${meal.strMeal}</h5>
                         <div class="d-flex justify-content-between pt-3 pb-0 mb-0"><span class=""> <button class=" border-0 bg-transparent p-0 m-0"><i class="fa-solid fa-star">N.C</i></button></span><span class="card-text">By mealDB API</span> </div>
@@ -299,8 +299,8 @@ function setRecipeVideo(tag) {
         }
 
         if (count >4 && count<9 && (urlActive==="recipe.html" || urlActive==="/recipe.html") ) {
-       contenuContainer2 += `<div class="card shadow-sm h-100" onclick="gotoRecipe('APImealDB','${meal.idMeal}')" >
-                         <img src="${meal.strMealThumb}" class="card-img-top" alt="Card ID${meal.idMeal}">
+       contenuContainer2 += `<div class="card shadow-sm rounded-4 h-100" onclick="gotoRecipe('APImealDB','${meal.idMeal}')" >
+                         <img src="${meal.strMealThumb}" class="card-img-top rounded-4" alt="Card ID${meal.idMeal}">
                       <div class="card-body pb-0">
                         <h5 class="card-title text-black-50">${meal.strMeal}</h5>
                         <div class="d-flex justify-content-between pt-3 pb-0 mb-0"><span class=""><i class="fa-solid fa-star">N.C</i></span><span class="card-text">By mealDB API</span> </div>

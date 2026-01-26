@@ -200,7 +200,7 @@ export default function CreateRecipe() {
           Category
         </label>
         <select
-          className="form-select  mb-5 p-2"
+          className="form-select ms-5 mb-5 p-2"
           aria-label="Default select example"
           onChange={(e) => setCategory(e.target.value)}
           value={category}

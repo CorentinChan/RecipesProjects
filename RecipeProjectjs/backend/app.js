@@ -952,8 +952,8 @@ app.post('/searchRecipes', (req, res) => {
 	}
 	console.log("textsearch : " + textSearch);
 
-	connection.query(`SELECT recipeID FROM tagslist WHERE tag = ? ;SELECT id FROM category WHERE name = ? ;  `,
-		[textSearch, textSearch], function (error, result, fields) {
+	connection.query(`SELECT recipeID FROM tagslist WHERE tag = ? ;SELECT id FROM category WHERE name = ? ;SELECT recipeID FROM liste_ingredients WHERE ingredient = ? ;  `,
+		[textSearch, textSearch,textSearch], function (error, result, fields) {
 			if (error) throw error;
 			console.log(" searchKey = " + textSearch);
 			console.log(result);
@@ -965,7 +965,7 @@ app.post('/searchRecipes', (req, res) => {
 
 			let categoryID = result[1]?.[0]?.id || '0';
 
-			connection.query(`SELECT * from recipe WHERE title LIKE ?  OR id in (?) OR categoryID=? ${filter} LIMIT 500 `,
+			connection.query(`SELECT * from recipe WHERE title LIKE ?  OR id in (?) OR categoryID=? ${filter} LIMIT 200 `,
 				[`%${textSearch}%`, cleanRecipeIDs, categoryID], function (error, result, fields) {
 					if (error) throw error;
 					console.log(result);
@@ -1012,8 +1012,8 @@ app.post('/searchRecipeHome', (req, res) => {
 	}
 	console.log("textsearch : " + textSearch);
 
-	connection.query(`SELECT recipeID FROM tagslist WHERE tag = ? ;SELECT id FROM category WHERE name = ? ;  `,
-		[textSearch, textSearch], function (error, result, fields) {
+	connection.query(`SELECT recipeID FROM tagslist WHERE tag = ? ;SELECT id FROM category WHERE name = ? ;SELECT recipeID FROM liste_ingredients WHERE ingredient = ? ;  `,
+		[textSearch, textSearch,textSearch], function (error, result, fields) {
 
 			if (error) throw error;
 			console.log(" searchKey = " + textSearch);

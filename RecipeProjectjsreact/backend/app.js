@@ -902,7 +902,7 @@ app.post('/searchRecipes', (req, res) => {
 	}
 	console.log("textsearch : " + textSearch);
 
-	connection.query(`SELECT recipeID FROM tagslist WHERE tag = ? ;SELECT id FROM category WHERE name = ? ;;SELECT recipeID FROM liste_ingredients WHERE ingredient = ? ;  `,
+	connection.query(`SELECT recipeID FROM tagslist WHERE tag = ? ;SELECT id FROM category WHERE name = ? ;SELECT recipeID FROM liste_ingredients WHERE ingredient = ? ;  `,
 		[textSearch, textSearch,textSearch], function (error, result, fields) {
 			if (error) throw error;
 			console.log(" searchKey = " + textSearch);
@@ -950,7 +950,7 @@ app.post('/searchRecipeHome', (req, res) => {
 	//}
 	console.log("textsearch : " + textSearch);
 
-	connection.query(`SELECT recipeID FROM tagslist WHERE tag = ? ;SELECT id FROM category WHERE name = ? ; ;SELECT recipeID FROM liste_ingredients WHERE ingredient = ? ; `,
+	connection.query(`SELECT recipeID FROM tagslist WHERE tag = ? ;SELECT id FROM category WHERE name = ? ; SELECT recipeID FROM liste_ingredients WHERE ingredient = ? ; `,
 		[textSearch, textSearch,textSearch], function (error, result, fields) {
 
 			if (error) throw error;

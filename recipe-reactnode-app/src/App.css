@@ -265,7 +265,7 @@ width: 50rem;
   width: 100%;
   max-width: 400px;
   height: auto;       /* hauteur s’adapte à l’image */
-  object-fit: contain; /* l’image entière est visible */        
+  object-fit: cover; /* l’image entière est visible */        
     }
     
     

@@ -5,15 +5,12 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './index.css'
 import App from './App.jsx'
 import { BrowserRouter } from "react-router-dom";
-import {Helmet} from "react-helmet";
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-      <HelmetProvider>
 
     <App />
-        </HelmetProvider>
 
   </StrictMode>,
 )

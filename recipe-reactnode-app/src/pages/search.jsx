@@ -1,5 +1,6 @@
 import { useState,useEffect } from 'react'
 import { useSearchParams } from "react-router-dom";
+import {Helmet} from "react-helmet";
 
 import Caroussel from '/src/components/caroussel.jsx'
 import SearchBar from '/src/components/searchBar.jsx'

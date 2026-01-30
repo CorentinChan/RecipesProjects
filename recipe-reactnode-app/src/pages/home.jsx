@@ -5,6 +5,7 @@ import SearchBar from "/src/components/searchBar.jsx";
 import HomeNav from "/src/components/home/homeNav.jsx";
 import Subscribe from "/src/components/home/subscribe.jsx";
 import VideosReco from "../components/home/videosReco";
+import {Helmet} from "react-helmet";
 
 import "./home.css";
 

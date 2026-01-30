@@ -21,6 +21,10 @@ export default function  Search() {
     return (
         
  <div>
+       <Helmet>
+        <title>Search | App Recipe</title>
+        <meta name="description" content="Page recherche de recipe app" />
+      </Helmet>
 <SearchBar  keyword={keyword} setKeyword={setKeyword} filter={filter} setFilter={setFilter}/>
 <div className='recipeSearch'>
 <Caroussel keyword={keyword} filter={filter}/>

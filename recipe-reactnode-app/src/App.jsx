@@ -20,7 +20,7 @@ import ModifyRecipe from './components/modifyRecipe'
 import LocationState from './components/locationState'
 import React, { Suspense, lazy } from 'react';
 
-// with lazy page will load only if needed
+//  lazy page will load only if needed
 const Home = lazy(() => import('/src/pages/home.jsx'));
 const Contact = lazy(() => import('/src/pages/contact.jsx'));
 const Search = lazy(() => import('/src/pages/search.jsx'));

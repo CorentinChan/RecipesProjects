@@ -10,15 +10,8 @@ import {Helmet} from "react-helmet";
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-<<<<<<< HEAD
 
     <App />
-=======
-      <HelmetProvider>
-
-    <App />
-        </HelmetProvider>
->>>>>>> bc7382e0f0deb149ba776641a81b135f5f1a14fd
 
   </StrictMode>,
 )

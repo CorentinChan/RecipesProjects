@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+<<<<<<< HEAD
 import {Helmet} from "react-helmet";
+=======
+>>>>>>> bc7382e0f0deb149ba776641a81b135f5f1a14fd
 
 export default function Contact() {
   const [name, setName] = useState("");

@@ -1,7 +1,10 @@
 import { createContext, useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+<<<<<<< HEAD
 import {Helmet} from "react-helmet";
+=======
+>>>>>>> bc7382e0f0deb149ba776641a81b135f5f1a14fd
 
 import Description from "/src/components/recipe/description.jsx";
 import Instructions from "/src/components/recipe/instructions.jsx";

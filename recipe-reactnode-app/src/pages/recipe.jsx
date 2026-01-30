@@ -83,64 +83,67 @@ export default function Recipe({ user, userRole }) {
 
   return (
     <>
-      <Helmet>
-        <title>Recipe {meal.title} | App Recipe</title>
-        <meta
-          name="description"
-          content={`recette détaillée de recipe app : ${meal.title}`}
-        />
-        <meta
-          name="keywords"
-          content={`${meal.title}, recette, cuisine, ${meal.category}`}
-        />
-        <meta property="og:image" content={meal.image} />
-        <meta property="og:image:alt" content={`Photo de ${meal.title}`} />
-        <meta property="og:image:type" content="image/jpeg" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta
-          property="og:title"
-          content={`recette détaillée de : ${meal.title}`}
-        />
-        <meta
-          property="og:description"
-          content={`recette : ${meal.description}`}
-        />
-        <meta property="og:type" content="recette" />
-        <meta property="og:url" content={window.location.href} />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org/",
-            "@type": "Recipe",
-            name: meal.title,
-            image: [meal.image],
-            description:
-              meal.description && meal.description.trim() !== ""
-                ? meal.description
-                : `Recette : ${meal.title}`,
-            datePublished: meal.date,
-            author: {
-              "@type": "Person",
-              name: meal.auteur || "Inconnu",
-            },
-            recipeCategory: meal.categoryID
-              ? `Catégorie ${meal.categoryID}`
-              : undefined,
-            totalTime: meal.totalTime ? `${meal.totalTime} minutes` : undefined,
-            prepTime: meal.activeTime
-              ? `${meal.activeTime} minutes`
-              : undefined,
-            recipeYield: meal.yield || undefined,
-            aggregateRating: meal.note
-              ? {
-                  "@type": "AggregateRating",
-                  ratingValue: meal.note,
-                  reviewCount: 1,
-                }
-              : undefined,
-          })}
-        </script>
-      </Helmet>
+<Helmet>
+  {/* Title */}
+  <title>Recipe {meal?.title || 'Recipe'} | App Recipe</title>
+
+  {/* Meta Description & Keywords */}
+  <meta
+    name="description"
+    content={meal?.description?.trim() || `Detailed recipe of ${meal?.title || 'Recipe'} on App Recipe.`}
+  />
+  <meta
+    name="keywords"
+    content={`${meal?.title || ''}, recipe, cooking, ${meal?.category || ''}`}
+  />
+
+  {/* Open Graph / Facebook / Pinterest */}
+  {meal?.image && (
+    <>
+      <meta property="og:image" content={meal.image} />
+      <meta property="og:image:alt" content={`Photo of ${meal.title}`} />
+      <meta property="og:image:type" content="image/jpeg" />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+    </>
+  )}
+
+  <meta property="og:title" content={`Detailed recipe: ${meal?.title || ''}`} />
+  <meta
+    property="og:description"
+    content={meal?.description?.trim() || `Recipe: ${meal?.title || ''}`}
+  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content={window.location.href} />
+
+  {/* JSON-LD Recipe Schema */}
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org/",
+      "@type": "Recipe",
+      name: meal?.title || 'Recipe',
+      image: meal?.image ? [meal.image] : undefined,
+      description: meal?.description?.trim() || `Recipe: ${meal?.title || 'Recipe'}`,
+      datePublished: meal?.date,
+      author: {
+        "@type": "Person",
+        name: meal?.auteur || "Unknown",
+      },
+      recipeCategory: meal?.categoryID ? `Category ${meal.categoryID}` : undefined,
+      totalTime: meal?.totalTime ? `${meal.totalTime} minutes` : undefined,
+      prepTime: meal?.activeTime ? `${meal.activeTime} minutes` : undefined,
+      recipeYield: meal?.yield || undefined,
+      aggregateRating: meal?.note
+        ? {
+            "@type": "AggregateRating",
+            ratingValue: meal.note,
+            reviewCount: 1,
+          }
+        : undefined,
+    })}
+  </script>
+</Helmet>
+
 
       {recipeID && (
         <>

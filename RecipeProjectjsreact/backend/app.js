@@ -23,10 +23,10 @@ const copyMealDBC = require('./copyDBMealC.js');
 let app = express();
 
 app.use(session({
-	secret: process.env.DB_SECRET,      // clé pour signer la session (change-la)
-	resave: false,              // ne pas sauvegarder si rien n’a changé
-	saveUninitialized: true,    // sauvegarder les nouvelles sessions même si vides
-	cookie: { maxAge: 3600000 } // durée de vie du cookie en ms ( 1h)
+	secret: process.env.DB_SECRET,      
+	resave: false,              // no save if no changes
+	saveUninitialized: true,    // save new session 
+	cookie: { maxAge: 3600000 } // cookie lifetime ( 1h)
 }));
 
 
@@ -34,13 +34,17 @@ app.use(passport.initialize());
 app.use(passport.session());
  
 
-
+if(process.env.NODE_ENV==='development')
+{app.use(cors({
+  origin: "http://localhost:5173", //  frontend React
+  credentials: true                // absolutely needed to authorize cookies
+}));}
 //authorize cookies
-app.use(cors({
+else {app.use(cors({
   origin: "http://37.27.248.236:3001", //  frontend React
-  credentials: true                // permet d’envoyer/recevoir les cookies
+  credentials: true                // absolutely needed to authorize cookies
 }));
-
+}
 
 //init connection for mysql
 const pool = mysql2.createPool({

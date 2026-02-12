@@ -97,7 +97,7 @@ export default function Recipe({ user, userRole }) {
     content={`${meal?.title || ''}, recipe, cooking, ${meal?.category || ''}`}
   />
 
-  {/* Open Graph / Facebook / Pinterest */}
+  {/* Open Graph */}
   {meal?.image && (
     <>
       <meta property="og:image" content={meal.image} />

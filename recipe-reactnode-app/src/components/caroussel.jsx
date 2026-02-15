@@ -61,7 +61,7 @@ fetchRecipes();
   });
   slides.push(group); // dernière slide
 
-   }, [keyword,filter]);
+   }, [meals]);
 
  
 

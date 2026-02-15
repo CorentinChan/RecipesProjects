@@ -5,7 +5,7 @@ import SearchBar from "/src/components/searchBar.jsx";
 import HomeNav from "/src/components/home/homeNav.jsx";
 import Subscribe from "/src/components/home/subscribe.jsx";
 import VideosReco from "../components/home/videosReco";
-import {Helmet} from "react-helmet";
+//import {Helmet} from "react-helmet";
 
 import "./home.css";
 
@@ -17,10 +17,11 @@ export default function Home({ user }) {
   return (
     <div>
 
-      <Helmet>
+      {/* remplace helmet avec react19*/}
+      <main>
         <title>Home | App Recipe</title>
         <meta name="description" content="Page d'accueil de recipe app" />
-      </Helmet>
+      </main>
 
       <section className="signup-container tilt1 ">
         <div className=" container-fluid ms-2 ms-lg-5 my-5 ">

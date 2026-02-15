@@ -91,7 +91,7 @@ const navigate=useNavigate();
 
 return ( 
 <div className="d-flex justify-content-center m-2 m-lg-5" id="comment"> 
-  <div className="accordion accordion-flush bg-light w-75 w-sm-100 justify-content-center mt-3 text-center mx-2 me-4" id="accordionFlushExample">
+  <div className="accordion accordion-flush bg-light w-100 w-lg-75 justify-content-center mt-3 text-center mx-2 me-4" id="accordionFlushExample">
     
     <div className="accordion-item text-center w-100">
       <h2 className="accordion-header" id="flush-headingOne">
@@ -115,7 +115,7 @@ return (
         <div className="accordion-body">
           <ul className="list-unstyled">
            { comments.map((comment,index)=>( 
-            <li key={`comlist${index}`} className="d-lg-flex flex-column bg-warning-subtle mb-2 p-1 rounded-pill border">
+            <li key={`comlist${index}`} className="d-lg-flex flex-column bg-warning-subtle mb-2 p-1 rounded-2 border">
               <p>{comment.title} : </p>
              <p>{comment.commentaire}</p>
              <div>
@@ -151,7 +151,7 @@ return (
         <div className="accordion-body">
           <ul className="list-unstyled">
           { notes.map((note,index)=>( 
-            <li key={`notelist${index}`} className="d-flex flex-column  justify-content-center bg-warning-subtle mb-2 p-1 rounded-pill border">
+            <li key={`notelist${index}`} className="d-flex flex-column  justify-content-center bg-warning-subtle mb-2 p-1 rounded-2 border">
               <p className="text-center me-1">{note.title}</p>
               <p>note : {note.note} / 5</p>
               <div>

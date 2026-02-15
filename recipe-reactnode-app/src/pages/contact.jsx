@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import {Helmet} from "react-helmet";
+//import {Helmet} from "react-helmet";
 
 export default function Contact() {
   const [name, setName] = useState("");
@@ -41,10 +41,10 @@ export default function Contact() {
 
   return (
     <div className="d-lg-flex contactGroup  ">
-      <Helmet>
+      <main>
         <title>contact | App Recipe</title>
         <meta name="description" content="Page contact de recipe app" />
-      </Helmet>
+      </main>
 
       <section className=" contactText py-3 ">
         <div className=" container py-5">

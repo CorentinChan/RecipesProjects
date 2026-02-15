@@ -12,6 +12,8 @@ export default function CreateRecipe() {
 
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
+  const [imageFile, setImageFile] = useState(null);
+
   const [description, setDescription] = useState("");
   const [activeTime, setActiveTime] = useState("");
   const [totalTime, setTotalTime] = useState("");
@@ -50,7 +52,7 @@ export default function CreateRecipe() {
             "Content-Type": "application/json",
           },
           credentials: "include",
-        }
+        },
       );
 
       const data = await response.json();
@@ -69,29 +71,34 @@ export default function CreateRecipe() {
     let categoryID = category;
     console.log({ steps, ingredients, measures, tags, categoryID });
 
+    // create form data with image then form
+    const formData = new FormData();
+    if (imageFile) formData.append("image", imageFile);
+
+    const recipeData = {
+      title,
+      description,
+      image,
+      activeTime,
+      totalTime,
+      nbPerson,
+      categoryID,
+      author,
+      steps,
+      ingredients,
+      tags,
+      measures,
+    };
+    formData.append("data", JSON.stringify(recipeData));
+
     try {
       const { data } = await axios.post(
         import.meta.env.VITE_API_URL + "/createRecipe",
+        formData,
         {
-          title,
-          image,
-          description,
-          activeTime,
-          totalTime,
-          nbPerson,
-          categoryID,
-          author,
-          steps,
-          ingredients,
-          tags,
-          measures,
-        },
-        {
-          headers: { "Content-Type": "application/json" },
           withCredentials: true,
-        }
+        },
       );
-
       setMessage(data.message);
       console.log("Réponse backend :", data);
 
@@ -105,6 +112,13 @@ export default function CreateRecipe() {
       setMessage(error.response?.data?.message || "Erreur réseau");
     }
   }
+
+  const handleFileChange = (e) => {
+    if (e.target.files) {
+      setImageFile(e.target.files[0]);
+    }
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <section className="recipeTitle gx-0">
@@ -113,16 +127,6 @@ export default function CreateRecipe() {
             Write your own recipe!
           </h3>
 
-          <label className="form-label">Recipe Picture</label>
-          <input
-            className="form-control form-control-sm mb-5 p-2 w-100"
-            type="text"
-            maxLength={3000}
-            placeholder="enter picture url"
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
-          />
-
           <label className="form-label">Recipe Title</label>
           <input
             className="form-control form-control-sm mb-5 p-2 w-100"
@@ -130,6 +134,7 @@ export default function CreateRecipe() {
             placeholder="enter title recipe"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            minLength={4}
             maxLength={37}
           />
 
@@ -142,6 +147,27 @@ export default function CreateRecipe() {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
+
+          <label className="form-label">Recipe Picture</label>
+          <input
+            className="form-control form-control-sm  p-2 w-100"
+            type="text"
+            maxLength={3000}
+            placeholder="enter picture url"
+            value={image}
+            onChange={(e) => setImage(e.target.value)}
+          />
+          <div className="m-2 mb-5 d-flex justify-content-center text-center aligns-item-center flex-column">
+            <label className="form-label mt-2 mt-3 text-black-50">
+              Or upload your picture
+            </label>
+            <input
+              className=""
+              type="file"
+              onChange={handleFileChange}
+              accept=".jpg,.jpeg,.png,.pdf" // Pré-filtre visuel (pas une sécurité)
+            />
+          </div>
 
           <div className="d-flex text-center descriptionLogos border">
             <div className="logo1 p-2 mx-2 m-lg-3 px-lg-5 text-center border-end">
@@ -179,41 +205,41 @@ export default function CreateRecipe() {
             </div>
           </div>
 
-          <div className="d-flex mt-5 bottomDescription">
-            <div className="container">
-              <label className="form-label">Recipe Author</label>
-              <input
-                className="form-control form-control-sm mb-5 p-2 w-100"
-                type="text"
-                placeholder="enter name author"
-                value={author}
-                onChange={(e) => setAuthor(e.target.value)}
-                maxLength={20}
-              />
+          <div className="d-flex ">
+            <div className="-flex flex-column align-items-start  mt-5 bottomDescription">
+              <div className="container">
+                <label className="form-label">Recipe Author</label>
+                <input
+                  className="form-control form-control-sm mb-5 w-100"
+                  type="text"
+                  placeholder="enter name author"
+                  value={author}
+                  onChange={(e) => setAuthor(e.target.value)}
+                  maxLength={20}
+                />
+              </div>
             </div>
+          </div>
+          <div className="d-flex flex-column align-items-start ms-3">
+            <label className="form-label ms-5 ">Category</label>
+            <select
+              className="form-select  mb p-2"
+              defaultValue={category}
+              aria-label="Default select example"
+              onChange={(e) => setCategory(e.target.value)}
+              value={category}
+            >
+              <option disabled>choose category</option>
+
+              {categoryList.map((element) => (
+                <option key={`category+${element.id}`} value={element.id}>
+                  {element.name}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
       </section>
-
-      <div className="justify-conten-center align-items-center">
-        <label htmlFor="" className="form-label">
-          Category
-        </label>
-        <select
-          className="form-select ms-5 mb-5 p-2"
-          aria-label="Default select example"
-          onChange={(e) => setCategory(e.target.value)}
-          value={category}
-        >
-          <option disabled>choose category</option>
-
-          {categoryList.map((element) => (
-            <option key={`category+${element.id}`} value={element.id}>
-              {element.name}
-            </option>
-          ))}
-        </select>
-      </div>
 
       <section className="m-1 p-1 m-lg-5 p-lg-3 makeRecipe-container">
         <div className="recipeLeft">
@@ -265,7 +291,7 @@ export default function CreateRecipe() {
                           setIngredients,
                           i,
                           e.target.value,
-                          ingredients
+                          ingredients,
                         )
                       }
                     />

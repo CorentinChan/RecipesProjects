@@ -74,6 +74,7 @@ export default function Card({ title, img, id, note, author, isFavoris }) {
     //card
     <div
       className="col-6 col-lg-4 px-1 my-lg-3 "
+       key={id}
       data-testid={`card-${id}`}
       onClick={() => {
         navigate(url);

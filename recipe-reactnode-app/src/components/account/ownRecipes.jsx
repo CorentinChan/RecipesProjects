@@ -35,10 +35,9 @@ const [recipes,setRecipes]=useState([])
                 try {
 
         const { data } = await axios.post(
-          import.meta.env.VITE_API_URL + "/deleteRecipeList",
+          import.meta.env.VITE_API_URL + "/deleteRecipe",
           {
             recipeID,
-            type,
           },
           {
             headers: {"Content-Type": "application/json",},

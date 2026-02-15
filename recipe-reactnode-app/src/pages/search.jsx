@@ -1,6 +1,6 @@
 import { useState,useEffect } from 'react'
 import { useSearchParams } from "react-router-dom";
-import {Helmet} from "react-helmet";
+//import {Helmet} from "react-helmet";
 
 import Caroussel from '/src/components/caroussel.jsx'
 import SearchBar from '/src/components/searchBar.jsx'
@@ -22,13 +22,15 @@ export default function  Search() {
     return (
         
  <div>
-       <Helmet>
+       <main>
         <title>Search | App Recipe</title>
         <meta name="description" content="Page recherche de recipe app" />
-      </Helmet>
-<SearchBar  keyword={keyword} setKeyword={setKeyword} filter={filter} setFilter={setFilter}/>
-<div className='recipeSearch'>
-<Caroussel keyword={keyword} filter={filter}/>
+      </main>
+
+      <SearchBar  keyword={keyword} setKeyword={setKeyword} filter={filter} setFilter={setFilter}/>
+      <div className='recipeSearch'>
+      <Caroussel keyword={keyword} filter={filter}/>
+
 </div>
 
  </div>

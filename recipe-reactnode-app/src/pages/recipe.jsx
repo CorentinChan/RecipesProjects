@@ -1,8 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import {Helmet} from "react-helmet";
-
+//import {Helmet} from "react-helmet"; //ne plus utiliser helmet react 19
 
 import Description from "/src/components/recipe/description.jsx";
 import Instructions from "/src/components/recipe/instructions.jsx";
@@ -25,9 +24,6 @@ export default function Recipe({ user, userRole }) {
   const recipeID = useStore((state) => state.recipeID);
   const setRecipeID = useStore((state) => state.setRecipeID);
 
-  //const [recipeID,setRecipeID]=useState(searchParams.get("id")||"690");
-
-  //let recipeID = searchParams.get("id")||"690"; //param id of url
   const [meal, setMeal] = useState(null);
   const [ingredients, setIngredients] = useState(null);
 
@@ -35,14 +31,7 @@ export default function Recipe({ user, userRole }) {
 
   let measures = [];
 
-  //     const handleRefresh = () => {
-  //   setRefresh(prev => prev + 1); // change la key → reconstruit le composant
-  // };
 
-  //    useEffect(() => {
-  //   setRecipeID(searchParams.get("id"||"690"));
-
-  // }, []);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -83,67 +72,80 @@ export default function Recipe({ user, userRole }) {
 
   return (
     <>
-<Helmet>
-  {/* Title */}
-  <title>Recipe {meal?.title || 'Recipe'} | App Recipe</title>
+      {/* remplace helmet avec react19*/}
+      <main>
+        {/* Title */}
+        <title>Recipe {meal?.title || "Recipe"} | App Recipe</title>
 
-  {/* Meta Description & Keywords */}
-  <meta
-    name="description"
-    content={meal?.description?.trim() || `Detailed recipe of ${meal?.title || 'Recipe'} on App Recipe.`}
-  />
-  <meta
-    name="keywords"
-    content={`${meal?.title || ''}, recipe, cooking, ${meal?.category || ''}`}
-  />
-
-  {/* Open Graph */}
-  {meal?.image && (
-    <>
-      <meta property="og:image" content={meal.image} />
-      <meta property="og:image:alt" content={`Photo of ${meal.title}`} />
-      <meta property="og:image:type" content="image/jpeg" />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
-    </>
-  )}
-
-  <meta property="og:title" content={`Detailed recipe: ${meal?.title || ''}`} />
-  <meta
-    property="og:description"
-    content={meal?.description?.trim() || `Recipe: ${meal?.title || ''}`}
-  />
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content={window.location.href} />
-
-  {/* JSON-LD Recipe Schema */}
-  <script type="application/ld+json">
-    {JSON.stringify({
-      "@context": "https://schema.org/",
-      "@type": "Recipe",
-      name: meal?.title || 'Recipe',
-      image: meal?.image ? [meal.image] : undefined,
-      description: meal?.description?.trim() || `Recipe: ${meal?.title || 'Recipe'}`,
-      datePublished: meal?.date,
-      author: {
-        "@type": "Person",
-        name: meal?.auteur || "Unknown",
-      },
-      recipeCategory: meal?.categoryID ? `Category ${meal.categoryID}` : undefined,
-      totalTime: meal?.totalTime ? `${meal.totalTime} minutes` : undefined,
-      prepTime: meal?.activeTime ? `${meal.activeTime} minutes` : undefined,
-      recipeYield: meal?.yield || undefined,
-      aggregateRating: meal?.note
-        ? {
-            "@type": "AggregateRating",
-            ratingValue: meal.note,
-            reviewCount: 1,
+        {/* Meta Description & Keywords */}
+        <meta
+          name="description"
+          content={
+            meal?.description?.trim() ||
+            `Detailed recipe of ${meal?.title || "Recipe"} on App Recipe.`
           }
-        : undefined,
-    })}
-  </script>
-</Helmet>
+        />
+        <meta
+          name="keywords"
+          content={`${meal?.title || ""}, recipe, cooking, ${meal?.category || ""}`}
+        />
 
+        {/* Open Graph */}
+        {meal?.image && (
+          <>
+            <meta property="og:image" content={meal.image} />
+            <meta property="og:image:alt" content={`Photo of ${meal.title}`} />
+            <meta property="og:image:type" content="image/jpeg" />
+            <meta property="og:image:width" content="1200" />
+            <meta property="og:image:height" content="630" />
+          </>
+        )}
+
+        <meta
+          property="og:title"
+          content={`Detailed recipe: ${meal?.title || ""}`}
+        />
+        <meta
+          property="og:description"
+          content={meal?.description?.trim() || `Recipe: ${meal?.title || ""}`}
+        />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={window.location.href} />
+
+        {/* JSON-LD Recipe Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org/",
+            "@type": "Recipe",
+            name: meal?.title || "Recipe",
+            image: meal?.image ? [meal.image] : undefined,
+            description:
+              meal?.description?.trim() || `Recipe: ${meal?.title || "Recipe"}`,
+            datePublished: meal?.date,
+            author: {
+              "@type": "Person",
+              name: meal?.auteur || "Unknown",
+            },
+            recipeCategory: meal?.categoryID
+              ? `Category ${meal.categoryID}`
+              : undefined,
+            totalTime: meal?.totalTime
+              ? `${meal.totalTime} minutes`
+              : undefined,
+            prepTime: meal?.activeTime
+              ? `${meal.activeTime} minutes`
+              : undefined,
+            recipeYield: meal?.yield || undefined,
+            aggregateRating: meal?.note
+              ? {
+                  "@type": "AggregateRating",
+                  ratingValue: meal.note,
+                  reviewCount: 1,
+                }
+              : undefined,
+          })}
+        </script>
+      </main>
 
       {recipeID && (
         <>

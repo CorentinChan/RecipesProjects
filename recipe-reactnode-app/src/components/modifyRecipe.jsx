@@ -200,48 +200,52 @@ export default function ModifyRecipe() {
             </div>
           </div>
 
-          <div className="d-flex mt-5 bottomDescription">
-            <div className="container">
-              <label className="form-label">Recipe Author</label>
-              <input
-                className="form-control form-control-sm mb-5 p-2 w-100"
-                type="text"
-                placeholder="enter name author"
-                value={author}
-                onChange={(e) => setAuthor(e.target.value)}
-                maxLength={20}
-              />
+          <div className="d-flex ">
+            <div className="d-flex mt-5 bottomDescription">
+              <div className="container">
+                <label className="form-label">Recipe Author</label>
+                <input
+                  className="form-control form-control-sm mb-5 w-100"
+                  type="text"
+                  placeholder="enter name author"
+                  value={author}
+                  onChange={(e) => setAuthor(e.target.value)}
+                  maxLength={20}
+                />
+              </div>
+            </div>
+   
+          </div>
+                   <div className="d-flex flex-column ms-3">
+              <label htmlFor="" className="form-label ">
+                Category
+              </label>
+              <select
+                className="form-select  mb p-2"
+                defaultValue={category}
+                aria-label="Default select example"
+                onChange={(e) => setCategory(e.target.value)}
+                value={category}
+              >
+                <option disabled>choose category</option>
+
+                {categoryList.map((element) => (
+                  <option key={`category+${element.id}`} value={element.id}>
+                    {element.name}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
-        </div>
       </section>
 
-      <div className="justify-content-center align-items-center">
-        <label htmlFor="" className="form-label">
-          Category
-        </label>
-        <select
-          className="form-select ms-5 mb-5 p-2"
-          defaultValue={category}
-          aria-label="Default select example"
-          onChange={(e) => setCategory(e.target.value)}
-          value={category}
-        >
-          <option disabled>choose category</option>
 
-          {categoryList.map((element) => (
-            <option key={`category+${element.id}`} value={element.id}>
-              {element.name}
-            </option>
-          ))}
-        </select>
-      </div>
 
       <section className="m-1 p-1 m-lg-5 p-lg-3 makeRecipe-container">
         <div className="recipeLeft">
           <div className="recipeSteps">
             <h2 className="mt-5 my-lg-0">How to make it</h2>
-            
+
             <ol className="mt-lg-4 list-group instructionsList">
               {steps.map((step, i) => (
                 <li key={i} className="list-group-item border-0 mb-2">

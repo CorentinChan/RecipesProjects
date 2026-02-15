@@ -7,7 +7,7 @@ export default function Card({
   title,
   img,
   id,
-  // nbItems,
+  nbItems,
   note,
   author,
   isFavoris,

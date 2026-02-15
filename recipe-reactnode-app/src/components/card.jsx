@@ -3,13 +3,21 @@ import { useStore } from "../store/store";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function Card({ title, img, id, note, author, isFavoris }) {
+export default function Card({
+  title,
+  img,
+  id,
+  bnItem,
+  note,
+  author,
+  isFavoris,
+}) {
   const [favoris, setFavoris] = useState(isFavoris);
   let url = "/recipe?id=" + id;
   let navigate = useNavigate();
   const user = useStore((state) => state.user);
 
-  img=img+"/preview";
+  img = img + "/preview";
 
   // axios request to add to favorite list
   async function fetchAddList() {
@@ -23,7 +31,7 @@ export default function Card({ title, img, id, note, author, isFavoris }) {
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
-        }
+        },
       );
 
       //to change heart icon
@@ -49,7 +57,7 @@ export default function Card({ title, img, id, note, author, isFavoris }) {
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
-        }
+        },
       );
 
       //to change heart icon status
@@ -73,8 +81,8 @@ export default function Card({ title, img, id, note, author, isFavoris }) {
   return (
     //card
     <div
-      className="col-6 col-lg-4 px-1 my-lg-3 "
-       key={id}
+      className={`col-6 px-1 my-lg-3 ${nbItems === 3 ? "col-lg-4" : "col-lg-6"}`}
+      key={id}
       data-testid={`card-${id}`}
       onClick={() => {
         navigate(url);
@@ -85,10 +93,10 @@ export default function Card({ title, img, id, note, author, isFavoris }) {
         <div className="imagePart rounded-4 ">
           {/*image*/}
           <img
-          loading="lazy" 
-          width="400" 
-          height="240"
-          decoding="async"  
+            loading="lazy"
+            width="400"
+            height="240"
+            decoding="async"
             src={
               img
                 ? img

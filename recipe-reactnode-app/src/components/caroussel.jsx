@@ -36,7 +36,7 @@ import axios from 'axios';
             withCredentials: true,
           }
         );
-        setMeals(data.recipes);
+        setMeals(data.recipes|| []);
         console.log("Réponse backend :", data);
 
  
@@ -60,11 +60,12 @@ fetchRecipes();
   });
   slides.push(group); // dernière slide
 
+  if (!meals || meals.length === 0) return null; 
 
  
 
   return (
-    <div id="cardCarousel" className="carousel slide">
+    <div id="cardCarousel" className="carousel slide"      key={`${keyword}-${filter}-${meals.length}`}>
       <div className="carousel-inner p-2 p-lg-4">
 
         {slides.map((slide, slideIndex) => (

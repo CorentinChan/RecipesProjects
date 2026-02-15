@@ -74,9 +74,8 @@ fetchRecipes();
             key={slideIndex}>
             <div className="row g-3  ">
               {slide.map((meal,index) => (
-               // <div key={meal.idMeal}>     
                 <Card key={index} title={meal.title} 
-                //  nbItems={slide.length}
+                  nbItems={slide.length}
                 img={meal.image?meal.image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwAdnj607fkyztZ3TkKVTdEy-FG-tD-gEGJQ&s"} 
                 id={meal.id} note={meal.note} author={meal.auteur} isFavoris={meal.userID?true:false}   />
                 // </div>

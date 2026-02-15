@@ -70,7 +70,7 @@ fetchRecipes();
           <div
             className={` ms-lg-5  carousel-item ${slideIndex === 0 ? "active" : ""}`}
             key={slideIndex}>
-            <div className="row g-4 d-flex justify-content-center ">
+            <div className="row g-4  ">
               {slide.map((meal,index) => (
                // <div key={meal.idMeal}>     
                 <Card key={index} title={meal.title} 

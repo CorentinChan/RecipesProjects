@@ -92,7 +92,7 @@ fetchRecipes();
                 ⬅️ 
               </button>
 
-              <div className='d-flex flex-row flex-nowrap overflow-auto'>
+              <div className='d-flex flex-row flex-nowrap overflow-x-auto'>
         {slides.map((_, i) => (
           <button
             key={i}

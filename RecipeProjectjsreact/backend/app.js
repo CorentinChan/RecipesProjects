@@ -1556,8 +1556,8 @@ app.get("/profile", async (req, res) => {
 		const [mailCheck] = await pool.execute('SELECT * FROM users WHERE mail=?', [mail]);
 
 		if (mailCheck.length === 0) {
-			const [insertMail] = await pool.execute('INSERT INTO users (mail,pseudo) VALUES (?,"NoName")', [mail]);
-
+			    const pseudo = "user" + Date.now();
+			const [insertMail] = await pool.execute('INSERT INTO users (mail,pseudo) VALUES (?,?)', [mail,pseudo]);
 		}
 
 		const [userInfo] = await pool.execute('SELECT * FROM users WHERE mail=?', [mail]);

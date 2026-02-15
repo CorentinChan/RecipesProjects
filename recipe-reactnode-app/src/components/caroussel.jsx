@@ -50,7 +50,6 @@ fetchRecipes();
   }, [keyword,filter]);
 
    
-   useEffect(() => {
  // grouper les recettes par 12
   meals.forEach((meal, index) => {
     if (index > 0 && index % 12 === 0) {
@@ -61,7 +60,6 @@ fetchRecipes();
   });
   slides.push(group); // dernière slide
 
-   }, [meals]);
 
  
 

@@ -68,9 +68,9 @@ fetchRecipes();
 
         {slides.map((slide, slideIndex) => (
           <div
-            className={`   carousel-item ${slideIndex === 0 ? "active" : ""}`}
+            className={` ms-lg-5  carousel-item ${slideIndex === 0 ? "active" : ""}`}
             key={slideIndex}>
-            <div className="row g-4 justify-content-center ">
+            <div className="row g-4 d-flex justify-content-center ">
               {slide.map((meal,index) => (
                // <div key={meal.idMeal}>     
                 <Card key={index} title={meal.title} 

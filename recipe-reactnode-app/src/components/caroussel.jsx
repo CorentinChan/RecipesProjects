@@ -50,9 +50,8 @@ fetchRecipes();
   }, [keyword,filter]);
 
    
-   
-
-  // grouper les recettes par 12
+   useEffect(() => {
+ // grouper les recettes par 12
   meals.forEach((meal, index) => {
     if (index > 0 && index % 12 === 0) {
       slides.push(group);
@@ -61,6 +60,10 @@ fetchRecipes();
     group.push(meal);
   });
   slides.push(group); // dernière slide
+
+   }, [keyword,filter]);
+
+ 
 
   return (
     <div id="cardCarousel" className="carousel slide">

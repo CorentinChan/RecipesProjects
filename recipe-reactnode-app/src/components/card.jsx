@@ -82,7 +82,7 @@ export default function Card({
     //card
     <div
       className="col-6 col-lg-4 px-1 my-lg-3 "
-      key={id}
+      // key={id}
       data-testid={`card-${id}`}
       onClick={() => {
         navigate(url);

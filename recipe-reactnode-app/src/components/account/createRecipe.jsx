@@ -73,7 +73,12 @@ export default function CreateRecipe() {
 
     // create form data with image then form
     const formData = new FormData();
-    if (imageFile) formData.append("image", imageFile);
+    if(imageFile.size > 5*1024*1024) {
+      alert('File size too large! ');
+      return;
+    }
+    if (imageFile ) formData.append("image", imageFile);
+    
 
     const recipeData = {
       title,
@@ -159,14 +164,14 @@ export default function CreateRecipe() {
           />
           <div className="m-2 mb-5 d-flex justify-content-center text-center aligns-item-center flex-column">
             <label className="form-label mt-2 mt-3 text-black-50">
-              Or upload your picture
+              Or upload your picture ( max 5MB )
             </label>
             <input
               className=""
               type="file"
               onChange={handleFileChange}
               accept=".jpg,.jpeg,.png,.pdf" // Pré-filtre visuel (pas une sécurité)
-            />
+            /> 
           </div>
 
           <div className="d-flex text-center descriptionLogos border">

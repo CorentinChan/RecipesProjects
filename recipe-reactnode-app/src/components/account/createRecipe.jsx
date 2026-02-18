@@ -73,6 +73,18 @@ export default function CreateRecipe() {
 
     // create form data with image then form
     const formData = new FormData();
+
+        const allowedTypes = [
+      "image/jpeg",
+      "image/png",
+    ];
+
+      if (!allowedTypes.includes(imageFile.type)) {
+        alert("Format d'image non supporté");
+        return false;
+      }
+  
+
     if(imageFile.size > 3*1024*1024) {
       alert('File size too large! ');
       return;
@@ -164,13 +176,13 @@ export default function CreateRecipe() {
           />
           <div className="m-2 mb-5 d-flex justify-content-center text-center aligns-item-center flex-column">
             <label className="form-label mt-2 mt-3 text-black-50">
-              Or upload your picture ( max 3MB )
+              Or upload your picture ( max 3MB, only jpg/png )
             </label>
             <input
               className=""
               type="file"
               onChange={handleFileChange}
-              accept=".jpg,.jpeg,.png,.pdf" // Pré-filtre visuel (pas une sécurité)
+              accept=".jpg,.jpeg,.png" // Pré-filtre visuel (pas une sécurité)
             /> 
           </div>
 

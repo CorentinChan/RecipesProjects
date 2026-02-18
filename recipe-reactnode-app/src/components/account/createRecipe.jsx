@@ -73,7 +73,7 @@ export default function CreateRecipe() {
 
     // create form data with image then form
     const formData = new FormData();
-    if(imageFile.size > 5*1024*1024) {
+    if(imageFile.size > 3*1024*1024) {
       alert('File size too large! ');
       return;
     }
@@ -164,7 +164,7 @@ export default function CreateRecipe() {
           />
           <div className="m-2 mb-5 d-flex justify-content-center text-center aligns-item-center flex-column">
             <label className="form-label mt-2 mt-3 text-black-50">
-              Or upload your picture ( max 5MB )
+              Or upload your picture ( max 3MB )
             </label>
             <input
               className=""

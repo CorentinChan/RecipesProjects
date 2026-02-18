@@ -802,7 +802,7 @@ app.post('/createRecipe', upload.single('image'), (req, res) => { //create recip
 		//url server
 		let server = '';
 		if (process.env.NODE_ENV === 'development') server = 'http://localhost:3001/uploads/';
-		else server = 'http://37.27.248.236:3001/recipe/';
+		else server = '/uploads/';
 		if (req.file) imageFilename = server + req.file.filename;
 		else imageFilename = recipeData.image;
 

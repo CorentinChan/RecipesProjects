@@ -17,7 +17,7 @@ export default function Card({
   let navigate = useNavigate();
   const user = useStore((state) => state.user);
 
-  img = img + "/preview";
+  // img = img + "/preview"; // preview to reduce image size
 
   // axios request to add to favorite list
   async function fetchAddList() {

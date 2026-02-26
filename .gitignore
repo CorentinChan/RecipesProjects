@@ -5,8 +5,7 @@ RecipeProjectjsreact/node_modules/
 
 RecipeProjectjsreact/backend/.env
 *.env
-node_modules/
+**/node_modules/
 recipe-reactnode-app/todolist.txt
-node_modules/
 recipe-reactnode-app/.env.production
 recipe-reactnode-app/.env.development

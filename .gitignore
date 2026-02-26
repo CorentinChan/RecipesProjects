@@ -1,30 +1,12 @@
-
-**/node_modules/
-# Environnement
-*.env
-*.env.*        # ignore .env.production, .env.development etc
-
-# Logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Build / production
-build/
-dist/
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# IDE / Editor files
-.vscode/
-.idea/
-
-# Projet spécifique (si tu as des sous-dossiers)
-RecipeProjectjs/backend/.env
-RecipeProjectjsreact/backend/.env
-
-# Fichiers temporaires / taches
+ecipeProjectjs/backend/.env
 RecipeProjectjs/tasklist.txt
+RecipeProjectjs/node_modules/
+RecipeProjectjsreact/node_modules/
+
+RecipeProjectjsreact/backend/.env
+*.env
+node_modules/
 recipe-reactnode-app/todolist.txt
+node_modules/
+recipe-reactnode-app/.env.production
+recipe-reactnode-app/.env.development

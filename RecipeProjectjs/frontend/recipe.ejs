@@ -39,21 +39,7 @@
             <!--title-->
     <h1 class="fade-in mb-0"><%=recipe.title %></h1>
     <p class="mt-1 ps-3 pt-1">  <%=recipe.note%><i class="fa-solid fa-star"> </i> (<%=notes.length%>)
-      <!--
-     <% if (recipe.note) { for(let i=0;i<5;i++){ console.log(recipe.note);  if(recipe.note>i) {  %>
-                <i class="fa-solid fa-star">  </i> <% }else{ %>
-              <i class="fa-regular fa-star"></i>
-              <% }} %>
-                  ( <%=notes.length%>  )
-              <% }  %>   -->
-        
-    </p>
-    <%    const regex = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+$/;
-          if(regex.test(recipe.description)){ %>
-    <a class="ps-3" href="<%=recipe.description%>" target="_blank"><i class="fa-brands fa-youtube fs-1"></i></a>
-            <% }else{ %>
-    <p class="text-black-50  fs-4"><%=recipe.description %></p>
-          <%}%>
+
     <!--Recipe info-->
     <div class="d-flex text-center  descriptionLogos border-bottom">
         <div class="logo1  p-3 mx-2  m-lg-3 px-lg-5 text-center border-end">

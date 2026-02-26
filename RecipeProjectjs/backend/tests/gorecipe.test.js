@@ -1,6 +1,7 @@
 const request = require('supertest');
-const app = require('../app'); // Assure-toi que le chemin est correct
+const app = require('../app');
 
+//describe regroupe les differents tests de cette fonction
 describe('POST /goRecipe', () => {
     
     it('devrait mettre à jour le cookie recipeID et rediriger vers /recipe', async () => {
@@ -20,7 +21,7 @@ describe('POST /goRecipe', () => {
         // res.header['set-cookie'] est un tableau de chaînes
         const cookies = res.header['set-cookie'].join(' ');
         
-        expect(cookies).toContain(`recipeID=${testRecipeID}`);
+        expect(cookies).toContain(`recipeID=${testRecipeID}`); //verifier la valeur du cookie
         expect(cookies).toContain('HttpOnly'); // Vérifie l'option httpOnly
     });
 

@@ -764,31 +764,7 @@ const upload = multer({
 app.post('/createRecipe', upload.single('image'), (req, res) => { //create recipe save on database
 	console.log(req.body);
 
-	if (req.cookies.pseudoID) { //create post for recipe table
-		// let post = {
-		// 	title: req.body.title,
-		// 	description: req.body.description,
-		// 	image: req.body.image,
-		// 	totalTime: req.body.totalTime,
-		// 	yield: req.body.nbPerson,
-		// 	activeTime: req.body.activeTime,
-		// 	auteur: req.body.author,
-		// 	categoryID: req.body.categoryID,
-		// };
-
-		// var query = connection.query('INSERT INTO recipe SET ?', post,
-		// 	function (error, results, fields) {
-		// 		if (error) throw error;
-		// 		const recipeID = results.insertId;  // ← récupère l’ID auto-incrémenté
-		// 		console.log('Dernier recipeID inséré =', recipeID);
-
-		// let step = req.body.steps.filter(item => item !== null && item !== ""); // prepare steps data for instructions table(filter empty input)
-		// let tag = req.body.tags.filter(item => item !== null && item !== ""); // prepare tags data for tagslist table
-		// console.log(tag);
-
-
-		// let ingredient = req.body.ingredients;
-		// let measure = req.body.measures;
+	if (req.cookies.pseudoID) { 
 
 		//version avec formData
 		let recipeData = {};

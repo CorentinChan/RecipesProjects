@@ -74,25 +74,23 @@ export default function CreateRecipe() {
     // create form data with image then form
     const formData = new FormData();
 
-    if (imageFile ){
-        const allowedTypes = [
-      "image/jpeg",
-      "image/png",
-    ];
+    if (imageFile != null) {
+      // ou imageFile && imageFile.type
+      const allowedTypes = ["image/jpeg", "image/png"];
 
-      if (!allowedTypes.includes(imageFile.type)) {
+      if (!imageFile.type || !allowedTypes.includes(imageFile.type)) {
         alert("Format d'image non supporté");
-        return false;
+        return;
       }
-  
 
-    if(imageFile.size > 3*1024*1024) {
-      alert('File size too large! ');
-      return;
+      if (imageFile.size > 3 * 1024 * 1024) {
+        alert("File size too large!");
+        return;
+      }
+
+      formData.append("image", imageFile);
     }
-     formData.append("image", imageFile);
-  }
-
+    
     const recipeData = {
       title,
       description,
@@ -184,7 +182,7 @@ export default function CreateRecipe() {
               type="file"
               onChange={handleFileChange}
               accept=".jpg,.jpeg,.png" // Pré-filtre visuel (pas une sécurité)
-            /> 
+            />
           </div>
 
           <div className="d-flex text-center descriptionLogos border">

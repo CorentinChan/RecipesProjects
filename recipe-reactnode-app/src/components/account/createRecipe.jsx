@@ -74,6 +74,7 @@ export default function CreateRecipe() {
     // create form data with image then form
     const formData = new FormData();
 
+    if (imageFile ){
         const allowedTypes = [
       "image/jpeg",
       "image/png",
@@ -89,8 +90,8 @@ export default function CreateRecipe() {
       alert('File size too large! ');
       return;
     }
-    if (imageFile ) formData.append("image", imageFile);
-    
+     formData.append("image", imageFile);
+  }
 
     const recipeData = {
       title,

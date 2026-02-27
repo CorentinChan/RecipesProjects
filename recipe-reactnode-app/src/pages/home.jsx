@@ -55,7 +55,7 @@ export default function Home({ user }) {
 
       {showSignup && <Signup setShowSignup={setShowSignup} />}
 
-      <div className="recipeGroup ms-lg-5">
+      <div className=" recipeGroup flex-column-reverse flex-lg-row ms-lg-5">
         <HomeNav keyword={keyword} setKeyword={setKeyword} />
 
         <div className="recipe-container">

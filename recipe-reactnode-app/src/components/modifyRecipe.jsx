@@ -152,6 +152,8 @@ export default function ModifyRecipe() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             maxLength={37}
+            minLength={4}
+            required
           />
 
           <label className="form-label">Recipe Description</label>

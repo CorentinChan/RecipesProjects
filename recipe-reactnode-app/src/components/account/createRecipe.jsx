@@ -90,7 +90,7 @@ export default function CreateRecipe() {
 
       formData.append("image", imageFile);
     }
-    
+
     const recipeData = {
       title,
       description,
@@ -123,6 +123,7 @@ export default function CreateRecipe() {
         console.log("succed");
         navigate(0);
       }
+      
     } catch (error) {
       console.error("Erreur lors de la connexion :", error);
       setMessage(error.response?.data?.message || "Erreur réseau");
@@ -152,6 +153,7 @@ export default function CreateRecipe() {
             onChange={(e) => setTitle(e.target.value)}
             minLength={4}
             maxLength={37}
+            required
           />
 
           <label className="form-label">Recipe Description</label>
@@ -368,6 +370,7 @@ export default function CreateRecipe() {
           </div>
         </div>
       </section>
+                      <p className="text-danger italic">{message}</p>
 
       <div className="d-flex justify-content-center">
         <button
@@ -376,7 +379,9 @@ export default function CreateRecipe() {
         >
           Submit
         </button>
+
       </div>
+
     </form>
   );
 }

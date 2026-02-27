@@ -764,6 +764,7 @@ const upload = multer({
 app.post('/createRecipe', upload.single('image'), (req, res) => { //create recipe save on database
 	console.log(req.body);
 
+try{ 
 	if (req.cookies.pseudoID) { 
 
 		//version avec formData
@@ -772,6 +773,10 @@ app.post('/createRecipe', upload.single('image'), (req, res) => { //create recip
 		// transform form data json to table
 		recipeData = JSON.parse(req.body.data);
 		console.log(recipeData);
+
+		//check conform data
+			if(!recipeData?.title||recipeData?.title.length<3) return res.json({ succeed: false, message: "minimum title 4character" });
+			//if(!recipeData?.steps||recipeData?.steps.length<1) return res.json({ succeed: false, message: "minimum one step" });
 
 		// Get file name , multer will send name if file exist
 		let imageFilename = null;
@@ -875,10 +880,16 @@ app.post('/createRecipe', upload.single('image'), (req, res) => { //create recip
 	}
 	else {
 		console.log("not connected!");
-		res.json({ succeed: true, message: "not connected" });
+		res.json({ succeed: false, message: "not connected" });
 	}
 	res.json({ succeed: true });
 	//res.redirect('/account')
+
+}	catch (err) {
+		console.error('Erreur MySQL :', err);
+		res.json({ succeed: false, message: "network erreur" });
+
+	}
 
 });
 
